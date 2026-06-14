@@ -6,7 +6,6 @@
 # 2. Create a free Netlify account and connect the GitHub repo
 # 3. In Netlify: Identity → Enable, then Git Gateway → Enable
 # 4. Invite church staff by email via Identity → Invite users
-# 5. Uncomment and set site_url below to your Cloudflare Pages URL
 
 backend:
   name: git-gateway
@@ -14,13 +13,13 @@ backend:
 
 site_url: https://church-site-27m.pages.dev/
 
-media_folder: "public/uploads"
+media_folder: "church-site/public/uploads"
 public_folder: "/uploads"
 
 collections:
   - name: "sermons"
     label: "Sermons"
-    folder: "content/sermons"
+    folder: "church-site/content/sermons"
     create: true
     slug: "{{year}}-{{month}}-{{fields.title}}"
     fields:
@@ -33,7 +32,7 @@ collections:
 
   - name: "events"
     label: "Events"
-    folder: "content/events"
+    folder: "church-site/content/events"
     create: true
     slug: "{{year}}-{{month}}-{{fields.title}}"
     fields:
@@ -45,7 +44,7 @@ collections:
 
   - name: "announcements"
     label: "Announcements"
-    folder: "content/announcements"
+    folder: "church-site/content/announcements"
     create: true
     slug: "{{year}}-{{month}}-{{fields.title}}"
     fields:
@@ -59,7 +58,7 @@ collections:
     files:
       - label: "Site settings"
         name: "settings"
-        file: "content/settings.json"
+        file: "church-site/content/settings.json"
         fields:
           - { label: "Church name", name: "churchName", widget: "string" }
           - { label: "Tagline", name: "tagline", widget: "string" }
@@ -86,7 +85,7 @@ collections:
 
       - label: "Leadership team"
         name: "leadership"
-        file: "content/leadership.json"
+        file: "church-site/content/leadership.json"
         fields:
           - label: "Leaders"
             name: "leaders"
