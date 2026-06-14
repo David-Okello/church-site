@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Church Website Demo</title>
+    <style>
+        :root {
+            --primary: #1f4b8f;
+            --secondary: #c89b3c;
+            --bg: #f7f8fb;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --card: #ffffff;
+            --border: #e5e7eb;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(31, 75, 143, .95), rgba(20, 37, 78, .95)),
+                url('https://images.unsplash.com/photo-1519491050282-cf00c82424b4?auto=format&fit=crop&w=1400&q=80') center/cover;
+            color: white;
+            padding: 20px 0 80px;
+        }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: 0 auto;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .brand {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        nav button {
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 999px;
+            padding: 10px 16px;
+            cursor: pointer;
+        }
+
+        nav button.active,
+        nav button:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 28px;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4vw, 3.8rem);
+            margin: 0 0 14px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            max-width: 650px;
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 18px;
+            padding: 22px;
+        }
+
+        .hero-card h3 {
+            margin-top: 0;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: #1a1a1a;
+        }
+
+        .btn-secondary {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        main {
+            margin-top: -40px;
+            padding-bottom: 60px;
+        }
+
+        .page {
+            display: none;
+            animation: fade .25s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 22px;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+        }
+
+        .section-title {
+            font-size: 1.9rem;
+            margin: 12px 0 8px;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .sermon-item,
+        .event-item {
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+        }
+
+        .sermon-item:last-child,
+        .event-item:last-child {
+            border-bottom: none;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .gallery div {
+            height: 180px;
+            border-radius: 16px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        footer {
+            background: #13233f;
+            color: white;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+
+        .note {
+            margin-top: 18px;
+            padding: 14px 16px;
+            border-left: 4px solid var(--secondary);
+            background: #fff9eb;
+            border-radius: 10px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            margin-top: 6px;
+            margin-bottom: 14px;
+            font: inherit;
+        }
+
+        @media (max-width: 860px) {
+
+            .hero,
+            .split,
+            .grid,
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="topbar">
+                <div class="brand">[Church Name] Church</div>
+                <nav>
+                    <button class="tab active" data-page="home">Home</button>
+                    <button class="tab" data-page="about">About</button>
+                    <button class="tab" data-page="sermons">Sermons</button>
+                    <button class="tab" data-page="contact">Contact</button>
+                </nav>
+            </div>
+
+            <div class="hero">
+                <div>
+                    <h1>A welcoming church website for your community</h1>
+                    <p>
+                        This is a demo concept you can use today to show church leaders the general direction:
+                        modern, clean, mobile-friendly, and easy to grow later.
+                    </p>
+                    <div class="btn-row">
+                        <a href="#" class="btn btn-primary">Service Times</a>
+                        <a href="#" class="btn btn-secondary">Watch Sermons</a>
+                    </div>
+                </div>
+
+                <div class="hero-card">
+                    <h3>This Sunday</h3>
+                    <p><strong>Main Service:</strong> 9:00 AM</p>
+                    <p><strong>Youth Fellowship:</strong> 2:00 PM</p>
+                    <p><strong>Midweek Prayer:</strong> Wednesday, 5:30 PM</p>
+                    <p class="muted">Location, phone number, WhatsApp, and livestream link can go here.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="home" class="page active">
+            <div class="grid">
+                <div class="card">
+                    <h3>Our Mission</h3>
+                    <p class="muted">Share a short statement about the church's purpose, vision, and values.</p>
+                </div>
+                <div class="card">
+                    <h3>Upcoming Events</h3>
+                    <p class="muted">Revival meetings, youth days, women's fellowship, choir practice, and outreach.</p>
+                </div>
+                <div class="card">
+                    <h3>Latest Announcement</h3>
+                    <p class="muted">A quick message from the pastor or weekly notice to the congregation.</p>
+                </div>
+            </div>
+
+            <div class="split">
+                <div class="card">
+                    <h2 class="section-title">Upcoming Events</h2>
+                    <div class="event-item">
+                        <strong>Youth Conference</strong><br />
+                        <span class="muted">Saturday • 10:00 AM</span>
+                    </div>
+                    <div class="event-item">
+                        <strong>Community Prayer Night</strong><br />
+                        <span class="muted">Friday • 6:00 PM</span>
+                    </div>
+                    <div class="event-item">
+                        <strong>Choir Practice</strong><br />
+                        <span class="muted">Thursday • 4:30 PM</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="section-title">Photo Highlights</h2>
+                    <div class="gallery">
+                        <div
+                            style="background-image:url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=800&q=80')">
+                        </div>
+                        <div
+                            style="background-image:url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=800&q=80')">
+                        </div>
+                        <div
+                            style="background-image:url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=800&q=80')">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note">
+                For the real site, you can swap in the church colors, logo, local photos, pastor message, donation info,
+                and ministry sections.
+            </div>
+        </section>
+
+        <section id="about" class="page">
+            <div class="card">
+                <h2 class="section-title">About the Church</h2>
+                <p>
+                    This page can tell the church story, vision, denomination, beliefs, pastoral team, and ministries.
+                    Keep it simple and warm.
+                </p>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Vision</h3>
+                        <p class="muted">A place to describe where the church is headed and who it hopes to serve.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Leadership</h3>
+                        <p class="muted">Pastor profile, elders, ministry leaders, and contact details.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Ministries</h3>
+                        <p class="muted">Youth, women, men, children, worship, missions, and outreach.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sermons" class="page">
+            <div class="card">
+                <h2 class="section-title">Recent Sermons</h2>
+                <div class="sermon-item">
+                    <strong>Walking by Faith</strong><br />
+                    <span class="muted">Pastor Name • April 2026</span>
+                </div>
+                <div class="sermon-item">
+                    <strong>Hope in Difficult Times</strong><br />
+                    <span class="muted">Pastor Name • April 2026</span>
+                </div>
+                <div class="sermon-item">
+                    <strong>The Power of Prayer</strong><br />
+                    <span class="muted">Pastor Name • March 2026</span>
+                </div>
+                <p class="note">Later, this can link to YouTube, Facebook Live, audio files, or uploaded sermon notes.
+                </p>
+            </div>
+        </section>
+
+        <section id="contact" class="page">
+            <div class="split">
+                <div class="card">
+                    <h2 class="section-title">Contact Us</h2>
+                    <p><strong>Address:</strong> Church location goes here</p>
+                    <p><strong>Phone:</strong> +211 ...</p>
+                    <p><strong>Email:</strong> info@church.org</p>
+                    <p><strong>WhatsApp:</strong> Add a direct contact number here</p>
+                </div>
+
+                <div class="card">
+                    <h2 class="section-title">Prayer Request / Message</h2>
+                    <label>Name</label>
+                    <input type="text" placeholder="Your name" />
+                    <label>Email or phone</label>
+                    <input type="text" placeholder="Your contact" />
+                    <label>Message</label>
+                    <textarea rows="5" placeholder="Write your prayer request or message"></textarea>
+                    <button class="btn btn-primary" type="button">Send</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <strong>[Church Name] Church</strong>
+            <p>Built as a simple visual demo for discussion and planning.</p>
+        </div>
+    </footer>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab');
+        const pages = document.querySelectorAll('.page');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                pages.forEach(p => p.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.page).classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
