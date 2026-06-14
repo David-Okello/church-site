@@ -11,20 +11,29 @@ export default function EventsPage() {
   return (
     <>
       {/* ── HEADER ── */}
-      <section className="relative bg-cream py-24 px-6 overflow-hidden">
-        <div
-          className="absolute right-0 top-0 rounded-full pointer-events-none"
-          style={{ width: 280, height: 280, background: "#2B5740", opacity: 0.06, transform: "translate(30%, -30%)" }}
+      <section className="relative flex items-end overflow-hidden" style={{ minHeight: "65vh", background: "#14100C" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=85&auto=format&fit=crop"
+          alt="Community gathering"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: "center 40%" }}
         />
-        <div className="mx-auto max-w-6xl relative z-10">
-          <div className="kicker mb-4">Church calendar</div>
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to bottom, rgba(28,24,20,0.15) 0%, rgba(28,24,20,0.50) 55%, rgba(28,24,20,0.92) 100%)",
+          }}
+        />
+        <div className="relative z-10 mx-auto max-w-4xl w-full px-6 pb-14 pt-24">
+          <div className="kicker mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>Church calendar</div>
           <h1
-            className="text-charcoal font-black mb-5"
+            className="text-white font-black mb-4"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2.5rem, 5vw, 4rem)", lineHeight: 1.05 }}
           >
             Upcoming events
           </h1>
-          <p className="text-warm-gray text-lg max-w-xl leading-relaxed">
+          <p className="text-white/70 text-lg max-w-xl leading-relaxed">
             Life at Grace Community is about more than Sunday mornings. Here is what is coming up — and there is always room for one more.
           </p>
         </div>

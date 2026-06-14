@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
 
         {/* Footer */}
-        <footer className="bg-[#1C1814] text-[#EDE8DE] py-14">
+        <footer className="text-[#EDE8DE] py-14" style={{ background: "linear-gradient(135deg, #2a1a10 0%, #1C1814 45%, #111812 100%)" }}>
           <div className="mx-auto max-w-6xl px-6 grid md:grid-cols-3 gap-10">
             <div>
               <div className="flex items-center gap-3 mb-4">

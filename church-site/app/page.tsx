@@ -22,7 +22,7 @@ export default function HomePage() {
   return (
     <>
       {/* ── 1. HERO ── */}
-      <section className="relative overflow-hidden min-h-[92vh] flex items-center" style={{ background: "#14100C" }}>
+      <section className="relative overflow-hidden min-h-screen flex items-center" style={{ background: "#14100C" }}>
         {/* Full-bleed photo — works at every screen size */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img

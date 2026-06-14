@@ -16,26 +16,42 @@ export default function ContactPage() {
   ];
 
   return (
-    <section className="mx-auto max-w-6xl px-6 py-20">
-      {/* Inline heading — no hero section */}
-      <div className="mb-14">
-        <div className="kicker mb-3">Connect with us</div>
-        <h1
-          className="text-charcoal font-black mb-4"
+    <>
+      {/* ── HEADER ── */}
+      <section className="relative flex items-end overflow-hidden" style={{ minHeight: "52vh", background: "#14100C" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://images.unsplash.com/photo-1524069290683-0457abfe42c3?w=1600&q=85&auto=format&fit=crop"
+          alt="Church community"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: "center 30%" }}
+        />
+        <div
+          className="absolute inset-0"
           style={{
-            fontFamily: "var(--font-playfair), Georgia, serif",
-            fontSize: "clamp(2.2rem, 4vw, 3.4rem)",
-            lineHeight: 1.08,
-            letterSpacing: "-0.02em",
+            background: "linear-gradient(to bottom, rgba(28,24,20,0.15) 0%, rgba(28,24,20,0.50) 50%, rgba(28,24,20,0.90) 100%)",
           }}
-        >
-          We would love to hear from you.
-        </h1>
-        <p className="text-warm-gray text-lg max-w-lg leading-relaxed">
-          A question, a prayer request, or just wanting to know when to come — reach out any way that works for you.
-        </p>
-      </div>
+        />
+        <div className="relative z-10 mx-auto max-w-6xl w-full px-6 pb-14 pt-24">
+          <div className="kicker mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>Connect with us</div>
+          <h1
+            className="text-white font-black mb-4"
+            style={{
+              fontFamily: "var(--font-playfair), Georgia, serif",
+              fontSize: "clamp(2.2rem, 4vw, 3.4rem)",
+              lineHeight: 1.08,
+              letterSpacing: "-0.02em",
+            }}
+          >
+            We would love to hear from you.
+          </h1>
+          <p className="text-white/70 text-lg max-w-lg leading-relaxed">
+            A question, a prayer request, or just wanting to know when to come — reach out any way that works for you.
+          </p>
+        </div>
+      </section>
 
+      <section className="mx-auto max-w-6xl px-6 py-16">
       <div className="grid lg:grid-cols-[1fr_1.3fr] gap-8 items-start">
         {/* Left: info */}
         <div className="flex flex-col gap-5">
@@ -104,6 +120,7 @@ export default function ContactPage() {
           <ContactForm />
         </Card>
       </div>
-    </section>
+      </section>
+    </>
   );
 }
