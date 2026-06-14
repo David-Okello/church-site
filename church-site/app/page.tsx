@@ -32,11 +32,11 @@ export default function HomePage() {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "60% center" }}
         />
-        {/* Cream gradient overlay: opaque on left (text), reveals photo on right */}
+        {/* Cream gradient overlay: shows photo throughout, readable text on left */}
         <div
           className="absolute inset-0"
           style={{
-            background: "linear-gradient(to right, rgba(249,245,238,0.97) 0%, rgba(249,245,238,0.94) 38%, rgba(249,245,238,0.65) 58%, rgba(249,245,238,0.1) 100%)",
+            background: "linear-gradient(to right, rgba(249,245,238,0.88) 0%, rgba(249,245,238,0.74) 28%, rgba(249,245,238,0.30) 52%, rgba(249,245,238,0.0) 100%)",
           }}
         />
 

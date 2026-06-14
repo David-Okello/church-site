@@ -15,21 +15,30 @@ export default function SermonsPage() {
   return (
     <>
       {/* ── HEADER ── */}
-      <section className="relative bg-cream py-24 px-6 overflow-hidden">
-        <div
-          className="absolute -left-20 -bottom-20 rounded-full pointer-events-none"
-          style={{ width: 320, height: 320, background: "#C8943A", opacity: 0.07 }}
+      <section className="relative flex items-end overflow-hidden" style={{ minHeight: "52vh" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://images.unsplash.com/photo-1713909399240-2f5627fa1e41?w=1600&q=85&auto=format&fit=crop"
+          alt="Worship service"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: "center 20%" }}
         />
-        <div className="mx-auto max-w-4xl relative z-10">
-          <div className="kicker mb-4">Media ministry</div>
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to bottom, rgba(28,24,20,0.15) 0%, rgba(28,24,20,0.5) 55%, rgba(28,24,20,0.90) 100%)",
+          }}
+        />
+        <div className="relative z-10 mx-auto max-w-4xl w-full px-6 pb-14 pt-24">
+          <div className="kicker mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>Media ministry</div>
           <h1
-            className="text-charcoal font-black mb-5"
+            className="text-white font-black mb-4"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2.5rem, 5vw, 4rem)", lineHeight: 1.05 }}
           >
             Sermons
           </h1>
-          <p className="text-warm-gray text-lg max-w-xl leading-relaxed">
-            Teachings from God's Word — for your encouragement, growth, and edification.
+          <p className="text-white/70 text-lg max-w-xl leading-relaxed">
+            Teachings from God&apos;s Word — for your encouragement, growth, and edification.
           </p>
         </div>
       </section>

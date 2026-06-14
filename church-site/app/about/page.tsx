@@ -20,43 +20,38 @@ export default function AboutPage() {
 
   return (
     <>
-      {/* ── OPENING STATEMENT ── */}
-      <section className="bg-cream px-6 pt-24 pb-0">
-        <div className="mx-auto max-w-4xl text-center">
+      {/* ── OPENING — full photo bg with statement overlay ── */}
+      <section className="relative flex items-end overflow-hidden" style={{ minHeight: "78vh" }}>
+        {/* Background photo */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://images.unsplash.com/photo-1689844759889-f8d92bd8a03a?w=1600&q=85&auto=format&fit=crop"
+          alt="Members of the congregation in worship"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: "center 25%" }}
+        />
+        {/* Dark overlay — heavier at bottom where text sits */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to bottom, rgba(28,24,20,0.25) 0%, rgba(28,24,20,0.55) 50%, rgba(28,24,20,0.88) 100%)",
+          }}
+        />
+        {/* Statement — pinned to bottom */}
+        <div className="relative z-10 w-full mx-auto max-w-5xl px-6 pb-16 pt-32">
           <p
-            className="text-charcoal font-black"
+            className="text-white font-black"
             style={{
               fontFamily: "var(--font-playfair), Georgia, serif",
-              fontSize: "clamp(2rem, 4.5vw, 3.8rem)",
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
+              fontSize: "clamp(2.2rem, 5vw, 4.2rem)",
+              lineHeight: 1.08,
+              letterSpacing: "-0.025em",
             }}
           >
             We are not a perfect church.<br />
-            <span style={{ color: "#C05C35" }}>But we are a real one.</span>
+            <span style={{ color: "#C8943A" }}>But we are a real one.</span>
           </p>
         </div>
-      </section>
-
-      {/* ── CONGREGATION PHOTO ── */}
-      <section className="mx-auto max-w-5xl px-6 pt-14 pb-0">
-        <div className="relative rounded-2xl overflow-hidden" style={{ aspectRatio: "16/7" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://images.unsplash.com/photo-1689844759889-f8d92bd8a03a?w=1400&q=85&auto=format&fit=crop"
-            alt="Members of the congregation in worship"
-            className="w-full h-full object-cover"
-            style={{ objectPosition: "center 30%" }}
-          />
-          {/* Subtle bottom fade so the section below reads cleanly */}
-          <div
-            className="absolute bottom-0 left-0 right-0 h-20"
-            style={{ background: "linear-gradient(to bottom, transparent, rgba(249,245,238,0.4))" }}
-          />
-        </div>
-        <p className="text-xs text-warm-gray mt-2 text-right">
-          Photo: Unsplash (free to use)
-        </p>
       </section>
 
       {/* ── STORY ── */}
