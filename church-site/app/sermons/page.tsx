@@ -3,7 +3,11 @@ import { getSermons } from "@/lib/content";
 
 export const metadata: Metadata = { title: "Sermons" };
 
-const ACCENT_COLORS = ["#C05C35", "#2B5740", "#1C1814"];
+const PALETTES = [
+  { accent: "#C05C35", bubble1: "#C05C35", bubble2: "#C8943A" },
+  { accent: "#2B5740", bubble1: "#2B5740", bubble2: "#C05C35" },
+  { accent: "#1C1814", bubble1: "#C8943A", bubble2: "#2B5740" },
+];
 
 export default function SermonsPage() {
   const sermons = getSermons();
@@ -33,7 +37,10 @@ export default function SermonsPage() {
       {/* ── SERMON LIST ── */}
       <section className="mx-auto max-w-4xl px-6 py-16">
         {sermons.length === 0 ? (
-          <div className="rounded-2xl p-12 text-center" style={{ background: "#FDFCFB", boxShadow: "0 1px 12px rgba(60,40,20,0.07)" }}>
+          <div
+            className="rounded-2xl p-12 text-center"
+            style={{ background: "#FDFCFB", boxShadow: "0 1px 12px rgba(60,40,20,0.07)" }}
+          >
             <p className="text-warm-gray">No sermons yet — check back after Sunday service.</p>
           </div>
         ) : (
@@ -41,26 +48,57 @@ export default function SermonsPage() {
             {sermons.map((s, i) => {
               const d = new Date(s.date);
               const isFeatured = i === 0;
-              const accent = ACCENT_COLORS[i % ACCENT_COLORS.length];
+              const pal = PALETTES[i % PALETTES.length];
 
               return (
                 <article
                   key={s.title + s.date}
                   className="rounded-2xl overflow-hidden"
-                  style={{ background: "#FDFCFB", boxShadow: "0 1px 12px rgba(60,40,20,0.07)", borderTop: `4px solid ${accent}` }}
+                  style={{
+                    background: "#FDFCFB",
+                    boxShadow: "0 1px 12px rgba(60,40,20,0.07)",
+                    borderTop: `4px solid ${pal.accent}`,
+                  }}
                 >
-                  {/* ── HEADER BAND ── */}
-                  <div className="px-8 pt-7 pb-6">
-                    {/* Date + badge */}
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-xs font-bold uppercase tracking-widest text-warm-gray">
-                        {d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
-                      </span>
-                      <div className="flex items-center gap-3">
+                  {/* ── HEADER with decorative bubbles ── */}
+                  <div className="relative px-6 sm:px-8 pt-7 pb-6 overflow-hidden">
+                    {/* Bubble 1 — large, bottom-right */}
+                    <div
+                      className="absolute rounded-full pointer-events-none"
+                      style={{
+                        width: 160,
+                        height: 160,
+                        background: pal.bubble1,
+                        opacity: 0.07,
+                        right: -40,
+                        bottom: -50,
+                      }}
+                    />
+                    {/* Bubble 2 — small, top-right */}
+                    <div
+                      className="absolute rounded-full pointer-events-none"
+                      style={{
+                        width: 70,
+                        height: 70,
+                        background: pal.bubble2,
+                        opacity: 0.09,
+                        right: 60,
+                        top: -20,
+                      }}
+                    />
+
+                    {/* Date row — own line so mobile doesn't cramp */}
+                    <div className="text-xs font-bold uppercase tracking-widest text-warm-gray mb-3 relative z-10">
+                      {d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+                    </div>
+
+                    {/* Badges row — separate line */}
+                    {(isFeatured || s.mediaUrl) && (
+                      <div className="flex flex-wrap gap-2 mb-4 relative z-10">
                         {isFeatured && (
                           <span
                             className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full"
-                            style={{ background: `${accent}15`, color: accent }}
+                            style={{ background: `${pal.accent}14`, color: pal.accent }}
                           >
                             Most Recent
                           </span>
@@ -70,26 +108,26 @@ export default function SermonsPage() {
                             href={s.mediaUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full transition"
-                            style={{ background: accent, color: "#fff" }}
+                            className="text-xs font-bold uppercase tracking-wider px-4 py-1 rounded-full"
+                            style={{ background: pal.accent, color: "#fff" }}
                           >
                             ▶ Watch
                           </a>
                         )}
                       </div>
-                    </div>
+                    )}
 
-                    {/* Scripture */}
+                    {/* Scripture kicker */}
                     <div
-                      className="text-xs font-bold uppercase tracking-widest mb-2"
-                      style={{ color: accent }}
+                      className="text-xs font-bold uppercase tracking-widest mb-2 relative z-10"
+                      style={{ color: pal.accent }}
                     >
                       {s.scripture}
                     </div>
 
                     {/* Title */}
                     <h2
-                      className="font-black text-charcoal mb-1"
+                      className="font-black text-charcoal mb-1 relative z-10"
                       style={{
                         fontFamily: "var(--font-playfair), Georgia, serif",
                         fontSize: "clamp(1.4rem, 2.5vw, 2rem)",
@@ -101,19 +139,21 @@ export default function SermonsPage() {
                     </h2>
 
                     {/* Speaker */}
-                    <p className="text-sm text-warm-gray font-medium">{s.speaker}</p>
+                    <p className="text-sm text-warm-gray font-medium relative z-10">{s.speaker}</p>
                   </div>
 
                   {/* ── BODY ── */}
-                  <div className="px-8 pb-8" style={{ borderTop: "1px solid #EDE8DE" }}>
+                  <div className="px-6 sm:px-8 pb-8" style={{ borderTop: "1px solid #EDE8DE" }}>
                     <p className="text-charcoal/70 leading-relaxed text-sm pt-6 mb-0 max-w-2xl">
                       {s.description}
                     </p>
 
                     {/* Rich sections */}
-                    {(s.keyPoints?.length || s.discussionQuestions?.length || s.prayerPoints?.length) && (
-                      <div className="grid md:grid-cols-3 gap-8 mt-8 pt-8" style={{ borderTop: "1px solid #EDE8DE" }}>
-
+                    {(s.keyPoints?.length || s.discussionQuestions?.length || s.prayerPoints?.length) ? (
+                      <div
+                        className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8 pt-8"
+                        style={{ borderTop: "1px solid #EDE8DE" }}
+                      >
                         {s.keyPoints && s.keyPoints.length > 0 && (
                           <div>
                             <p className="kicker mb-4">Key Points</p>
@@ -122,7 +162,7 @@ export default function SermonsPage() {
                                 <li key={idx} className="flex gap-3 text-sm text-charcoal/75 leading-snug">
                                   <span
                                     className="shrink-0 text-xs font-black mt-0.5 w-4"
-                                    style={{ color: accent, fontFamily: "var(--font-playfair), Georgia, serif" }}
+                                    style={{ color: pal.accent, fontFamily: "var(--font-playfair), Georgia, serif" }}
                                   >
                                     {idx + 1}.
                                   </span>
@@ -164,10 +204,11 @@ export default function SermonsPage() {
                           </div>
                         )}
                       </div>
-                    )}
-
-                    {!s.keyPoints?.length && !s.discussionQuestions?.length && !s.prayerPoints?.length && (
-                      <p className="text-xs text-warm-gray italic mt-6 pt-6" style={{ borderTop: "1px solid #EDE8DE" }}>
+                    ) : (
+                      <p
+                        className="text-xs text-warm-gray italic mt-6 pt-6"
+                        style={{ borderTop: "1px solid #EDE8DE" }}
+                      >
                         Notes and questions will be added after the service.
                       </p>
                     )}
