@@ -32,16 +32,16 @@ export default function HomePage() {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "60% center" }}
         />
-        {/* Cream gradient overlay: shows photo throughout, readable text on left */}
+        {/* Sharp split: fully opaque cream on left, fades to transparent by centre */}
         <div
           className="absolute inset-0"
           style={{
-            background: "linear-gradient(to right, rgba(249,245,238,0.88) 0%, rgba(249,245,238,0.74) 28%, rgba(249,245,238,0.30) 52%, rgba(249,245,238,0.0) 100%)",
+            background: "linear-gradient(to right, rgba(249,245,238,0.98) 0%, rgba(249,245,238,0.98) 42%, rgba(249,245,238,0.55) 56%, rgba(249,245,238,0.0) 68%)",
           }}
         />
 
         <div className="relative z-10 mx-auto max-w-6xl w-full px-6 py-24 grid lg:grid-cols-[3fr_2fr] gap-16 items-center">
-          {/* Left: copy */}
+          {/* Left: copy — sits on opaque cream zone */}
           <div>
             <div className="kicker mb-5">
               {settings.denomination} · Wau, South Sudan
@@ -53,7 +53,7 @@ export default function HomePage() {
               A home in Wau,<br />
               <span style={{ color: "#C05C35" }}>for whoever needs one.</span>
             </h1>
-            <p className="text-warm-gray text-lg leading-relaxed mb-10 max-w-lg hero-sub">
+            <p className="text-charcoal/70 text-lg leading-relaxed mb-10 max-w-lg hero-sub">
               Grace Community Church has been here since {settings.foundedYear}. The doors are open,
               the Word is preached, and no one stays a stranger for long.
             </p>
@@ -63,26 +63,43 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Right: service times — plain rows, no card */}
+          {/* Right: service times — white text over photo */}
           <div>
-            <div className="kicker mb-5">When we meet</div>
-            <div className="flex flex-col divide-y divide-cream-darker border-y border-cream-darker">
+            <div
+              className="text-xs font-bold uppercase tracking-widest mb-5"
+              style={{ color: "rgba(255,255,255,0.65)" }}
+            >
+              When we meet
+            </div>
+            <div
+              className="flex flex-col divide-y"
+              style={{ borderTop: "1px solid rgba(255,255,255,0.2)", borderBottom: "1px solid rgba(255,255,255,0.2)" }}
+            >
               {settings.serviceTimes.map((s) => (
-                <div key={s.day} className="flex items-center justify-between gap-4 py-4">
+                <div
+                  key={s.day}
+                  className="flex items-center justify-between gap-4 py-4"
+                  style={{ borderColor: "rgba(255,255,255,0.2)" }}
+                >
                   <div>
-                    <div className="font-semibold text-charcoal text-sm">{s.label}</div>
-                    <div className="text-warm-gray text-xs">{s.day}</div>
+                    <div className="font-semibold text-sm" style={{ color: "rgba(255,255,255,0.95)" }}>{s.label}</div>
+                    <div className="text-xs" style={{ color: "rgba(255,255,255,0.55)" }}>{s.day}</div>
                   </div>
                   <span
-                    className="text-terracotta font-black"
-                    style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "1.5rem", lineHeight: 1 }}
+                    className="font-black"
+                    style={{
+                      fontFamily: "var(--font-playfair), Georgia, serif",
+                      fontSize: "1.5rem",
+                      lineHeight: 1,
+                      color: "#E8A85A",
+                    }}
                   >
                     {s.time}
                   </span>
                 </div>
               ))}
             </div>
-            <p className="text-warm-gray text-xs mt-4 leading-relaxed">
+            <p className="text-xs mt-4 leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
               {settings.address}
             </p>
           </div>
