@@ -21,7 +21,7 @@ export default function AboutPage() {
   return (
     <>
       {/* ── OPENING — full photo bg with statement overlay ── */}
-      <section className="relative flex items-end overflow-hidden" style={{ minHeight: "78vh", marginTop: "-5rem" }}>
+      <section className="relative flex items-end overflow-hidden" style={{ minHeight: "78vh" }}>
         {/* Background photo */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img

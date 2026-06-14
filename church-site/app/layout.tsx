@@ -48,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen">
         <Navbar churchName={settings.churchName} />
-        <main className="pt-20">{children}</main>
+        <main>{children}</main>
 
         {/* Footer */}
         <footer className="bg-[#1C1814] text-[#EDE8DE] py-14">

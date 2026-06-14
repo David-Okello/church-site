@@ -15,7 +15,7 @@ export default function SermonsPage() {
   return (
     <>
       {/* ── HEADER ── */}
-      <section className="relative flex items-end overflow-hidden" style={{ minHeight: "52vh", marginTop: "-5rem" }}>
+      <section className="relative flex items-end overflow-hidden" style={{ minHeight: "52vh" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="https://images.unsplash.com/photo-1713909399240-2f5627fa1e41?w=1600&q=85&auto=format&fit=crop"
