@@ -1,0 +1,98 @@
+# Decap CMS configuration
+# Docs: https://decapcms.org/docs/
+#
+# SETUP STEPS:
+# 1. Push this repo to GitHub
+# 2. Create a free Netlify account and connect the GitHub repo
+# 3. In Netlify: Identity → Enable, then Git Gateway → Enable
+# 4. Invite church staff by email via Identity → Invite users
+# 5. Uncomment and set site_url below to your Cloudflare Pages URL
+
+backend:
+  name: git-gateway
+  branch: redesign/warm-earth
+
+# site_url: https://your-church-name.pages.dev
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "sermons"
+    label: "Sermons"
+    folder: "content/sermons"
+    create: true
+    slug: "{{year}}-{{month}}-{{fields.title}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Speaker", name: "speaker", widget: "string" }
+      - { label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "Scripture reference", name: "scripture", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Media URL (YouTube / audio link)", name: "mediaUrl", widget: "string", required: false }
+
+  - name: "events"
+    label: "Events"
+    folder: "content/events"
+    create: true
+    slug: "{{year}}-{{month}}-{{fields.title}}"
+    fields:
+      - { label: "Event title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "Time", name: "time", widget: "string", hint: "e.g. 10:00 AM" }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+
+  - name: "announcements"
+    label: "Announcements"
+    folder: "content/announcements"
+    create: true
+    slug: "{{year}}-{{month}}-{{fields.title}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "Body", name: "body", widget: "text" }
+      - { label: "Show on homepage", name: "active", widget: "boolean", default: true }
+
+  - name: "settings"
+    label: "Church Settings"
+    files:
+      - label: "Site settings"
+        name: "settings"
+        file: "content/settings.json"
+        fields:
+          - { label: "Church name", name: "churchName", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Address", name: "address", widget: "string" }
+          - { label: "Phone", name: "phone", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "WhatsApp", name: "whatsapp", widget: "string" }
+          - { label: "Pastor name", name: "pastorName", widget: "string" }
+          - { label: "Pastor quote", name: "pastorQuote", widget: "text" }
+          - { label: "Mission statement", name: "missionStatement", widget: "text" }
+          - { label: "Founded year", name: "foundedYear", widget: "string" }
+          - { label: "Denomination", name: "denomination", widget: "string" }
+          - { label: "Scripture verse text", name: "verseText", widget: "text", hint: "The verse shown in the Scripture section on the homepage" }
+          - { label: "Scripture verse reference", name: "verseReference", widget: "string", hint: "e.g. Jeremiah 29:11" }
+          - { label: "YouTube channel URL", name: "youtubeUrl", widget: "string", required: false }
+          - { label: "Facebook page URL", name: "facebookUrl", widget: "string", required: false }
+          - label: "Service times"
+            name: "serviceTimes"
+            widget: "list"
+            fields:
+              - { label: "Day", name: "day", widget: "string" }
+              - { label: "Time", name: "time", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+
+      - label: "Leadership team"
+        name: "leadership"
+        file: "content/leadership.json"
+        fields:
+          - label: "Leaders"
+            name: "leaders"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Bio", name: "bio", widget: "text" }
+              - { label: "Tag", name: "tag", widget: "string", required: false }

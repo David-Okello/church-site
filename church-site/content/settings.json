@@ -1,0 +1,22 @@
+{
+  "churchName": "Grace Community Church",
+  "tagline": "Faith • Community • Hope",
+  "address": "Wau, Western Bahr el Ghazal, South Sudan",
+  "phone": "+211 912 345 678",
+  "email": "info@gracechurch.org",
+  "whatsapp": "+211 912 345 678",
+  "serviceTimes": [
+    { "day": "Sunday", "time": "9:00 AM", "label": "Main Worship Service" },
+    { "day": "Wednesday", "time": "5:30 PM", "label": "Midweek Prayer" },
+    { "day": "Saturday", "time": "2:00 PM", "label": "Youth Fellowship" }
+  ],
+  "pastorName": "Pastor James Dut",
+  "pastorQuote": "We are a Christ-centered church family committed to worship, discipleship, unity, and serving our community with love. Whether you are visiting for the first time or looking for a spiritual home, you are welcome here.",
+  "missionStatement": "To worship God in spirit and in truth, make disciples of all people, and bring hope and transformation to our community in South Sudan.",
+  "foundedYear": "1998",
+  "denomination": "Evangelical",
+  "verseText": "For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.",
+  "verseReference": "Jeremiah 29:11",
+  "youtubeUrl": "",
+  "facebookUrl": ""
+}

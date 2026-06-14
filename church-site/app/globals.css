@@ -1,0 +1,272 @@
+@import "tailwindcss";
+
+@theme {
+  /* Warm Earth color system */
+  --color-cream:        #F9F5EE;
+  --color-cream-dark:   #EDE8DE;
+  --color-cream-darker: #E0D9CE;
+  --color-charcoal:     #1C1814;
+  --color-warm-gray:    #8B7E74;
+  --color-terracotta:   #C05C35;
+  --color-terra-lt:     #D97045;
+  --color-terra-bg:     #FBF0EB;
+  --color-forest:       #2B5740;
+  --color-forest-lt:    #3A7356;
+  --color-gold:         #C8943A;
+
+  --font-sans:   var(--font-inter);
+  --font-serif:  var(--font-playfair);
+}
+
+/* ─── Base ─── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #F9F5EE;
+  color: #1C1814;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Typography ─── */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-playfair), Georgia, serif;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Utility: Kicker label ─── */
+.kicker {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #C05C35;
+}
+
+/* ─── Utility: Card ─── */
+.card {
+  background: #EDE8DE;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(60, 40, 20, 0.09), 0 1px 4px rgba(60, 40, 20, 0.06);
+}
+
+/* ─── Utility: Card on white surface ─── */
+.card-white {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(60, 40, 20, 0.08), 0 1px 4px rgba(60, 40, 20, 0.05);
+}
+
+/* ─── Buttons ─── */
+
+.btn-terra {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #C05C35;
+  color: #ffffff;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 700;
+  font-size: 0.94rem;
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-terra:hover {
+  background: #D97045;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #1C1814;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 700;
+  font-size: 0.94rem;
+  padding: 13px 27px;
+  border-radius: 12px;
+  border: 2px solid #1C1814;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: #1C1814;
+  color: #F9F5EE;
+  transform: translateY(-1px);
+}
+
+.btn-outline-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #ffffff;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 700;
+  font-size: 0.94rem;
+  padding: 13px 27px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  cursor: pointer;
+}
+
+.btn-outline-white:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #C05C35;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 700;
+  font-size: 0.94rem;
+  padding: 14px 28px;
+  border-radius: 12px;
+  border: none;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  cursor: pointer;
+}
+
+.btn-white:hover {
+  background: #F9F5EE;
+  transform: translateY(-1px);
+}
+
+.btn-forest {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #2B5740;
+  color: #ffffff;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 700;
+  font-size: 0.94rem;
+  padding: 14px 28px;
+  border-radius: 12px;
+  border: none;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  cursor: pointer;
+}
+
+.btn-forest:hover {
+  background: #3A7356;
+  transform: translateY(-1px);
+}
+
+/* ─── Section separator ─── */
+.section-sep {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #C05C35;
+  opacity: 0.35;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.section-sep::before,
+.section-sep::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #C05C35;
+  opacity: 0.3;
+}
+
+/* ─── Inputs ─── */
+
+input,
+textarea,
+select {
+  background: #ffffff;
+  border: 1.5px solid #D4C9BB;
+  border-radius: 12px;
+  color: #1C1814;
+  padding: 13px 16px;
+  width: 100%;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #C05C35;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #A09080;
+}
+
+/* ─── Scrollbar ─── */
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #F9F5EE; }
+::-webkit-scrollbar-thumb { background: #C8943A; border-radius: 3px; }
+
+/* ─── Section backgrounds ─── */
+.bg-cream-dark { background: #EDE8DE; }
+.bg-terracotta { background: #C05C35; }
+.bg-forest     { background: #2B5740; }
+
+/* ─── Hero entrance animations ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-headline {
+  animation: fadeUp 0.75s ease forwards;
+}
+
+.hero-sub {
+  opacity: 0;
+  animation: fadeUp 0.75s 0.18s ease forwards;
+}
+
+.hero-ctas {
+  opacity: 0;
+  animation: fadeUp 0.75s 0.36s ease forwards;
+}
+
+/* ─── Card hover lift ─── */
+.card,
+.card-white {
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 44px rgba(60, 40, 20, 0.14), 0 2px 8px rgba(60, 40, 20, 0.08);
+}
+
+.card-white:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 44px rgba(60, 40, 20, 0.12), 0 2px 8px rgba(60, 40, 20, 0.07);
+}

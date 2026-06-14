@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Pastor James Dut",
+    "role": "Lead Pastor",
+    "bio": "Pastor James has led the congregation for over 15 years with a vision for biblical teaching and community transformation.",
+    "tag": "Vision"
+  },
+  {
+    "name": "Elder Samuel Akol",
+    "role": "Associate Leader",
+    "bio": "Elder Samuel oversees pastoral care, counseling, and discipleship within the church family.",
+    "tag": "Care"
+  },
+  {
+    "name": "Deaconess Mary Ayen",
+    "role": "Women's Ministry Leader",
+    "bio": "Mary leads the women's fellowship with a passion for prayer, mentorship, and community outreach.",
+    "tag": "Women"
+  },
+  {
+    "name": "Daniel Lual",
+    "role": "Youth & Worship Leader",
+    "bio": "Daniel leads the next generation with energy and creativity, overseeing youth ministry and Sunday worship.",
+    "tag": "Next Gen"
+  }
+]
