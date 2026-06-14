@@ -10,73 +10,46 @@ export default function HomePage() {
   const featured = sermons[0];
   const recent = sermons.slice(1, 4);
 
-  const ministries = [
-    { title: "Youth Ministry", desc: "Raising the next generation through discipleship, worship, and community.", color: "#C05C35" },
-    { title: "Women's Fellowship", desc: "Empowering women through prayer, teaching, and sisterhood.", color: "#2B5740" },
-    { title: "Community Outreach", desc: "Serving our city with practical love and the hope of the Gospel.", color: "#C8943A" },
-  ];
-
-  const stats = [
-    { number: settings.foundedYear, label: "Year Founded" },
-    { number: "6+", label: "Active Ministries" },
-    { number: "Wau", label: "South Sudan" },
+  const ministriesList = [
+    "Youth Ministry",
+    "Women's Fellowship",
+    "Men's Ministry",
+    "Community Outreach",
+    "Worship Team",
+    "Children's Church",
   ];
 
   return (
     <>
       {/* ── 1. HERO ── */}
-      <section className="relative overflow-hidden bg-cream min-h-[92vh] flex items-center">
-        {/* Dot-grid texture */}
+      <section className="relative overflow-hidden bg-cream min-h-[88vh] flex items-center">
+        {/* Single subtle accent circle */}
         <div
-          className="absolute inset-0 pointer-events-none"
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 rounded-full pointer-events-none"
           style={{
-            backgroundImage: "radial-gradient(circle, #C05C35 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
-            opacity: 0.055,
+            width: "clamp(300px, 42vw, 580px)",
+            height: "clamp(300px, 42vw, 580px)",
+            background: "#C05C35",
+            opacity: 0.07,
           }}
         />
 
-        {/* Large terracotta circle — right */}
-        <div
-          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/3 rounded-full pointer-events-none"
-          style={{
-            width: "clamp(400px, 52vw, 720px)",
-            height: "clamp(400px, 52vw, 720px)",
-            background: "radial-gradient(circle at 38% 38%, #D97045, #C05C35)",
-            opacity: 0.14,
-            filter: "blur(2px)",
-          }}
-        />
-
-        {/* Forest circle — overlapping accent */}
-        <div
-          className="absolute rounded-full pointer-events-none"
-          style={{
-            width: "clamp(180px, 20vw, 280px)",
-            height: "clamp(180px, 20vw, 280px)",
-            background: "#2B5740",
-            opacity: 0.08,
-            right: "clamp(120px, 20vw, 260px)",
-            top: "18%",
-            filter: "blur(1px)",
-          }}
-        />
-
-        <div className="relative z-10 mx-auto max-w-6xl w-full px-6 py-28 grid lg:grid-cols-[3fr_2fr] gap-16 items-center">
+        <div className="relative z-10 mx-auto max-w-6xl w-full px-6 py-24 grid lg:grid-cols-[3fr_2fr] gap-16 items-center">
           {/* Left: copy */}
           <div>
             <div className="kicker mb-5">
-              {settings.denomination} Church · {settings.address.split(",").slice(-2).join(",").trim()}
+              {settings.denomination} · Wau, South Sudan
             </div>
             <h1
               className="text-charcoal mb-6 font-black hero-headline"
-              style={{ fontSize: "clamp(3rem, 6vw, 5.4rem)", lineHeight: 1.02, letterSpacing: "-0.03em" }}
+              style={{ fontSize: "clamp(2.8rem, 5.5vw, 5rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
             >
-              Come as you are.<br />
-              <span style={{ color: "#C05C35" }}>Leave changed.</span>
+              A home in Wau,<br />
+              <span style={{ color: "#C05C35" }}>for whoever needs one.</span>
             </h1>
             <p className="text-warm-gray text-lg leading-relaxed mb-10 max-w-lg hero-sub">
-              {settings.missionStatement}
+              Grace Community Church has been here since {settings.foundedYear}. The doors are open,
+              the Word is preached, and no one stays a stranger for long.
             </p>
             <div className="flex flex-wrap gap-4 hero-ctas">
               <Link href="/contact" className="btn-terra">Plan a Visit</Link>
@@ -84,75 +57,64 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Right: service times card */}
-          <Card white className="p-8">
-            <div className="kicker mb-4">Join us this week</div>
-            <div className="flex flex-col gap-4">
+          {/* Right: service times — plain rows, no card */}
+          <div>
+            <div className="kicker mb-5">When we meet</div>
+            <div className="flex flex-col divide-y divide-cream-darker border-y border-cream-darker">
               {settings.serviceTimes.map((s) => (
-                <div key={s.day} className="flex items-center justify-between gap-4 pb-4 border-b border-cream-darker last:border-0 last:pb-0">
+                <div key={s.day} className="flex items-center justify-between gap-4 py-4">
                   <div>
-                    <div className="font-bold text-charcoal text-sm">{s.label}</div>
-                    <div className="text-warm-gray text-sm">{s.day}</div>
+                    <div className="font-semibold text-charcoal text-sm">{s.label}</div>
+                    <div className="text-warm-gray text-xs">{s.day}</div>
                   </div>
                   <span
-                    className="text-terracotta font-black text-xl"
-                    style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+                    className="text-terracotta font-black"
+                    style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "1.5rem", lineHeight: 1 }}
                   >
                     {s.time}
                   </span>
                 </div>
               ))}
             </div>
-            <div className="mt-6 pt-5 border-t border-cream-darker text-sm text-warm-gray leading-relaxed">
-              📍 {settings.address}
-            </div>
-          </Card>
+            <p className="text-warm-gray text-xs mt-4 leading-relaxed">
+              {settings.address}
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* ── 2. BY THE NUMBERS ── */}
-      <section className="bg-cream-dark py-14 px-6">
-        <div className="mx-auto max-w-4xl grid grid-cols-3 divide-x divide-cream-darker">
-          {stats.map((stat) => (
-            <div key={stat.label} className="text-center px-4 py-2">
-              <div
-                className="font-black text-terracotta"
-                style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1 }}
-              >
-                {stat.number}
-              </div>
-              <div className="kicker mt-2">{stat.label}</div>
-            </div>
-          ))}
+      {/* ── 2. STORY PARAGRAPH ── */}
+      <section className="bg-cream-dark py-16 px-6">
+        <div className="mx-auto max-w-3xl text-center">
+          <p
+            className="text-charcoal/80 leading-relaxed"
+            style={{ fontSize: "clamp(1.05rem, 1.8vw, 1.2rem)", lineHeight: 1.75 }}
+          >
+            We started small — a handful of families meeting in someone&apos;s home in Wau. That was {settings.foundedYear}.
+            Today we are many more, but the thing that has not changed is the first thing people notice when they
+            walk in: everyone knows your name, and everyone is glad you came.
+          </p>
         </div>
       </section>
 
       {/* ── 3. MISSION STRIP ── */}
-      <section
-        className="px-6 text-center"
-        style={{
-          background: "#C05C35",
-          clipPath: "polygon(0 48px, 100% 0, 100% calc(100% - 48px), 0 100%)",
-          padding: "calc(4.5rem + 48px) 1.5rem",
-        }}
-      >
-        <div className="mx-auto max-w-4xl">
+      <section className="px-6 py-20" style={{ background: "#C05C35" }}>
+        <div className="mx-auto max-w-4xl text-center">
           <p
-            className="text-white font-black leading-tight mb-7"
+            className="text-white font-bold leading-relaxed mb-8"
             style={{
               fontFamily: "var(--font-playfair), Georgia, serif",
-              fontSize: "clamp(1.6rem, 3.5vw, 2.8rem)",
-              lineHeight: 1.15,
+              fontSize: "clamp(1.4rem, 2.8vw, 2.2rem)",
+              lineHeight: 1.4,
             }}
           >
-            "A family rooted in faith, built for community,
-            <br className="hidden sm:block" /> and open to all."
+            We believe the Gospel changes everything. Not just Sunday mornings — but how we treat our
+            neighbours, raise our children, face our hardest days, and love the people in front of us.
+            That is what we are building here.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 text-white/80 text-sm font-semibold">
-            <span className="px-4 py-2 rounded-full border border-white/30">Est. {settings.foundedYear}</span>
-            <span className="px-4 py-2 rounded-full border border-white/30">{settings.denomination}</span>
-            <span className="px-4 py-2 rounded-full border border-white/30">South Sudan</span>
-          </div>
+          <Link href="/about" className="btn-outline-white">
+            Who we are →
+          </Link>
         </div>
       </section>
 
@@ -162,7 +124,12 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <div>
               <div className="kicker mb-2">From the pulpit</div>
-              <h2 className="text-charcoal text-4xl font-black">Latest Sermons</h2>
+              <h2
+                className="text-charcoal font-black"
+                style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
+              >
+                Latest Sermons
+              </h2>
             </div>
             <Link href="/sermons" className="text-terracotta font-semibold text-sm hover:underline shrink-0">
               All sermons →
@@ -231,93 +198,101 @@ export default function HomePage() {
       )}
 
       {/* ── 5. SCHEDULE ── */}
-      <section
-        className="px-6"
-        style={{
-          background: "#EDE8DE",
-          clipPath: "polygon(0 40px, 100% 0, 100% 100%, 0 100%)",
-          padding: "calc(5rem + 40px) 1.5rem 5rem",
-        }}
-      >
-        <div className="mx-auto max-w-6xl">
+      <section className="px-6 py-20" style={{ background: "#EDE8DE" }}>
+        <div className="mx-auto max-w-4xl">
           <div className="kicker mb-3">Every week</div>
-          <h2 className="text-charcoal text-4xl font-black mb-10">We meet regularly</h2>
-          <div className="grid sm:grid-cols-3 gap-5">
+          <h2
+            className="text-charcoal font-black mb-8"
+            style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
+          >
+            We meet regularly
+          </h2>
+          <div className="flex flex-col divide-y divide-[#D4CCBC] border-y border-[#D4CCBC]">
             {settings.serviceTimes.map((s, i) => (
-              <Card key={s.day} white className="p-7"
-                style={{ borderTop: `4px solid ${i === 0 ? "#C05C35" : i === 1 ? "#2B5740" : "#C8943A"}` }}>
-                <div className="kicker mb-3">{s.day}</div>
-                <div
-                  className="font-black mb-2"
-                  style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "2.4rem", lineHeight: 1, color: i === 0 ? "#C05C35" : i === 1 ? "#2B5740" : "#C8943A" }}
+              <div key={s.day} className="flex items-center justify-between gap-6 py-5">
+                <div className="flex items-center gap-5">
+                  <div
+                    className="shrink-0 w-1.5 h-8 rounded-full"
+                    style={{ background: i === 0 ? "#C05C35" : i === 1 ? "#2B5740" : "#C8943A" }}
+                  />
+                  <div>
+                    <div className="font-bold text-charcoal">{s.label}</div>
+                    <div className="text-warm-gray text-sm">{s.day}</div>
+                  </div>
+                </div>
+                <span
+                  className="font-black"
+                  style={{
+                    fontFamily: "var(--font-playfair), Georgia, serif",
+                    fontSize: "1.6rem",
+                    lineHeight: 1,
+                    color: i === 0 ? "#C05C35" : i === 1 ? "#2B5740" : "#C8943A",
+                  }}
                 >
                   {s.time}
-                </div>
-                <div className="font-semibold text-charcoal">{s.label}</div>
-              </Card>
+                </span>
+              </div>
             ))}
           </div>
+          <p className="text-warm-gray text-sm mt-6">{settings.address}</p>
         </div>
       </section>
 
       {/* ── 6. MINISTRIES ── */}
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="grid lg:grid-cols-[1fr_2fr] gap-12 items-start">
+        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-14 items-start">
           <div>
             <div className="kicker mb-3">Community life</div>
-            <h2 className="text-charcoal text-4xl font-black mb-4">Find your place</h2>
-            <p className="text-warm-gray leading-relaxed mb-6">
-              There is a place for everyone in this church family — to belong, grow, and serve.
+            <h2
+              className="text-charcoal font-black mb-5"
+              style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
+            >
+              Find your place
+            </h2>
+            <p className="text-charcoal/75 leading-relaxed mb-6" style={{ fontSize: "1.05rem", lineHeight: 1.75 }}>
+              There is a place for everyone here. Whether you are looking to serve, to be served,
+              to grow in your faith, or simply to be known — this church has room for you.
             </p>
             <Link href="/about" className="btn-terra">Learn more →</Link>
           </div>
-          <div className="flex flex-col gap-4">
-            {ministries.map((m) => (
-              <Card key={m.title} white className="p-6 flex gap-5 items-start"
-                style={{ borderLeft: `4px solid ${m.color}` }}>
-                <div>
-                  <h3 className="font-black text-charcoal text-lg mb-1"
-                    style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-                    {m.title}
-                  </h3>
-                  <p className="text-warm-gray text-sm leading-relaxed">{m.desc}</p>
-                </div>
-              </Card>
-            ))}
+          <div>
+            <ul className="grid grid-cols-2 gap-x-8 gap-y-4">
+              {ministriesList.map((name, i) => (
+                <li key={name} className="flex items-center gap-3 text-charcoal/80 font-medium">
+                  <span
+                    className="shrink-0 w-1.5 h-1.5 rounded-full"
+                    style={{ background: i % 3 === 0 ? "#C05C35" : i % 3 === 1 ? "#2B5740" : "#C8943A" }}
+                  />
+                  {name}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* ── 7. PASTOR QUOTE ── */}
-      <section
-        className="px-6 text-center"
-        style={{
-          background: "#EDE8DE",
-          clipPath: "polygon(0 40px, 100% 0, 100% calc(100% - 40px), 0 100%)",
-          padding: "calc(5rem + 40px) 1.5rem",
-        }}
-      >
-        <div className="mx-auto max-w-4xl relative">
+      {/* ── 7. PASTOR LETTER ── */}
+      <section className="px-6 py-20" style={{ background: "#EDE8DE" }}>
+        <div className="mx-auto max-w-3xl">
+          <div className="kicker mb-8">A word from the pastor</div>
           <div
-            className="absolute -top-4 left-1/2 -translate-x-1/2 select-none pointer-events-none"
-            style={{ fontSize: "9rem", lineHeight: 1, color: "#C8943A", opacity: 0.22, fontFamily: "Georgia, serif" }}
-          >
-            "
-          </div>
-          <div className="kicker mb-6 relative z-10">A word from the pastor</div>
+            className="w-10 h-px mb-8"
+            style={{ background: "#C05C35" }}
+          />
           <blockquote
-            className="text-charcoal font-bold italic relative z-10"
+            className="text-charcoal font-medium leading-relaxed mb-8"
             style={{
               fontFamily: "var(--font-playfair), Georgia, serif",
-              fontSize: "clamp(1.3rem, 2.5vw, 2rem)",
-              lineHeight: 1.45,
-              marginBottom: "1.75rem",
+              fontSize: "clamp(1.1rem, 2vw, 1.4rem)",
+              lineHeight: 1.7,
             }}
           >
             {settings.pastorQuote}
           </blockquote>
-          <div className="font-bold text-terracotta text-sm uppercase tracking-widest relative z-10">
-            — {settings.pastorName}
+          <div
+            className="text-terracotta font-bold text-sm uppercase tracking-widest"
+          >
+            — {settings.pastorName}, Senior Pastor
           </div>
         </div>
       </section>
@@ -326,7 +301,12 @@ export default function HomePage() {
       {announcements.length > 0 && (
         <section className="mx-auto max-w-6xl px-6 py-16">
           <div className="kicker mb-3">Notice board</div>
-          <h2 className="text-charcoal text-4xl font-black mb-8">Announcements</h2>
+          <h2
+            className="text-charcoal font-black mb-8"
+            style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
+          >
+            Announcements
+          </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {announcements.map((a) => (
               <Card key={a.title} white className="p-6" style={{ borderTop: "4px solid #C8943A" }}>
@@ -352,7 +332,12 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <div>
               <div className="kicker mb-2">Church calendar</div>
-              <h2 className="text-charcoal text-4xl font-black">Upcoming events</h2>
+              <h2
+                className="text-charcoal font-black"
+                style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
+              >
+                Upcoming events
+              </h2>
             </div>
             <Link href="/events" className="text-terracotta font-semibold text-sm hover:underline shrink-0">
               All events →
@@ -390,25 +375,18 @@ export default function HomePage() {
       )}
 
       {/* ── 10. SCRIPTURE VERSE ── */}
-      <section
-        className="px-6 text-center"
-        style={{
-          background: "#2B5740",
-          clipPath: "polygon(0 44px, 100% 0, 100% calc(100% - 44px), 0 100%)",
-          padding: "calc(5rem + 44px) 1.5rem",
-        }}
-      >
-        <div className="mx-auto max-w-3xl">
-          <div className="kicker mb-6" style={{ color: "rgba(255,255,255,0.6)" }}>Scripture</div>
+      <section className="px-6 py-24" style={{ background: "#2B5740" }}>
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="kicker mb-6" style={{ color: "rgba(255,255,255,0.55)" }}>Scripture</div>
           <blockquote
             className="text-white italic font-bold leading-snug mb-6"
             style={{
               fontFamily: "var(--font-playfair), Georgia, serif",
               fontSize: "clamp(1.5rem, 3vw, 2.6rem)",
-              lineHeight: 1.35,
+              lineHeight: 1.4,
             }}
           >
-            "{settings.verseText}"
+            &ldquo;{settings.verseText}&rdquo;
           </blockquote>
           <cite
             className="not-italic font-bold uppercase tracking-widest text-sm"
@@ -420,30 +398,25 @@ export default function HomePage() {
       </section>
 
       {/* ── 11. CLOSING CTA ── */}
-      <section
-        className="px-6 text-center"
-        style={{
-          background: "#C05C35",
-          clipPath: "polygon(0 44px, 100% 0, 100% 100%, 0 100%)",
-          padding: "calc(5rem + 44px) 1.5rem 5rem",
-        }}
-      >
-        <h2
-          className="text-white font-black mb-4"
-          style={{
-            fontFamily: "var(--font-playfair), Georgia, serif",
-            fontSize: "clamp(2rem, 4vw, 3.5rem)",
-            lineHeight: 1.1,
-          }}
-        >
-          You are welcome here.
-        </h2>
-        <p className="text-white/80 text-lg mb-10 max-w-md mx-auto">
-          Join us this Sunday — no experience required, no dress code, just come as you are.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <Link href="/contact" className="btn-white">Get in Touch</Link>
-          <Link href="/about" className="btn-outline-white">Learn About Us</Link>
+      <section className="px-6 py-24" style={{ background: "#C05C35" }}>
+        <div className="mx-auto max-w-2xl text-center">
+          <h2
+            className="text-white font-black mb-4"
+            style={{
+              fontFamily: "var(--font-playfair), Georgia, serif",
+              fontSize: "clamp(2rem, 4vw, 3.2rem)",
+              lineHeight: 1.1,
+            }}
+          >
+            Come as you are this Sunday.
+          </h2>
+          <p className="text-white/80 text-lg mb-10 leading-relaxed max-w-md mx-auto">
+            We will be there — and we will be glad you came.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/contact" className="btn-white">Get in Touch</Link>
+            <Link href="/about" className="btn-outline-white">Learn About Us</Link>
+          </div>
         </div>
       </section>
     </>

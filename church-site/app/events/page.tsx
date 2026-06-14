@@ -25,7 +25,7 @@ export default function EventsPage() {
             Upcoming events
           </h1>
           <p className="text-warm-gray text-lg max-w-xl leading-relaxed">
-            Stay connected with what is happening in the life of the church. All are welcome.
+            Life at Grace Community is about more than Sunday mornings. Here is what is coming up — and there is always room for one more.
           </p>
         </div>
       </section>

@@ -20,70 +20,47 @@ export default function AboutPage() {
 
   return (
     <>
-      {/* ── PAGE HEADER ── */}
-      <section className="relative bg-cream py-24 px-6 overflow-hidden">
-        <div
-          className="absolute -right-24 -top-24 rounded-full pointer-events-none"
-          style={{ width: 400, height: 400, background: "#C05C35", opacity: 0.07 }}
-        />
-        <div className="mx-auto max-w-6xl relative z-10">
-          <div className="kicker mb-4">Who we are</div>
-          <h1
-            className="text-charcoal font-black mb-5"
-            style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2.5rem, 5vw, 4rem)", lineHeight: 1.05 }}
+      {/* ── OPENING STATEMENT ── */}
+      <section className="bg-cream px-6 pt-24 pb-0">
+        <div className="mx-auto max-w-4xl text-center">
+          <p
+            className="text-charcoal font-black"
+            style={{
+              fontFamily: "var(--font-playfair), Georgia, serif",
+              fontSize: "clamp(2rem, 4.5vw, 3.8rem)",
+              lineHeight: 1.1,
+              letterSpacing: "-0.02em",
+            }}
           >
-            About the church
-          </h1>
-          <p className="text-warm-gray text-lg max-w-2xl leading-relaxed">
-            Learn who we are, what we believe, and what drives everything we do as a community of faith in South Sudan.
+            We are not a perfect church.<br />
+            <span style={{ color: "#C05C35" }}>But we are a real one.</span>
           </p>
         </div>
       </section>
 
-      {/* ── STORY + FACTS ── */}
-      <section className="mx-auto max-w-6xl px-6 py-20 grid lg:grid-cols-[1.4fr_1fr] gap-12 items-start">
-        <div>
-          <div className="kicker mb-3">Our story</div>
-          <h2
-            className="text-charcoal font-black mb-6 text-4xl"
-            style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-          >
-            Who we are
-          </h2>
-          <div className="flex flex-col gap-4 text-charcoal/80 leading-relaxed">
-            <p>
-              {settings.churchName} was founded in {settings.foundedYear} with a simple calling —
-              to bring the love of Christ to our community and make disciples who make disciples.
-              What began as a small gathering has grown into a vibrant, multi-generational church family.
-            </p>
-            <p>
-              We are an {settings.denomination} congregation rooted in biblical truth, passionate about
-              worship, and committed to seeing transformation in every area of life — personal, family, and community.
-            </p>
-            <p>{settings.missionStatement}</p>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-4">
-          {[
-            { label: "Founded", value: settings.foundedYear },
-            { label: "Denomination", value: settings.denomination },
-            { label: "Location", value: settings.address },
-            { label: "Ministries", value: `${ministries.length} active ministries` },
-          ].map((f) => (
-            <Card key={f.label} white className="px-6 py-5 flex items-center justify-between gap-4">
-              <span className="kicker">{f.label}</span>
-              <span className="font-bold text-charcoal text-sm text-right">{f.value}</span>
-            </Card>
-          ))}
-
-          <Card className="px-6 py-5" style={{ borderLeft: "4px solid #C05C35" }}>
-            <div className="kicker mb-1">Vision</div>
-            <p className="text-charcoal/80 text-sm leading-relaxed">
-              To be a Spirit-filled community that raises disciples, strengthens families, and
-              brings lasting hope and transformation to South Sudan and beyond.
-            </p>
-          </Card>
+      {/* ── STORY ── */}
+      <section className="mx-auto max-w-3xl px-6 py-20">
+        <div className="kicker mb-8">Our story</div>
+        <div
+          className="flex flex-col gap-7 text-charcoal/80 leading-relaxed"
+          style={{ fontSize: "clamp(1rem, 1.6vw, 1.15rem)", lineHeight: 1.8 }}
+        >
+          <p>
+            The first time Grace Community Church met, there were just a handful of people. No building
+            of their own, no budget, no programme — just a shared conviction that the Gospel was worth
+            gathering around.
+          </p>
+          <p>
+            That was {settings.foundedYear}. Since then, the church has grown through seasons of revival and
+            seasons of hardship — through South Sudan&apos;s own turbulent history, through floods and
+            uncertainty and the ordinary miracles of children growing up into faith.
+          </p>
+          <p>
+            Today we are an {settings.denomination} congregation in Wau, Western Bahr el Ghazal. We meet
+            three times a week. We have walked people through grief, through new beginnings, through the
+            full range of what life brings. We are, in other words, a real church — imperfect, growing,
+            and deeply grateful for every person who walks through the door.
+          </p>
         </div>
       </section>
 
@@ -92,8 +69,8 @@ export default function AboutPage() {
         <div className="mx-auto max-w-6xl">
           <div className="kicker mb-3">What we believe</div>
           <h2
-            className="text-charcoal font-black mb-10 text-4xl"
-            style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+            className="text-charcoal font-black mb-10"
+            style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
           >
             Our core values
           </h2>
@@ -125,38 +102,42 @@ export default function AboutPage() {
       <section className="mx-auto max-w-6xl px-6 py-20">
         <div className="kicker mb-3">The team</div>
         <h2
-          className="text-charcoal font-black mb-3 text-4xl"
-          style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+          className="text-charcoal font-black mb-3"
+          style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
         >
-          Meet the leaders
+          The people who lead
         </h2>
-        <p className="text-warm-gray mb-10 max-w-xl leading-relaxed">
+        <p className="text-warm-gray mb-14 max-w-xl leading-relaxed">
           Servant leaders committed to guiding this church with wisdom, humility, and a heart for God and people.
         </p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {leaders.map((l) => (
-            <Card key={l.name} white className="p-6 text-center flex flex-col items-center">
-              {/* Circular avatar placeholder */}
-              <div
-                className="w-20 h-20 rounded-full grid place-items-center text-3xl mb-4 shrink-0"
-                style={{ background: "linear-gradient(135deg, #FBF0EB, #EDE8DE)", border: "3px solid #C05C35" }}
-              >
-                👤
+
+        <div className="grid sm:grid-cols-2 gap-x-16 gap-y-10">
+          {leaders.map((l, i) => (
+            <div
+              key={l.name}
+              className="flex flex-col gap-1 pb-10 border-b border-cream-darker last:border-0 last:pb-0"
+            >
+              <div className="flex items-baseline gap-4 mb-1">
+                <h3
+                  className="font-black text-charcoal"
+                  style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "1.4rem", lineHeight: 1.1 }}
+                >
+                  {l.name}
+                </h3>
+                <span
+                  className="text-xs font-bold uppercase tracking-widest shrink-0"
+                  style={{ color: i % 3 === 0 ? "#C05C35" : i % 3 === 1 ? "#2B5740" : "#C8943A" }}
+                >
+                  {l.role}
+                </span>
               </div>
-              <h3
-                className="font-black text-charcoal text-base mb-0.5"
-                style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-              >
-                {l.name}
-              </h3>
-              <div className="text-terracotta text-xs font-bold uppercase tracking-wider mb-3">{l.role}</div>
-              <p className="text-warm-gray text-sm leading-relaxed">{l.bio}</p>
+              <p className="text-charcoal/70 text-sm leading-relaxed">{l.bio}</p>
               {l.tag && (
-                <span className="mt-3 text-xs font-bold text-forest bg-cream-dark px-3 py-1 rounded-full">
+                <span className="mt-2 self-start text-xs font-bold text-warm-gray bg-cream-dark px-3 py-1 rounded-full">
                   {l.tag}
                 </span>
               )}
-            </Card>
+            </div>
           ))}
         </div>
       </section>
@@ -166,8 +147,8 @@ export default function AboutPage() {
         <div className="mx-auto max-w-6xl">
           <div className="kicker mb-3">Get involved</div>
           <h2
-            className="text-charcoal font-black mb-3 text-4xl"
-            style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+            className="text-charcoal font-black mb-3"
+            style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
           >
             Ministries
           </h2>
@@ -191,14 +172,16 @@ export default function AboutPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-20 px-6 text-center">
+      <section className="py-24 px-6 text-center">
         <h2
-          className="text-charcoal font-black mb-4 text-4xl"
-          style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+          className="text-charcoal font-black mb-4"
+          style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
         >
           Ready to be part of this family?
         </h2>
-        <p className="text-warm-gray mb-8 max-w-sm mx-auto">Get in touch and let us know you are coming.</p>
+        <p className="text-warm-gray mb-8 max-w-sm mx-auto">
+          Get in touch and let us know you are coming. We will be glad to see you.
+        </p>
         <Link href="/contact" className="btn-terra">Plan Your Visit</Link>
       </section>
     </>
