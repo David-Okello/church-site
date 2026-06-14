@@ -22,30 +22,29 @@ export default function HomePage() {
   return (
     <>
       {/* ── 1. HERO ── */}
-      <section className="relative overflow-hidden min-h-[88vh] flex items-center" style={{ background: "#F9F5EE" }}>
-        {/* Full-bleed background photo */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
+      <section className="relative overflow-hidden bg-cream min-h-[88vh] flex items-center">
+        {/* Photo + gradient — desktop only. On mobile the photo appears as a strip below the CTAs */}
         <img
           src="https://images.unsplash.com/photo-1444664361762-afba083a4d77?w=1600&q=85&auto=format&fit=crop"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
+          // eslint-disable-next-line @next/next/no-img-element
+          className="absolute inset-0 w-full h-full object-cover hidden lg:block"
           style={{ objectPosition: "60% center" }}
         />
-        {/* Sharp split: fully opaque cream on left, fades to transparent by centre */}
+        {/* Desktop split: opaque cream left, transparent right */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 hidden lg:block"
           style={{
-            background: "linear-gradient(to right, rgba(249,245,238,0.98) 0%, rgba(249,245,238,0.98) 42%, rgba(249,245,238,0.55) 56%, rgba(249,245,238,0.0) 68%)",
+            background:
+              "linear-gradient(to right, #F9F5EE 0%, #F9F5EE 40%, rgba(249,245,238,0.5) 55%, rgba(249,245,238,0) 68%)",
           }}
         />
 
-        <div className="relative z-10 mx-auto max-w-6xl w-full px-6 py-24 grid lg:grid-cols-[3fr_2fr] gap-16 items-center">
-          {/* Left: copy — sits on opaque cream zone */}
+        <div className="relative z-10 mx-auto max-w-6xl w-full px-6 py-20 grid lg:grid-cols-[3fr_2fr] gap-16 items-center">
+          {/* Left: copy */}
           <div>
-            <div className="kicker mb-5">
-              {settings.denomination} · Wau, South Sudan
-            </div>
+            <div className="kicker mb-5">{settings.denomination} · Wau, South Sudan</div>
             <h1
               className="text-charcoal mb-6 font-black hero-headline"
               style={{ fontSize: "clamp(2.8rem, 5.5vw, 5rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
@@ -61,47 +60,41 @@ export default function HomePage() {
               <Link href="/contact" className="btn-terra">Plan a Visit</Link>
               <Link href="/sermons" className="btn-outline">View Sermons</Link>
             </div>
+
+            {/* Mobile photo strip — sits below CTAs, hidden on desktop */}
+            <div className="lg:hidden mt-10 -mx-6 overflow-hidden rounded-none" style={{ height: 220 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://images.unsplash.com/photo-1444664361762-afba083a4d77?w=900&q=85&auto=format&fit=crop"
+                alt="Congregation in worship"
+                className="w-full h-full object-cover"
+                style={{ objectPosition: "center 30%" }}
+              />
+            </div>
           </div>
 
-          {/* Right: service times — white text over photo */}
-          <div>
-            <div
-              className="text-xs font-bold uppercase tracking-widest mb-5"
-              style={{ color: "rgba(255,255,255,0.65)" }}
-            >
-              When we meet
-            </div>
-            <div
-              className="flex flex-col divide-y"
-              style={{ borderTop: "1px solid rgba(255,255,255,0.2)", borderBottom: "1px solid rgba(255,255,255,0.2)" }}
-            >
+          {/* Right: service times */}
+          {/* Desktop: white text over photo. Mobile: dark text on cream. */}
+          <div className="mt-8 lg:mt-0">
+            <div className="kicker mb-5 lg:text-white/60">When we meet</div>
+            <div className="flex flex-col divide-y divide-cream-darker lg:divide-white/20 border-t border-cream-darker lg:border-white/20">
               {settings.serviceTimes.map((s) => (
-                <div
-                  key={s.day}
-                  className="flex items-center justify-between gap-4 py-4"
-                  style={{ borderColor: "rgba(255,255,255,0.2)" }}
-                >
+                <div key={s.day} className="flex items-center justify-between gap-4 py-4">
                   <div>
-                    <div className="font-semibold text-sm" style={{ color: "rgba(255,255,255,0.95)" }}>{s.label}</div>
-                    <div className="text-xs" style={{ color: "rgba(255,255,255,0.55)" }}>{s.day}</div>
+                    <div className="font-semibold text-sm text-charcoal lg:text-white/90">{s.label}</div>
+                    <div className="text-xs text-warm-gray lg:text-white/50">{s.day}</div>
                   </div>
                   <span
-                    className="font-black"
-                    style={{
-                      fontFamily: "var(--font-playfair), Georgia, serif",
-                      fontSize: "1.5rem",
-                      lineHeight: 1,
-                      color: "#E8A85A",
-                    }}
+                    className="font-black text-terracotta lg:text-[#F0B060]"
+                    style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "1.5rem", lineHeight: 1 }}
                   >
                     {s.time}
                   </span>
                 </div>
               ))}
             </div>
-            <p className="text-xs mt-4 leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-              {settings.address}
-            </p>
+            <div className="border-b border-cream-darker lg:border-white/20" />
+            <p className="text-xs mt-4 leading-relaxed text-warm-gray lg:text-white/50">{settings.address}</p>
           </div>
         </div>
       </section>
