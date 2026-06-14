@@ -22,15 +22,21 @@ export default function HomePage() {
   return (
     <>
       {/* ── 1. HERO ── */}
-      <section className="relative overflow-hidden bg-cream min-h-[88vh] flex items-center">
-        {/* Single subtle accent circle */}
+      <section className="relative overflow-hidden min-h-[88vh] flex items-center" style={{ background: "#F9F5EE" }}>
+        {/* Full-bleed background photo */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://images.unsplash.com/photo-1444664361762-afba083a4d77?w=1600&q=85&auto=format&fit=crop"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: "60% center" }}
+        />
+        {/* Cream gradient overlay: opaque on left (text), reveals photo on right */}
         <div
-          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 rounded-full pointer-events-none"
+          className="absolute inset-0"
           style={{
-            width: "clamp(300px, 42vw, 580px)",
-            height: "clamp(300px, 42vw, 580px)",
-            background: "#C05C35",
-            opacity: 0.07,
+            background: "linear-gradient(to right, rgba(249,245,238,0.97) 0%, rgba(249,245,238,0.94) 38%, rgba(249,245,238,0.65) 58%, rgba(249,245,238,0.1) 100%)",
           }}
         />
 

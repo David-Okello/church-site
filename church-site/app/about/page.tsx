@@ -38,6 +38,27 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ── CONGREGATION PHOTO ── */}
+      <section className="mx-auto max-w-5xl px-6 pt-14 pb-0">
+        <div className="relative rounded-2xl overflow-hidden" style={{ aspectRatio: "16/7" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://images.unsplash.com/photo-1689844759889-f8d92bd8a03a?w=1400&q=85&auto=format&fit=crop"
+            alt="Members of the congregation in worship"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: "center 30%" }}
+          />
+          {/* Subtle bottom fade so the section below reads cleanly */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-20"
+            style={{ background: "linear-gradient(to bottom, transparent, rgba(249,245,238,0.4))" }}
+          />
+        </div>
+        <p className="text-xs text-warm-gray mt-2 text-right">
+          Photo: Unsplash (free to use)
+        </p>
+      </section>
+
       {/* ── STORY ── */}
       <section className="mx-auto max-w-3xl px-6 py-20">
         <div className="kicker mb-8">Our story</div>
