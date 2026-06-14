@@ -33,7 +33,7 @@ export default function SermonsPage() {
       {/* ── SERMON LIST ── */}
       <section className="mx-auto max-w-4xl px-6 py-16">
         {sermons.length === 0 ? (
-          <div className="rounded-2xl bg-white p-12 text-center" style={{ boxShadow: "0 2px 16px rgba(60,40,20,0.07)" }}>
+          <div className="rounded-2xl p-12 text-center" style={{ background: "#F2F1EE", boxShadow: "0 2px 16px rgba(60,40,20,0.06)" }}>
             <p className="text-warm-gray">No sermons yet — check back after Sunday service.</p>
           </div>
         ) : (
@@ -46,8 +46,8 @@ export default function SermonsPage() {
               return (
                 <article
                   key={s.title + s.date}
-                  className="rounded-2xl overflow-hidden bg-white"
-                  style={{ boxShadow: "0 2px 20px rgba(60,40,20,0.07)", borderTop: `4px solid ${accent}` }}
+                  className="rounded-2xl overflow-hidden"
+                  style={{ background: "#F2F1EE", boxShadow: "0 2px 20px rgba(60,40,20,0.06)", borderTop: `4px solid ${accent}` }}
                 >
                   {/* ── HEADER BAND ── */}
                   <div className="px-8 pt-7 pb-6">
@@ -105,14 +105,14 @@ export default function SermonsPage() {
                   </div>
 
                   {/* ── BODY ── */}
-                  <div className="px-8 pb-8" style={{ borderTop: "1px solid #EDE8DE" }}>
+                  <div className="px-8 pb-8" style={{ borderTop: "1px solid #DDDBD6" }}>
                     <p className="text-charcoal/70 leading-relaxed text-sm pt-6 mb-0 max-w-2xl">
                       {s.description}
                     </p>
 
                     {/* Rich sections */}
                     {(s.keyPoints?.length || s.discussionQuestions?.length || s.prayerPoints?.length) && (
-                      <div className="grid md:grid-cols-3 gap-8 mt-8 pt-8" style={{ borderTop: "1px solid #EDE8DE" }}>
+                      <div className="grid md:grid-cols-3 gap-8 mt-8 pt-8" style={{ borderTop: "1px solid #E3E1DC" }}>
 
                         {s.keyPoints && s.keyPoints.length > 0 && (
                           <div>
@@ -167,7 +167,7 @@ export default function SermonsPage() {
                     )}
 
                     {!s.keyPoints?.length && !s.discussionQuestions?.length && !s.prayerPoints?.length && (
-                      <p className="text-xs text-warm-gray italic mt-6 pt-6" style={{ borderTop: "1px solid #EDE8DE" }}>
+                      <p className="text-xs text-warm-gray italic mt-6 pt-6" style={{ borderTop: "1px solid #E3E1DC" }}>
                         Notes and questions will be added after the service.
                       </p>
                     )}
