@@ -25,13 +25,13 @@ export default function SermonsPage() {
           </h1>
           <p className="text-warm-gray text-lg max-w-xl leading-relaxed">
             Teachings from God's Word — for your encouragement, growth, and edification.
-            Recordings will be added as they become available.
+            Each entry includes notes and questions for personal and group reflection.
           </p>
         </div>
       </section>
 
       {/* ── SERMON LIST ── */}
-      <section className="mx-auto max-w-6xl px-6 py-16">
+      <section className="mx-auto max-w-4xl px-6 py-16">
         {sermons.length === 0 ? (
           <Card white className="p-12 text-center">
             <div className="text-5xl mb-4">📖</div>
@@ -42,67 +42,121 @@ export default function SermonsPage() {
             <p className="text-warm-gray">Check back after Sunday service.</p>
           </Card>
         ) : (
-          <div className="flex flex-col divide-y divide-cream-darker border-y border-cream-darker">
+          <div className="flex flex-col gap-10">
             {sermons.map((s, i) => {
               const d = new Date(s.date);
               const isFeatured = i === 0;
-              return (
-                <div
-                  key={s.title + s.date}
-                  className="flex flex-col sm:flex-row gap-6 py-8 items-start"
-                  style={isFeatured ? { borderLeft: "4px solid #C05C35", paddingLeft: "1.5rem" } : {}}
-                >
-                  {/* Date block */}
-                  <div
-                    className="shrink-0 w-14 text-center"
-                    style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-                  >
-                    <div className="text-xs font-bold text-terracotta uppercase tracking-wider">
-                      {d.toLocaleDateString("en-US", { month: "short" })}
-                    </div>
-                    <div className="text-3xl font-black text-charcoal leading-none">{d.getDate()}</div>
-                    <div className="text-xs text-warm-gray">{d.getFullYear()}</div>
-                  </div>
 
-                  {/* Content */}
-                  <div className="flex-1 min-w-0">
+              return (
+                <Card key={s.title + s.date} white className="overflow-hidden">
+                  {/* Top bar: date + featured badge */}
+                  <div
+                    className="flex items-center gap-4 px-8 py-4"
+                    style={{ borderBottom: `3px solid ${isFeatured ? "#C05C35" : "#EDE8DE"}`, background: isFeatured ? "#FBF0EB" : "#F9F5EE" }}
+                  >
+                    <div style={{ fontFamily: "var(--font-playfair), Georgia, serif" }} className="flex items-baseline gap-2">
+                      <span className="text-3xl font-black text-charcoal leading-none">{d.getDate()}</span>
+                      <span className="text-sm font-bold text-warm-gray uppercase tracking-wider">
+                        {d.toLocaleDateString("en-US", { month: "short" })} {d.getFullYear()}
+                      </span>
+                    </div>
                     {isFeatured && (
-                      <span className="inline-block text-xs font-bold text-terracotta uppercase tracking-wider bg-terra-bg px-3 py-1 rounded-full mb-3">
+                      <span className="ml-auto text-xs font-bold text-terracotta uppercase tracking-wider bg-white px-3 py-1 rounded-full border border-terracotta/20">
                         Most Recent
                       </span>
                     )}
+                  </div>
+
+                  <div className="p-8">
+                    {/* Title + meta */}
                     <h2
                       className="font-black text-charcoal mb-2"
-                      style={{
-                        fontFamily: "var(--font-playfair), Georgia, serif",
-                        fontSize: isFeatured ? "clamp(1.5rem, 2.5vw, 2rem)" : "1.25rem",
-                        lineHeight: 1.1,
-                      }}
+                      style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(1.5rem, 2.5vw, 2rem)", lineHeight: 1.1 }}
                     >
                       {s.title}
                     </h2>
-                    <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-warm-gray mb-3">
+                    <div className="flex flex-wrap items-center gap-3 mb-4 text-sm">
                       <span className="font-semibold text-charcoal">{s.speaker}</span>
-                      <span className="bg-cream-dark text-charcoal/70 px-2.5 py-0.5 rounded-full text-xs font-semibold">
+                      <span className="bg-cream-dark text-charcoal/70 px-3 py-0.5 rounded-full text-xs font-semibold">
                         {s.scripture}
                       </span>
+                      {s.mediaUrl && (
+                        <a href={s.mediaUrl} target="_blank" rel="noopener noreferrer" className="btn-terra text-xs ml-auto">
+                          ▶ Watch
+                        </a>
+                      )}
                     </div>
-                    <p className="text-charcoal/70 text-sm leading-relaxed max-w-2xl">{s.description}</p>
-                  </div>
+                    <p className="text-charcoal/70 leading-relaxed mb-8">{s.description}</p>
 
-                  {/* Media badge */}
-                  <div className="shrink-0 self-start sm:self-center">
-                    {s.mediaUrl ? (
-                      <a href={s.mediaUrl} target="_blank" rel="noopener noreferrer" className="btn-terra text-sm py-2.5! px-5!">
-                        ▶ Watch
-                      </a>
+                    {/* Rich content: 3-column grid */}
+                    {(s.keyPoints?.length || s.discussionQuestions?.length || s.prayerPoints?.length) ? (
+                      <div className="grid md:grid-cols-3 gap-6 pt-6" style={{ borderTop: "1px solid #EDE8DE" }}>
+
+                        {/* Key points */}
+                        {s.keyPoints && s.keyPoints.length > 0 && (
+                          <div>
+                            <div className="flex items-center gap-2 mb-4">
+                              <div className="w-1 h-4 rounded-full shrink-0" style={{ background: "#C05C35" }} />
+                              <span className="kicker">Key Points</span>
+                            </div>
+                            <ol className="flex flex-col gap-3">
+                              {s.keyPoints.map((point, idx) => (
+                                <li key={idx} className="flex gap-3 text-sm text-charcoal/80 leading-snug">
+                                  <span
+                                    className="shrink-0 w-5 h-5 rounded-full text-white text-xs font-black grid place-items-center mt-0.5"
+                                    style={{ background: "#C05C35", fontFamily: "var(--font-playfair), Georgia, serif" }}
+                                  >
+                                    {idx + 1}
+                                  </span>
+                                  {point}
+                                </li>
+                              ))}
+                            </ol>
+                          </div>
+                        )}
+
+                        {/* Discussion questions */}
+                        {s.discussionQuestions && s.discussionQuestions.length > 0 && (
+                          <div>
+                            <div className="flex items-center gap-2 mb-4">
+                              <div className="w-1 h-4 rounded-full shrink-0" style={{ background: "#2B5740" }} />
+                              <span className="kicker" style={{ color: "#2B5740" }}>Discussion</span>
+                            </div>
+                            <ul className="flex flex-col gap-3">
+                              {s.discussionQuestions.map((q, idx) => (
+                                <li key={idx} className="text-sm text-charcoal/80 leading-snug pl-3" style={{ borderLeft: "2px solid #2B5740" }}>
+                                  {q}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+
+                        {/* Prayer points */}
+                        {s.prayerPoints && s.prayerPoints.length > 0 && (
+                          <div>
+                            <div className="flex items-center gap-2 mb-4">
+                              <div className="w-1 h-4 rounded-full shrink-0" style={{ background: "#C8943A" }} />
+                              <span className="kicker" style={{ color: "#C8943A" }}>Prayer</span>
+                            </div>
+                            <ul className="flex flex-col gap-3">
+                              {s.prayerPoints.map((p, idx) => (
+                                <li key={idx} className="flex gap-2.5 text-sm text-charcoal/80 leading-snug">
+                                  <span className="shrink-0 text-gold mt-0.5">✦</span>
+                                  {p}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
                     ) : (
-                      <span className="text-xs font-semibold text-warm-gray bg-cream-dark px-3 py-2 rounded-full">
-                        Text only
-                      </span>
+                      <p className="text-xs text-warm-gray italic pt-4" style={{ borderTop: "1px solid #EDE8DE" }}>
+                        Notes and discussion questions will be added after the service.
+                      </p>
                     )}
                   </div>
-                </div>
+                </Card>
               );
             })}
           </div>
@@ -110,7 +164,7 @@ export default function SermonsPage() {
       </section>
 
       {/* ── NOTICE ── */}
-      <section className="mx-auto max-w-6xl px-6 pb-20">
+      <section className="mx-auto max-w-4xl px-6 pb-20">
         <Card className="p-8 flex gap-5 items-start" style={{ borderLeft: "4px solid #C8943A" }}>
           <div className="shrink-0 text-2xl">📡</div>
           <div>

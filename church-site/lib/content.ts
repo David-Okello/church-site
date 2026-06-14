@@ -100,6 +100,9 @@ export type Sermon = {
   scripture: string;
   description: string;
   mediaUrl?: string;
+  keyPoints?: string[];
+  discussionQuestions?: string[];
+  prayerPoints?: string[];
 };
 
 export type ChurchEvent = {

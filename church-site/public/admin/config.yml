@@ -29,6 +29,24 @@ collections:
       - { label: "Scripture reference", name: "scripture", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Media URL (YouTube / audio link)", name: "mediaUrl", widget: "string", required: false }
+      - label: "Key points"
+        name: "keyPoints"
+        widget: "list"
+        required: false
+        hint: "3–5 main points from the sermon"
+        field: { label: "Point", name: "point", widget: "string" }
+      - label: "Discussion questions"
+        name: "discussionQuestions"
+        widget: "list"
+        required: false
+        hint: "Questions for home groups or personal reflection"
+        field: { label: "Question", name: "question", widget: "string" }
+      - label: "Prayer points"
+        name: "prayerPoints"
+        widget: "list"
+        required: false
+        hint: "Specific prayers tied to this message"
+        field: { label: "Prayer point", name: "prayerPoint", widget: "string" }
 
   - name: "events"
     label: "Events"
