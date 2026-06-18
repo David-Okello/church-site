@@ -1,15 +1,26 @@
-# Decap CMS configuration
-# Docs: https://decapcms.org/docs/
+# Decap CMS — GitHub backend (no Netlify required)
 #
-# SETUP STEPS:
-# 1. Push this repo to GitHub
-# 2. Create a free Netlify account and connect the GitHub repo
-# 3. In Netlify: Identity → Enable, then Git Gateway → Enable
-# 4. Invite church staff by email via Identity → Invite users
+# SETUP (one-time, ~15 minutes):
+# 1. Create a GitHub OAuth App:
+#    → GitHub → Settings → Developer Settings → OAuth Apps → New OAuth App
+#    Homepage URL:      https://church-site-27m.pages.dev
+#    Authorization callback URL: https://decap-oauth.YOUR_SUBDOMAIN.workers.dev/callback
+#
+# 2. Deploy the oauth-worker (see /oauth-worker/worker.js in this repo)
+#    via the Cloudflare Dashboard → Workers → Create Worker → paste the code
+#    Then add two Environment Variables:
+#      GITHUB_CLIENT_ID     = (from your OAuth App)
+#      GITHUB_CLIENT_SECRET = (from your OAuth App — add as a Secret, not plaintext)
+#      SITE_URL             = https://church-site-27m.pages.dev
+#
+# 3. Replace YOUR_SUBDOMAIN below with your actual Cloudflare Workers subdomain
+#    (visible in the Cloudflare dashboard after creating the worker)
 
 backend:
-  name: git-gateway
+  name: github
+  repo: David-Okello/church-site
   branch: main
+  base_url: https://decap-oauth.YOUR_SUBDOMAIN.workers.dev
 
 site_url: https://church-site-27m.pages.dev/
 
@@ -89,7 +100,7 @@ collections:
           - { label: "Mission statement", name: "missionStatement", widget: "text" }
           - { label: "Founded year", name: "foundedYear", widget: "string" }
           - { label: "Denomination", name: "denomination", widget: "string" }
-          - { label: "Scripture verse text", name: "verseText", widget: "text", hint: "The verse shown in the Scripture section on the homepage" }
+          - { label: "Scripture verse text", name: "verseText", widget: "text" }
           - { label: "Scripture verse reference", name: "verseReference", widget: "string", hint: "e.g. Jeremiah 29:11" }
           - { label: "YouTube channel URL", name: "youtubeUrl", widget: "string", required: false }
           - { label: "Facebook page URL", name: "facebookUrl", widget: "string", required: false }
