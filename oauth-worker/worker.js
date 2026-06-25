@@ -5,7 +5,6 @@
  * Required Environment Variables (set in Cloudflare Worker dashboard):
  *   GITHUB_CLIENT_ID     — from your GitHub OAuth App (plaintext var)
  *   GITHUB_CLIENT_SECRET — from your GitHub OAuth App (add as Secret)
- *   SITE_URL             — your Cloudflare Pages URL, e.g. https://church-site-27m.pages.dev
  */
 
 export default {
@@ -13,7 +12,7 @@ export default {
     const url = new URL(request.url);
 
     const corsHeaders = {
-      'Access-Control-Allow-Origin': env.SITE_URL || '*',
+      'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     };
@@ -31,7 +30,7 @@ export default {
       return Response.redirect(authUrl.toString(), 302);
     }
 
-    // ── /callback  →  exchange code for token, send back to Decap CMS ────
+    // ── /callback  →  exchange code, do Decap CMS handshake ──────────────
     if (url.pathname === '/callback') {
       const code = url.searchParams.get('code');
       if (!code) {
@@ -53,34 +52,38 @@ export default {
 
       const tokenData = await tokenRes.json();
 
-      if (tokenData.error) {
-        return new Response(
-          'OAuth error: ' + (tokenData.error_description || tokenData.error),
-          { status: 400 }
-        );
+      if (tokenData.error || !tokenData.access_token) {
+        const msg = tokenData.error_description || tokenData.error || 'Unknown error';
+        return new Response(`GitHub OAuth error: ${msg}`, { status: 400 });
       }
 
-      const payload = JSON.stringify({
-        token: tokenData.access_token,
-        provider: 'github',
-      });
+      const token = tokenData.access_token;
 
-      // Decap CMS listens for this exact postMessage format
-      const message = 'authorization:github:success:' + payload;
-      const siteOrigin = env.SITE_URL || '*';
-
+      // Decap CMS handshake:
+      // 1. We send "authorizing:github" to the opener (with target *)
+      // 2. Decap CMS bounces it back to us
+      // 3. Our receiveMessage fires with e.origin = the CMS page's origin
+      // 4. We send the success token using that confirmed origin as target
       const html = `<!DOCTYPE html>
 <html>
 <head><title>Authorized</title></head>
 <body>
 <script>
 (function () {
-  var message = ${JSON.stringify(message)};
-  var origin  = ${JSON.stringify(siteOrigin)};
-  if (window.opener) {
-    window.opener.postMessage(message, origin);
+  var token    = ${JSON.stringify(token)};
+  var provider = 'github';
+  var success  = 'authorization:' + provider + ':success:' + JSON.stringify({ token: token, provider: provider });
+
+  function receiveMessage(e) {
+    window.removeEventListener('message', receiveMessage, false);
+    window.opener.postMessage(success, e.origin);
+    setTimeout(function () { window.close(); }, 500);
   }
-  setTimeout(function () { window.close(); }, 500);
+
+  window.addEventListener('message', receiveMessage, false);
+
+  // Kick off the handshake
+  window.opener.postMessage('authorizing:' + provider, '*');
 })();
 </script>
 <p>Authorized. This window will close automatically.</p>
@@ -92,7 +95,6 @@ export default {
       });
     }
 
-    // Health check
     return new Response('Decap CMS OAuth Proxy — OK', { headers: corsHeaders });
   },
 };
