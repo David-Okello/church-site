@@ -21,6 +21,7 @@ backend:
   repo: David-Okello/church-site
   branch: main
   base_url: https://decap-oauth.okellodavid002.workers.dev
+  auth_endpoint: /auth
 
 site_url: https://church-site-27m.pages.dev/
 
