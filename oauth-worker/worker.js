@@ -55,8 +55,7 @@ export default {
       if (tokenData.error || !tokenData.access_token) {
         const msg = tokenData.error_description || tokenData.error || 'No token returned';
         return new Response(
-          `<h2 style="color:red;font-family:sans-serif">OAuth Error</h2><pre>${msg}</pre>
-           <p style="font-family:sans-serif">Check that GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET are set in your Cloudflare Worker environment variables.</p>`,
+          `<h2 style="color:red;font-family:sans-serif">OAuth Error</h2><pre>${msg}</pre>`,
           { status: 400, headers: { 'Content-Type': 'text/html' } }
         );
       }
@@ -64,73 +63,28 @@ export default {
       const token = tokenData.access_token;
       const success = `authorization:github:success:${JSON.stringify({ token, provider: 'github' })}`;
 
-      // Show a status page — auto-closes after login completes.
-      // Tries the two-step handshake first, falls back to direct send after 2s.
       const html = `<!DOCTYPE html>
 <html>
-<head>
-  <title>Authorizing...</title>
-  <style>
-    body { font-family: sans-serif; display: flex; flex-direction: column;
-           align-items: center; justify-content: center; min-height: 100vh;
-           margin: 0; background: #f5f5f5; color: #333; }
-    #status { font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem; }
-    #log { font-size: 0.75rem; color: #666; max-width: 400px; text-align: left; }
-  </style>
-</head>
-<body>
-  <div id="status">Connecting to CMS...</div>
-  <div id="log"></div>
+<head><title>Authorized</title></head>
+<body style="font-family:sans-serif;text-align:center;padding-top:80px;">
+<p>Authorized. Closing...</p>
 <script>
 (function () {
-  var token   = ${JSON.stringify(token)};
   var success = ${JSON.stringify(success)};
-  var statusEl = document.getElementById('status');
-  var logEl    = document.getElementById('log');
 
-  function log(msg) {
-    logEl.innerHTML += '<div>' + msg + '</div>';
-  }
-
-  // Check window.opener
   if (!window.opener) {
-    statusEl.textContent = 'Error: popup lost connection to CMS.';
-    statusEl.style.color = 'red';
-    log('window.opener is null. Try disabling your popup blocker, or use Chrome.');
+    document.body.innerHTML = '<p style="color:red">Error: lost connection to CMS window. Close this and try again.</p>';
     return;
   }
 
-  log('Connected to CMS window.');
-  log('Token received from GitHub. ✓');
+  // Send token directly — no handshake needed
+  window.opener.postMessage(success, '*');
 
-  var done = false;
-
-  // Step 1: Handshake — send "authorizing:github", wait for Decap CMS to bounce it back
-  function receiveMessage(e) {
-    if (done) return;
-    log('Received handshake reply from: ' + e.origin);
-    done = true;
-    window.removeEventListener('message', receiveMessage, false);
-    window.opener.postMessage(success, e.origin);
-    log('Token sent to CMS. ✓');
-    statusEl.textContent = 'Authorized! Closing...';
-    setTimeout(function () { window.close(); }, 1000);
-  }
-
-  window.addEventListener('message', receiveMessage, false);
-  window.opener.postMessage('authorizing:github', '*');
-  log('Handshake sent. Waiting for reply...');
-
-  // Fallback: if Decap CMS does not bounce back within 2s, send directly
+  // Also try after a short delay in case CMS listener isn't ready yet
   setTimeout(function () {
-    if (done) return;
-    done = true;
-    window.removeEventListener('message', receiveMessage, false);
-    log('No handshake reply — sending token directly.');
     window.opener.postMessage(success, '*');
-    statusEl.textContent = 'Authorized! Closing...';
-    setTimeout(function () { window.close(); }, 1000);
-  }, 2000);
+    setTimeout(function () { window.close(); }, 500);
+  }, 300);
 })();
 </script>
 </body>
