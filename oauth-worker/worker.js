@@ -30,7 +30,7 @@ export default {
       return Response.redirect(authUrl.toString(), 302);
     }
 
-    // ── /callback  →  exchange code, send token to Decap CMS ─────────────
+    // ── /callback  →  exchange code, complete Decap CMS handshake ────────
     if (url.pathname === '/callback') {
       const code = url.searchParams.get('code');
       if (!code) {
@@ -63,28 +63,69 @@ export default {
       const token = tokenData.access_token;
       const success = `authorization:github:success:${JSON.stringify({ token, provider: 'github' })}`;
 
+      // Decap CMS handshake protocol:
+      //  1. Popup posts "authorizing:github" to the opener (the CMS window).
+      //  2. The CMS registers its token listener, then bounces
+      //     "authorizing:github" back to this popup.
+      //  3. On receiving that bounce, the popup posts the success/token
+      //     message. We target '*' so any origin mismatch cannot drop it —
+      //     the message still only reaches window.opener (the CMS).
       const html = `<!DOCTYPE html>
 <html>
-<head><title>Authorized</title></head>
-<body style="font-family:sans-serif;text-align:center;padding-top:80px;">
-<p>Authorized. Closing...</p>
+<head>
+  <title>Authorizing…</title>
+  <style>
+    body { font-family: sans-serif; display:flex; flex-direction:column;
+           align-items:center; justify-content:center; min-height:100vh;
+           margin:0; background:#f5f5f5; color:#333; }
+    #status { font-size:1.1rem; font-weight:bold; }
+    #log { font-size:.72rem; color:#888; margin-top:1rem; max-width:420px; }
+  </style>
+</head>
+<body>
+  <div id="status">Completing login…</div>
+  <div id="log"></div>
 <script>
 (function () {
-  var success = ${JSON.stringify(success)};
+  var success  = ${JSON.stringify(success)};
+  var statusEl = document.getElementById('status');
+  var logEl    = document.getElementById('log');
+  function log(m){ logEl.innerHTML += '<div>' + m + '</div>'; }
 
   if (!window.opener) {
-    document.body.innerHTML = '<p style="color:red">Error: lost connection to CMS window. Close this and try again.</p>';
+    statusEl.textContent = 'Error: lost connection to the CMS window.';
+    statusEl.style.color = 'red';
+    log('Disable popup blockers and try again in the same tab.');
     return;
   }
 
-  // Send token directly — no handshake needed
-  window.opener.postMessage(success, '*');
-
-  // Also try after a short delay in case CMS listener isn't ready yet
-  setTimeout(function () {
+  var sent = false;
+  function sendToken() {
+    if (sent) return;
+    sent = true;
+    window.removeEventListener('message', onMessage, false);
     window.opener.postMessage(success, '*');
-    setTimeout(function () { window.close(); }, 500);
-  }, 300);
+    statusEl.textContent = 'Authorized! Closing…';
+    log('Token delivered to CMS. ✓');
+    setTimeout(function(){ window.close(); }, 600);
+  }
+
+  // Step 2→3: wait for the CMS to bounce "authorizing:github" back, then send the token
+  function onMessage(e) {
+    if (e.data !== 'authorizing:github') return;
+    log('Handshake confirmed by CMS. ✓');
+    sendToken();
+  }
+  window.addEventListener('message', onMessage, false);
+
+  // Step 1: initiate the handshake
+  window.opener.postMessage('authorizing:github', '*');
+  log('Handshake sent, waiting for CMS…');
+
+  // Safety net: if the CMS never bounces back within 1.5s, send anyway
+  setTimeout(function(){
+    if (!sent) { log('No bounce received — sending token directly.'); sendToken(); }
+  }, 1500);
 })();
 </script>
 </body>
