@@ -34,7 +34,7 @@ export default function EventsPage() {
             Upcoming events
           </h1>
           <p className="text-white/70 text-lg max-w-xl leading-relaxed">
-            Life at Grace Community is about more than Sunday mornings. Here is what is coming up — and there is always room for one more.
+            Life across the Diocese is about more than Sunday mornings. Here is what is coming up — and there is always room for one more.
           </p>
         </div>
       </section>

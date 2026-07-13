@@ -66,6 +66,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <div>{settings.phone}</div>
                 <div>{settings.email}</div>
               </div>
+              {(settings.facebookUrl || settings.youtubeUrl || settings.twitterUrl) && (
+                <div className="flex gap-3 mt-4">
+                  {settings.facebookUrl && (
+                    <a href={settings.facebookUrl} target="_blank" rel="noopener noreferrer"
+                      className="text-xs font-semibold text-white px-3 py-1.5 rounded-lg"
+                      style={{ background: "rgba(255,255,255,0.08)" }}>
+                      Facebook
+                    </a>
+                  )}
+                  {settings.youtubeUrl && (
+                    <a href={settings.youtubeUrl} target="_blank" rel="noopener noreferrer"
+                      className="text-xs font-semibold text-white px-3 py-1.5 rounded-lg"
+                      style={{ background: "rgba(255,255,255,0.08)" }}>
+                      YouTube
+                    </a>
+                  )}
+                  {settings.twitterUrl && (
+                    <a href={settings.twitterUrl} target="_blank" rel="noopener noreferrer"
+                      className="text-xs font-semibold text-white px-3 py-1.5 rounded-lg"
+                      style={{ background: "rgba(255,255,255,0.08)" }}>
+                      X
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 

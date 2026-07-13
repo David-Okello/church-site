@@ -105,6 +105,7 @@ collections:
           - { label: "Scripture verse reference", name: "verseReference", widget: "string", hint: "e.g. Jeremiah 29:11" }
           - { label: "YouTube channel URL", name: "youtubeUrl", widget: "string", required: false }
           - { label: "Facebook page URL", name: "facebookUrl", widget: "string", required: false }
+          - { label: "Twitter / X URL", name: "twitterUrl", widget: "string", required: false }
           - label: "Service times"
             name: "serviceTimes"
             widget: "list"

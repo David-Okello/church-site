@@ -11,19 +11,21 @@ export default function HomePage() {
   const recent = sermons.slice(1, 4);
 
   const ministriesList = [
+    "Men's Fellowship",
+    "Mothers' Union",
     "Youth Ministry",
-    "Women's Fellowship",
-    "Men's Ministry",
-    "Community Outreach",
-    "Worship Team",
-    "Children's Church",
+    "Sunday School & Children",
+    "Outreach & Evangelism",
+    "Cell Groups",
+    "Intercessory Group",
+    "Praise & Worship",
   ];
 
   return (
     <>
       {/* ── 1. HERO ── */}
       <section className="relative overflow-hidden min-h-screen flex items-center" style={{ background: "#14100C" }}>
-        {/* Full-bleed photo — works at every screen size */}
+        {/* Full-bleed photo — replace with a real photo of the cathedral / congregation */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="https://images.unsplash.com/photo-1444664361762-afba083a4d77?w=1800&q=85&auto=format&fit=crop"
@@ -36,7 +38,7 @@ export default function HomePage() {
         <div
           className="absolute inset-0"
           style={{
-            background: "linear-gradient(to bottom, rgba(20,16,12,0.50) 0%, rgba(20,16,12,0.70) 100%)",
+            background: "linear-gradient(to bottom, rgba(20,16,12,0.50) 0%, rgba(20,16,12,0.72) 100%)",
           }}
         />
 
@@ -47,51 +49,51 @@ export default function HomePage() {
               className="text-xs font-bold uppercase tracking-widest mb-5"
               style={{ color: "rgba(255,255,255,0.55)" }}
             >
-              {settings.denomination} · Wau, South Sudan
+              {settings.denomination} · Aweil East, South Sudan
             </div>
             <h1
               className="font-black mb-6 hero-headline"
               style={{
                 color: "#ffffff",
-                fontSize: "clamp(2.8rem, 5.5vw, 5rem)",
-                lineHeight: 1.05,
+                fontSize: "clamp(2.6rem, 5.2vw, 4.8rem)",
+                lineHeight: 1.06,
                 letterSpacing: "-0.025em",
               }}
             >
-              A home in Wau,<br />
-              <span style={{ color: "#E8A85A" }}>for whoever needs one.</span>
+              The Episcopal Diocese<br />
+              <span style={{ color: "#E8A85A" }}>of Wanyjok.</span>
             </h1>
             <p
               className="text-lg leading-relaxed mb-10 max-w-lg hero-sub"
-              style={{ color: "rgba(255,255,255,0.78)" }}
+              style={{ color: "rgba(255,255,255,0.80)" }}
             >
-              Grace Community Church has been here since {settings.foundedYear}. The doors are open,
-              the Word is preached, and no one stays a stranger for long.
+              An Anglican family of more than 47,000 believers in Aweil East — equipping
+              the Church for mission and raising up faithful Christian leaders since {settings.foundedYear}.
             </p>
             <div className="flex flex-wrap gap-4 hero-ctas">
               <Link href="/contact" className="btn-white">Plan a Visit</Link>
-              <Link href="/sermons" className="btn-outline-white">View Sermons</Link>
+              <Link href="/about" className="btn-outline-white">Our Story</Link>
             </div>
           </div>
 
-          {/* Right: service times — white on dark overlay, works at all sizes */}
+          {/* Right: gatherings — white on dark overlay, works at all sizes */}
           <div className="mt-10 lg:mt-0">
             <div
               className="text-xs font-bold uppercase tracking-widest mb-5"
               style={{ color: "rgba(255,255,255,0.50)" }}
             >
-              When we meet
+              When we gather
             </div>
             <div style={{ borderTop: "1px solid rgba(255,255,255,0.18)" }}>
-              {settings.serviceTimes.map((s) => (
+              {settings.serviceTimes.slice(0, 5).map((s) => (
                 <div
-                  key={s.day}
-                  className="flex items-center justify-between gap-4 py-4"
+                  key={s.label}
+                  className="flex items-center justify-between gap-4 py-3.5"
                   style={{ borderBottom: "1px solid rgba(255,255,255,0.18)" }}
                 >
-                  <div>
+                  <div className="min-w-0">
                     <div
-                      className="font-semibold text-sm"
+                      className="font-semibold text-sm truncate"
                       style={{ color: "rgba(255,255,255,0.90)" }}
                     >
                       {s.label}
@@ -99,10 +101,10 @@ export default function HomePage() {
                     <div className="text-xs" style={{ color: "rgba(255,255,255,0.48)" }}>{s.day}</div>
                   </div>
                   <span
-                    className="font-black"
+                    className="font-black shrink-0"
                     style={{
                       fontFamily: "var(--font-playfair), Georgia, serif",
-                      fontSize: "1.5rem",
+                      fontSize: "1.35rem",
                       lineHeight: 1,
                       color: "#E8A85A",
                     }}
@@ -112,8 +114,8 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-            <p className="text-xs mt-4 leading-relaxed" style={{ color: "rgba(255,255,255,0.40)" }}>
-              {settings.address}
+            <p className="text-xs mt-4 leading-relaxed" style={{ color: "rgba(255,255,255,0.42)" }}>
+              …and more through the week. {settings.address}
             </p>
           </div>
         </div>
@@ -126,9 +128,10 @@ export default function HomePage() {
             className="text-charcoal/80 leading-relaxed"
             style={{ fontSize: "clamp(1.05rem, 1.8vw, 1.2rem)", lineHeight: 1.75 }}
           >
-            We started small — a handful of families meeting in someone&apos;s home in Wau. That was {settings.foundedYear}.
-            Today we are many more, but the thing that has not changed is the first thing people notice when they
-            walk in: everyone knows your name, and everyone is glad you came.
+            One of the youngest and fastest-growing dioceses in the Episcopal Church of South Sudan —
+            created as an area diocese in {settings.foundedYear} and made autonomous in 2019. Today the
+            Diocese is home to more than 47,000 believers, under the leadership of its first bishop,
+            Rt. Rev. Joseph Mamer Manot.
           </p>
         </div>
       </section>
@@ -144,9 +147,8 @@ export default function HomePage() {
               lineHeight: 1.4,
             }}
           >
-            We believe the Gospel changes everything. Not just Sunday mornings — but how we treat our
-            neighbours, raise our children, face our hardest days, and love the people in front of us.
-            That is what we are building here.
+            We exist to equip the Church for mission and to raise up faithful Christian leaders —
+            serving South Sudan not only in worship, but in education, health, peace, and humanitarian care.
           </p>
           <Link href="/about" className="btn-outline-white">
             Who we are →
@@ -241,28 +243,28 @@ export default function HomePage() {
             className="text-charcoal font-black mb-8"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
           >
-            We meet regularly
+            Gatherings through the week
           </h2>
           <div className="flex flex-col divide-y divide-[#D4CCBC] border-y border-[#D4CCBC]">
             {settings.serviceTimes.map((s, i) => (
-              <div key={s.day} className="flex items-center justify-between gap-6 py-5">
-                <div className="flex items-center gap-5">
+              <div key={s.label} className="flex items-center justify-between gap-6 py-5">
+                <div className="flex items-center gap-5 min-w-0">
                   <div
                     className="shrink-0 w-1.5 h-8 rounded-full"
-                    style={{ background: i === 0 ? "#C05C35" : i === 1 ? "#2B5740" : "#C8943A" }}
+                    style={{ background: i % 3 === 0 ? "#C05C35" : i % 3 === 1 ? "#2B5740" : "#C8943A" }}
                   />
-                  <div>
+                  <div className="min-w-0">
                     <div className="font-bold text-charcoal">{s.label}</div>
                     <div className="text-warm-gray text-sm">{s.day}</div>
                   </div>
                 </div>
                 <span
-                  className="font-black"
+                  className="font-black shrink-0"
                   style={{
                     fontFamily: "var(--font-playfair), Georgia, serif",
-                    fontSize: "1.6rem",
+                    fontSize: "1.5rem",
                     lineHeight: 1,
-                    color: i === 0 ? "#C05C35" : i === 1 ? "#2B5740" : "#C8943A",
+                    color: i % 3 === 0 ? "#C05C35" : i % 3 === 1 ? "#2B5740" : "#C8943A",
                   }}
                 >
                   {s.time}
@@ -286,10 +288,10 @@ export default function HomePage() {
               Find your place
             </h2>
             <p className="text-charcoal/75 leading-relaxed mb-6" style={{ fontSize: "1.05rem", lineHeight: 1.75 }}>
-              There is a place for everyone here. Whether you are looking to serve, to be served,
-              to grow in your faith, or simply to be known — this church has room for you.
+              From the Mothers&apos; Union to youth ministry, cell groups to evangelism — there is a place
+              for everyone to belong, grow in faith, and serve across the Diocese.
             </p>
-            <Link href="/about" className="btn-terra">Learn more →</Link>
+            <Link href="/about" className="btn-terra">Explore ministries →</Link>
           </div>
           <div>
             <ul className="grid grid-cols-2 gap-x-8 gap-y-4">
@@ -307,28 +309,35 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── 7. PASTOR LETTER ── */}
+      {/* ── 7. A WORD FROM THE BISHOP ── */}
       <section className="px-6 py-20" style={{ background: "#EDE8DE" }}>
-        <div className="mx-auto max-w-3xl">
-          <div className="kicker mb-8">A word from the pastor</div>
-          <div
-            className="w-10 h-px mb-8"
-            style={{ background: "#C05C35" }}
-          />
-          <blockquote
-            className="text-charcoal font-medium leading-relaxed mb-8"
-            style={{
-              fontFamily: "var(--font-playfair), Georgia, serif",
-              fontSize: "clamp(1.1rem, 2vw, 1.4rem)",
-              lineHeight: 1.7,
-            }}
-          >
-            {settings.pastorQuote}
-          </blockquote>
-          <div
-            className="text-terracotta font-bold text-sm uppercase tracking-widest"
-          >
-            — {settings.pastorName}, Senior Pastor
+        <div className="mx-auto max-w-5xl grid md:grid-cols-[auto_1fr] gap-10 md:gap-14 items-center">
+          {/* Bishop portrait — save the photo to church-site/public/uploads/bishop-joseph.jpg */}
+          <div className="mx-auto md:mx-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/uploads/bishop-joseph.jpg"
+              alt={settings.pastorName}
+              className="w-44 h-44 md:w-56 md:h-56 rounded-2xl object-cover"
+              style={{ boxShadow: "0 12px 40px rgba(60,40,20,0.18)", background: "#D4CCBC", objectPosition: "center 20%" }}
+            />
+          </div>
+          <div>
+            <div className="kicker mb-6">A word from the Bishop</div>
+            <div className="w-10 h-px mb-8" style={{ background: "#C05C35" }} />
+            <blockquote
+              className="text-charcoal font-medium leading-relaxed mb-8"
+              style={{
+                fontFamily: "var(--font-playfair), Georgia, serif",
+                fontSize: "clamp(1.1rem, 2vw, 1.4rem)",
+                lineHeight: 1.7,
+              }}
+            >
+              {settings.pastorQuote}
+            </blockquote>
+            <div className="text-terracotta font-bold text-sm uppercase tracking-widest">
+              — {settings.pastorName}, Diocesan Bishop
+            </div>
           </div>
         </div>
       </section>
@@ -367,7 +376,7 @@ export default function HomePage() {
         <section className="mx-auto max-w-6xl px-6 py-20">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <div>
-              <div className="kicker mb-2">Church calendar</div>
+              <div className="kicker mb-2">Diocesan calendar</div>
               <h2
                 className="text-charcoal font-black"
                 style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
@@ -413,7 +422,7 @@ export default function HomePage() {
       {/* ── 10. SCRIPTURE VERSE ── */}
       <section className="px-6 py-24" style={{ background: "#2B5740" }}>
         <div className="mx-auto max-w-3xl text-center">
-          <div className="kicker mb-6" style={{ color: "rgba(255,255,255,0.55)" }}>Scripture</div>
+          <div className="kicker mb-6" style={{ color: "rgba(255,255,255,0.55)" }}>Our vision</div>
           <blockquote
             className="text-white italic font-bold leading-snug mb-6"
             style={{
@@ -444,10 +453,10 @@ export default function HomePage() {
               lineHeight: 1.1,
             }}
           >
-            Come as you are this Sunday.
+            You are welcome in this house.
           </h2>
           <p className="text-white/80 text-lg mb-10 leading-relaxed max-w-md mx-auto">
-            We will be there — and we will be glad you came.
+            Join us for worship this Sunday, or reach out any day of the week — we would be glad to hear from you.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="btn-white">Get in Touch</Link>

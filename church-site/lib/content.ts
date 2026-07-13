@@ -77,6 +77,7 @@ export type Settings = {
   verseReference: string;
   youtubeUrl?: string;
   facebookUrl?: string;
+  twitterUrl?: string;
 };
 
 export type Announcement = {

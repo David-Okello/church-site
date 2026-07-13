@@ -104,6 +104,33 @@ export default function ContactPage() {
           >
             Chat on WhatsApp
           </a>
+
+          {/* Social links */}
+          {(settings.facebookUrl || settings.youtubeUrl || settings.twitterUrl) && (
+            <Card className="p-6" style={{ borderLeft: "4px solid #2B5740" }}>
+              <div className="kicker mb-4">Follow the Diocese</div>
+              <div className="flex flex-wrap gap-3">
+                {settings.facebookUrl && (
+                  <a href={settings.facebookUrl} target="_blank" rel="noopener noreferrer"
+                    className="text-sm font-semibold text-charcoal px-4 py-2 rounded-lg bg-cream-dark hover:bg-cream-darker transition-colors">
+                    Facebook
+                  </a>
+                )}
+                {settings.youtubeUrl && (
+                  <a href={settings.youtubeUrl} target="_blank" rel="noopener noreferrer"
+                    className="text-sm font-semibold text-charcoal px-4 py-2 rounded-lg bg-cream-dark hover:bg-cream-darker transition-colors">
+                    YouTube
+                  </a>
+                )}
+                {settings.twitterUrl && (
+                  <a href={settings.twitterUrl} target="_blank" rel="noopener noreferrer"
+                    className="text-sm font-semibold text-charcoal px-4 py-2 rounded-lg bg-cream-dark hover:bg-cream-darker transition-colors">
+                    X (Twitter)
+                  </a>
+                )}
+              </div>
+            </Card>
+          )}
         </div>
 
         {/* Right: form */}
