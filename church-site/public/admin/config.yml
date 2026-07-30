@@ -83,6 +83,43 @@ collections:
       - { label: "Body", name: "body", widget: "text" }
       - { label: "Show on homepage", name: "active", widget: "boolean", default: true }
 
+  - name: "gallery"
+    label: "Photo Gallery"
+    folder: "church-site/content/gallery"
+    create: true
+    slug: "{{year}}-{{month}}-{{fields.caption}}"
+    summary: "{{caption}}"
+    fields:
+      - { label: "Photo", name: "image", widget: "image" }
+      - { label: "Caption", name: "caption", widget: "string", required: false }
+      - { label: "Category", name: "category", widget: "select", required: false, options: ["Worship", "Youth", "Outreach", "Events", "Cathedral", "Community"] }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
+
+  - name: "pages"
+    label: "Page Text"
+    files:
+      - label: "Homepage"
+        name: "home"
+        file: "church-site/content/pages/home.json"
+        fields:
+          - { label: "Hero title — line 1", name: "heroTitleLine1", widget: "string" }
+          - { label: "Hero title — line 2 (highlighted)", name: "heroTitleLine2", widget: "string" }
+          - { label: "Hero subtext", name: "heroSubtext", widget: "text" }
+          - { label: "Story paragraph", name: "storyParagraph", widget: "text" }
+          - { label: "Mission strip text", name: "missionText", widget: "text" }
+          - { label: "Closing heading", name: "ctaTitle", widget: "string" }
+          - { label: "Closing subtext", name: "ctaSubtext", widget: "text" }
+      - label: "About page"
+        name: "about"
+        file: "church-site/content/pages/about.json"
+        fields:
+          - { label: "Opening line 1", name: "openingLine1", widget: "string" }
+          - { label: "Opening line 2 (highlighted)", name: "openingLine2", widget: "string" }
+          - label: "Story paragraphs"
+            name: "storyParagraphs"
+            widget: "list"
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+
   - name: "settings"
     label: "Church Settings"
     files:
@@ -126,3 +163,15 @@ collections:
               - { label: "Role", name: "role", widget: "string" }
               - { label: "Bio", name: "bio", widget: "text" }
               - { label: "Tag", name: "tag", widget: "string", required: false }
+              - { label: "Photo", name: "image", widget: "image", required: false, hint: "A clear headshot works best" }
+
+      - label: "Ministries"
+        name: "ministries"
+        file: "church-site/content/ministries.json"
+        fields:
+          - label: "Ministries"
+            name: "ministries"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }

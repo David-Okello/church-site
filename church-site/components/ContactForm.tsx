@@ -2,6 +2,9 @@
 
 import { useState, FormEvent } from "react";
 
+// ⬇️ Paste your Google Apps Script Web App URL here (see form-backend/google-apps-script.gs)
+const FORM_ENDPOINT = "https://script.google.com/macros/s/REPLACE_WITH_YOUR_DEPLOYMENT_ID/exec";
+
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
@@ -12,16 +15,15 @@ export default function ContactForm() {
     const data = new FormData(form);
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      // Google Apps Script does not send CORS headers, so we use no-cors.
+      // The row is still written; we just can't read the response body.
+      await fetch(FORM_ENDPOINT, {
         method: "POST",
+        mode: "no-cors",
         body: data,
       });
-      if (res.ok) {
-        setStatus("sent");
-        form.reset();
-      } else {
-        setStatus("error");
-      }
+      setStatus("sent");
+      form.reset();
     } catch {
       setStatus("error");
     }
@@ -29,10 +31,8 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-      {/* Replace with your Web3Forms access key from web3forms.com */}
-      <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY" />
-      <input type="hidden" name="subject" value="New message / prayer request from church website" />
-      <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
+      {/* Honeypot — hidden from people, catches bots */}
+      <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" style={{ display: "none" }} />
 
       <div className="flex flex-col gap-1.5">
         <label className="text-xs font-bold text-charcoal uppercase tracking-wider">Name</label>

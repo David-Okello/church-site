@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Card from "@/components/Card";
-import { getSettings, getSermons, getEvents, getAnnouncements } from "@/lib/content";
+import { getSettings, getSermons, getEvents, getAnnouncements, getMinistries, getHomeContent } from "@/lib/content";
 
 export default function HomePage() {
   const settings = getSettings();
@@ -9,17 +9,8 @@ export default function HomePage() {
   const announcements = getAnnouncements().slice(0, 3);
   const featured = sermons[0];
   const recent = sermons.slice(1, 4);
-
-  const ministriesList = [
-    "Men's Fellowship",
-    "Mothers' Union",
-    "Youth Ministry",
-    "Sunday School & Children",
-    "Outreach & Evangelism",
-    "Cell Groups",
-    "Intercessory Group",
-    "Praise & Worship",
-  ];
+  const home = getHomeContent();
+  const ministriesList = getMinistries().map((m) => m.title);
 
   return (
     <>
@@ -60,15 +51,14 @@ export default function HomePage() {
                 letterSpacing: "-0.025em",
               }}
             >
-              The Episcopal Diocese<br />
-              <span style={{ color: "#E8A85A" }}>of Wanyjok.</span>
+              {home.heroTitleLine1}<br />
+              <span style={{ color: "#E8A85A" }}>{home.heroTitleLine2}</span>
             </h1>
             <p
               className="text-lg leading-relaxed mb-10 max-w-lg hero-sub"
               style={{ color: "rgba(255,255,255,0.80)" }}
             >
-              An Anglican family of more than 47,000 believers in Aweil East — equipping
-              the Church for mission and raising up faithful Christian leaders since {settings.foundedYear}.
+              {home.heroSubtext}
             </p>
             <div className="flex flex-wrap gap-4 hero-ctas">
               <Link href="/contact" className="btn-white">Plan a Visit</Link>
@@ -128,10 +118,7 @@ export default function HomePage() {
             className="text-charcoal/80 leading-relaxed"
             style={{ fontSize: "clamp(1.05rem, 1.8vw, 1.2rem)", lineHeight: 1.75 }}
           >
-            One of the youngest and fastest-growing dioceses in the Episcopal Church of South Sudan —
-            created as an area diocese in {settings.foundedYear} and made autonomous in 2019. Today the
-            Diocese is home to more than 47,000 believers, under the leadership of its first bishop,
-            Rt. Rev. Joseph Mamer Manot.
+            {home.storyParagraph}
           </p>
         </div>
       </section>
@@ -147,8 +134,7 @@ export default function HomePage() {
               lineHeight: 1.4,
             }}
           >
-            We exist to equip the Church for mission and to raise up faithful Christian leaders —
-            serving South Sudan not only in worship, but in education, health, peace, and humanitarian care.
+            {home.missionText}
           </p>
           <Link href="/about" className="btn-outline-white">
             Who we are →
@@ -453,10 +439,10 @@ export default function HomePage() {
               lineHeight: 1.1,
             }}
           >
-            You are welcome in this house.
+            {home.ctaTitle}
           </h2>
           <p className="text-white/80 text-lg mb-10 leading-relaxed max-w-md mx-auto">
-            Join us for worship this Sunday, or reach out any day of the week — we would be glad to hear from you.
+            {home.ctaSubtext}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="btn-white">Get in Touch</Link>

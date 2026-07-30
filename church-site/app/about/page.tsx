@@ -1,20 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Card from "@/components/Card";
-import { getSettings, getLeadership } from "@/lib/content";
+import { getSettings, getLeadership, getMinistries, getAboutContent } from "@/lib/content";
 
 export const metadata: Metadata = { title: "About" };
 
-const ministries = [
-  { title: "Men's Fellowship", accent: "#2B5740", desc: "Building godly men who lead their families and communities with integrity." },
-  { title: "Mothers' Union", accent: "#C05C35", desc: "Women united in prayer, mentorship, and service across the Diocese." },
-  { title: "Youth Ministry", accent: "#C8943A", desc: "Discipling the next generation through worship, teaching, and fellowship." },
-  { title: "Sunday School & Children", accent: "#2B5740", desc: "Giving children a solid biblical foundation in a safe, joyful environment." },
-  { title: "Outreach & Evangelism", accent: "#C05C35", desc: "Carrying the Gospel and practical love to the wider community." },
-  { title: "Cell Groups", accent: "#C8943A", desc: "Smaller gatherings where believers grow together in the Word and in prayer." },
-  { title: "Intercessory Group", accent: "#2B5740", desc: "Standing in the gap in prayer for the Church, the nation, and the world." },
-  { title: "Praise & Worship", accent: "#C05C35", desc: "Leading the Diocese into God's presence through music and praise." },
-];
+const ACCENTS = ["#C05C35", "#2B5740", "#C8943A"];
 
 // Diocesan administrative structure (from the official chart)
 const provostBranch = {
@@ -43,6 +34,8 @@ const departments = [
 export default function AboutPage() {
   const settings = getSettings();
   const leaders = getLeadership();
+  const ministries = getMinistries();
+  const about = getAboutContent();
 
   return (
     <>
@@ -72,8 +65,8 @@ export default function AboutPage() {
               letterSpacing: "-0.025em",
             }}
           >
-            One of the youngest dioceses in South Sudan.<br />
-            <span style={{ color: "#C8943A" }}>And one of the fastest growing.</span>
+            {about.openingLine1}<br />
+            <span style={{ color: "#C8943A" }}>{about.openingLine2}</span>
           </p>
         </div>
       </section>
@@ -85,21 +78,9 @@ export default function AboutPage() {
           className="flex flex-col gap-7 text-charcoal/80 leading-relaxed"
           style={{ fontSize: "clamp(1rem, 1.6vw, 1.15rem)", lineHeight: 1.8 }}
         >
-          <p>
-            The Episcopal Diocese of Wanyjok is one of the youngest and fastest-growing dioceses in the
-            Episcopal Church of South Sudan. It was created as an area diocese in {settings.foundedYear} and
-            became an autonomous diocese on 28 April 2019, with Rt. Rev. Joseph Mamer Manot as its first bishop.
-          </p>
-          <p>
-            Today the Diocese is home to more than 47,000 Christian members across Aweil East, in the internal
-            province of Northern Bahr el Ghazal. From a single cathedral congregation it has grown into a
-            network of parishes, archdeaconries, unions, and departments serving communities near and far.
-          </p>
-          <p>
-            Christian mission has been present in this land since the nineteenth century, and the Church has
-            become one of its most trusted institutions — playing a vital role not only in worship and
-            discipleship, but in humanitarian and social services, peace, education, and health.
-          </p>
+          {about.storyParagraphs.map((para, i) => (
+            <p key={i}>{para}</p>
+          ))}
         </div>
       </section>
 
@@ -238,28 +219,39 @@ export default function AboutPage() {
             {leaders.map((l, i) => (
               <div
                 key={l.name}
-                className="flex flex-col gap-1 pb-10 border-b border-cream-darker last:border-0 last:pb-0"
+                className="flex gap-5 pb-10 border-b border-cream-darker last:border-0 last:pb-0"
               >
-                <div className="flex items-baseline gap-4 mb-1 flex-wrap">
-                  <h3
-                    className="font-black text-charcoal"
-                    style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "1.35rem", lineHeight: 1.1 }}
-                  >
-                    {l.name}
-                  </h3>
-                  <span
-                    className="text-xs font-bold uppercase tracking-widest shrink-0"
-                    style={{ color: i % 3 === 0 ? "#C05C35" : i % 3 === 1 ? "#2B5740" : "#C8943A" }}
-                  >
-                    {l.role}
-                  </span>
-                </div>
-                <p className="text-charcoal/70 text-sm leading-relaxed">{l.bio}</p>
-                {l.tag && (
-                  <span className="mt-2 self-start text-xs font-bold text-warm-gray bg-cream px-3 py-1 rounded-full">
-                    {l.tag}
-                  </span>
+                {l.image && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={l.image}
+                    alt={l.name}
+                    className="shrink-0 w-20 h-20 rounded-xl object-cover"
+                    style={{ background: "#D4CCBC", objectPosition: "center 20%" }}
+                  />
                 )}
+                <div className="flex flex-col gap-1 min-w-0">
+                  <div className="flex items-baseline gap-4 mb-1 flex-wrap">
+                    <h3
+                      className="font-black text-charcoal"
+                      style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "1.35rem", lineHeight: 1.1 }}
+                    >
+                      {l.name}
+                    </h3>
+                    <span
+                      className="text-xs font-bold uppercase tracking-widest shrink-0"
+                      style={{ color: ACCENTS[i % 3] }}
+                    >
+                      {l.role}
+                    </span>
+                  </div>
+                  <p className="text-charcoal/70 text-sm leading-relaxed">{l.bio}</p>
+                  {l.tag && (
+                    <span className="mt-2 self-start text-xs font-bold text-warm-gray bg-cream px-3 py-1 rounded-full">
+                      {l.tag}
+                    </span>
+                  )}
+                </div>
               </div>
             ))}
           </div>
@@ -279,15 +271,15 @@ export default function AboutPage() {
           There is a place for everyone to belong, grow, and serve in this Diocesan family.
         </p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {ministries.map((m) => (
-            <Card key={m.title} white className="p-6" style={{ borderLeft: `4px solid ${m.accent}` }}>
+          {ministries.map((m, i) => (
+            <Card key={m.title} white className="p-6" style={{ borderLeft: `4px solid ${ACCENTS[i % 3]}` }}>
               <h3
                 className="font-black text-charcoal text-xl mb-2"
                 style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
               >
                 {m.title}
               </h3>
-              <p className="text-warm-gray text-sm leading-relaxed">{m.desc}</p>
+              <p className="text-warm-gray text-sm leading-relaxed">{m.description}</p>
             </Card>
           ))}
         </div>

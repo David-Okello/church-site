@@ -1,0 +1,12 @@
+{
+  "ministries": [
+    { "title": "Men's Fellowship", "description": "Building godly men who lead their families and communities with integrity." },
+    { "title": "Mothers' Union", "description": "Women united in prayer, mentorship, and service across the Diocese." },
+    { "title": "Youth Ministry", "description": "Discipling the next generation through worship, teaching, and fellowship." },
+    { "title": "Sunday School & Children", "description": "Giving children a solid biblical foundation in a safe, joyful environment." },
+    { "title": "Outreach & Evangelism", "description": "Carrying the Gospel and practical love to the wider community." },
+    { "title": "Cell Groups", "description": "Smaller gatherings where believers grow together in the Word and in prayer." },
+    { "title": "Intercessory Group", "description": "Standing in the gap in prayer for the Church, the nation, and the world." },
+    { "title": "Praise & Worship", "description": "Leading the Diocese into God's presence through music and praise." }
+  ]
+}
