@@ -1,7 +1,7 @@
 {
   "churchName": "Episcopal Diocese of Wanyjok",
   "tagline": "Where there is no vision, the people perish",
-  "address": "Pan-Apuoth, Wanyjok — Aweil East County, South Sudan",
+  "address": "Pan-Apuoth, Wanyjok Town, Aweil East County, South Sudan",
   "phone": "+211 922 311 470",
   "email": "bishop@wanyjok.anglican.org",
   "whatsapp": "+211 922 311 470",
@@ -10,7 +10,7 @@
     { "day": "Monday", "time": "7:30 AM", "label": "Staff Morning Devotion" },
     { "day": "Mon & Thu", "time": "2:00 PM", "label": "Anglican Discipleship Programme (ADP)" },
     { "day": "Wednesday", "time": "2:00 PM", "label": "Timothy Training Initiative (TTI)" },
-    { "day": "Thursday", "time": "1:00 PM", "label": "Women's Prayer Group" },
+    { "day": "Tue & Thu", "time": "1:00 PM", "label": "Women's Prayer Group" },
     { "day": "Fri & Sat", "time": "3:30 PM", "label": "Bible Study" },
     { "day": "Tuesday · Monthly", "time": "Overnight", "label": "Fasting & Prayer Vigil" }
   ],
@@ -18,7 +18,7 @@
   "pastorQuote": "Welcome, brothers and sisters in Christ! We are so blessed to gather and worship together. Let us keep in mind the words of Hebrews 12:28: 'Let us be grateful for receiving a kingdom that cannot be shaken, and thus let us offer to God acceptable worship, with reverence and awe.' No matter what you have walked through this week, you are safe and welcome in this house.",
   "missionStatement": "Equipping the Church for mission and raising up faithful Christian leaders.",
   "foundedYear": "2017",
-  "denomination": "Anglican Communion — ECSS",
+  "denomination": "Anglican Communion (ECSS)",
   "verseText": "Where there is no vision, the people perish.",
   "verseReference": "Proverbs 29:18",
   "youtubeUrl": "https://www.youtube.com/@wanyjodiocese8516",

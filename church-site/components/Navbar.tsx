@@ -75,10 +75,10 @@ export default function Navbar({ churchName }: { churchName: string }) {
                   className="px-4 text-sm font-semibold no-underline transition-colors duration-300"
                   style={{
                     color: solid
-                      ? active ? "#C05C35" : "#1C1814"
+                      ? active ? "#1F5C99" : "#1C1814"
                       : active ? "#E8A85A" : "rgba(255,255,255,0.88)",
                     borderBottom: active
-                      ? `2px solid ${solid ? "#C05C35" : "rgba(255,255,255,0.7)"}`
+                      ? `2px solid ${solid ? "#1F5C99" : "rgba(255,255,255,0.7)"}`
                       : "2px solid transparent",
                     paddingBottom: "6px",
                     paddingTop: "6px",
@@ -97,7 +97,7 @@ export default function Navbar({ churchName }: { churchName: string }) {
                 fontWeight: 700,
                 padding: "10px 20px",
                 borderRadius: "12px",
-                background: solid ? "#C05C35" : "rgba(255,255,255,0.15)",
+                background: solid ? "#1F5C99" : "rgba(255,255,255,0.15)",
                 color: solid ? "#ffffff" : "#ffffff",
                 border: solid ? "none" : "1.5px solid rgba(255,255,255,0.55)",
                 backdropFilter: solid ? "none" : "blur(4px)",
@@ -151,8 +151,8 @@ export default function Navbar({ churchName }: { churchName: string }) {
                     onClick={() => setOpen(false)}
                     className="px-4 py-3.5 rounded-xl text-base font-semibold no-underline transition-colors"
                     style={{
-                      color: active ? "#C05C35" : "#1C1814",
-                      background: active ? "#FBF0EB" : "transparent",
+                      color: active ? "#1F5C99" : "#1C1814",
+                      background: active ? "#EAF2FA" : "transparent",
                     }}
                   >
                     {l.label}

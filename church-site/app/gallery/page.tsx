@@ -41,7 +41,7 @@ export default function GalleryPage() {
             >
               Photos coming soon
             </h2>
-            <p className="text-warm-gray">Check back soon — we are gathering pictures of life across the Diocese.</p>
+            <p className="text-warm-gray">Check back soon. We are gathering pictures of life across the Diocese.</p>
           </div>
         ) : (
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">

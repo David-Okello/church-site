@@ -14,7 +14,7 @@ export function getLeadership(): Leader[] {
     path.join(contentDir, "leadership.json"),
     "utf8"
   );
-  return JSON.parse(file);
+  return (JSON.parse(file) as { leaders: Leader[] }).leaders;
 }
 
 export function getMinistries(): Ministry[] {
@@ -35,6 +35,14 @@ export function getSermons(): Sermon[] {
       return data as Sermon;
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+
+export function getYouTubeThumbnail(url?: string): string | null {
+  if (!url) return null;
+  const match = url.match(
+    /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|shorts\/|embed\/))([a-zA-Z0-9_-]{11})/
+  );
+  return match ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : null;
 }
 
 export function getAnnouncements(): Announcement[] {
@@ -105,14 +113,14 @@ const HOME_DEFAULTS: HomeContent = {
   heroTitleLine1: "The Episcopal Diocese",
   heroTitleLine2: "of Wanyjok.",
   heroSubtext:
-    "An Anglican family of more than 47,000 believers in Aweil East — equipping the Church for mission and raising up faithful Christian leaders.",
+    "An Anglican family of more than 47,000 believers in Aweil East, equipping the Church for mission and raising up faithful Christian leaders.",
   storyParagraph:
-    "One of the youngest and fastest-growing dioceses in the Episcopal Church of South Sudan — created as an area diocese in 2017 and made autonomous in 2019. Today the Diocese is home to more than 47,000 believers, under the leadership of its first bishop, Rt. Rev. Joseph Mamer Manot.",
+    "One of the youngest and fastest-growing dioceses in the Episcopal Church of South Sudan, created as an area diocese in 2017 and made autonomous in 2019. Today the Diocese is home to more than 47,000 believers, under the leadership of its first bishop, Rt. Rev. Joseph Mamer Manot.",
   missionText:
-    "We exist to equip the Church for mission and to raise up faithful Christian leaders — serving South Sudan not only in worship, but in education, health, peace, and humanitarian care.",
+    "We exist to equip the Church for mission and to raise up faithful Christian leaders, serving South Sudan not only in worship, but in education, health, peace, and humanitarian care.",
   ctaTitle: "You are welcome in this house.",
   ctaSubtext:
-    "Join us for worship this Sunday, or reach out any day of the week — we would be glad to hear from you.",
+    "Join us for worship this Sunday, or reach out any day of the week. We would be glad to hear from you.",
 };
 
 const ABOUT_DEFAULTS: AboutContent = {
@@ -121,7 +129,7 @@ const ABOUT_DEFAULTS: AboutContent = {
   storyParagraphs: [
     "The Episcopal Diocese of Wanyjok is one of the youngest and fastest-growing dioceses in the Episcopal Church of South Sudan. It was created as an area diocese in 2017 and became an autonomous diocese on 28 April 2019, with Rt. Rev. Joseph Mamer Manot as its first bishop.",
     "Today the Diocese is home to more than 47,000 Christian members across Aweil East, in the internal province of Northern Bahr el Ghazal. From a single cathedral congregation it has grown into a network of parishes, archdeaconries, unions, and departments serving communities near and far.",
-    "Christian mission has been present in this land since the nineteenth century, and the Church has become one of its most trusted institutions — playing a vital role not only in worship and discipleship, but in humanitarian and social services, peace, education, and health.",
+    "Christian mission has been present in this land since the nineteenth century, and the Church has become one of its most trusted institutions, playing a vital role not only in worship and discipleship, but in humanitarian and social services, peace, education, and health.",
   ],
 };
 

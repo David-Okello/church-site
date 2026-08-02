@@ -53,7 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 {settings.serviceTimes.map((s) => (
                   <div key={s.day} className="text-sm">
                     <span className="text-white font-semibold">{s.day}</span>
-                    <span className="text-[#A09080]"> — {s.label}, {s.time}</span>
+                    <span className="text-[#A09080]">: {s.label}, {s.time}</span>
                   </div>
                 ))}
               </div>

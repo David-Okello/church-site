@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { getSermons } from "@/lib/content";
+import { getSermons, getYouTubeThumbnail } from "@/lib/content";
 
 export const metadata: Metadata = { title: "Sermons" };
 
 const PALETTES = [
-  { accent: "#C05C35", bubble1: "#C05C35", bubble2: "#C8943A" },
-  { accent: "#2B5740", bubble1: "#2B5740", bubble2: "#C05C35" },
+  { accent: "#1F5C99", bubble1: "#1F5C99", bubble2: "#C8943A" },
+  { accent: "#2B5740", bubble1: "#2B5740", bubble2: "#1F5C99" },
   { accent: "#1C1814", bubble1: "#C8943A", bubble2: "#2B5740" },
 ];
 
@@ -38,7 +38,7 @@ export default function SermonsPage() {
             Sermons
           </h1>
           <p className="text-white/70 text-lg max-w-xl leading-relaxed">
-            Teachings from God&apos;s Word — for your encouragement, growth, and edification.
+            Teachings from God&apos;s Word for your encouragement, growth, and edification.
           </p>
         </div>
       </section>
@@ -50,7 +50,7 @@ export default function SermonsPage() {
             className="rounded-2xl p-12 text-center"
             style={{ background: "#FDFCFB", boxShadow: "0 1px 12px rgba(60,40,20,0.07)" }}
           >
-            <p className="text-warm-gray">No sermons yet — check back after Sunday service.</p>
+            <p className="text-warm-gray">No sermons yet. Check back after Sunday service.</p>
           </div>
         ) : (
           <div className="flex flex-col gap-8">
@@ -58,6 +58,7 @@ export default function SermonsPage() {
               const d = new Date(s.date);
               const isFeatured = i === 0;
               const pal = PALETTES[i % PALETTES.length];
+              const thumb = getYouTubeThumbnail(s.mediaUrl);
 
               return (
                 <article
@@ -69,9 +70,38 @@ export default function SermonsPage() {
                     borderTop: `4px solid ${pal.accent}`,
                   }}
                 >
+                  {/* ── VIDEO THUMBNAIL ── */}
+                  {thumb && (
+                    <a
+                      href={s.mediaUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative block group"
+                      style={{ aspectRatio: "16 / 9" }}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={thumb}
+                        alt={s.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <div
+                        className="absolute inset-0 flex items-center justify-center transition-opacity group-hover:opacity-90"
+                        style={{ background: "rgba(28,24,20,0.22)" }}
+                      >
+                        <span
+                          className="w-16 h-16 rounded-full grid place-items-center text-white text-2xl transition-transform group-hover:scale-110"
+                          style={{ background: "rgba(28,24,20,0.55)" }}
+                        >
+                          ▶
+                        </span>
+                      </div>
+                    </a>
+                  )}
+
                   {/* ── HEADER with decorative bubbles ── */}
                   <div className="relative px-6 sm:px-8 pt-7 pb-6 overflow-hidden">
-                    {/* Bubble 1 — large, bottom-right */}
+                    {/* Bubble 1: large, bottom-right */}
                     <div
                       className="absolute rounded-full pointer-events-none"
                       style={{
@@ -83,7 +113,7 @@ export default function SermonsPage() {
                         bottom: -50,
                       }}
                     />
-                    {/* Bubble 2 — small, top-right */}
+                    {/* Bubble 2: small, top-right */}
                     <div
                       className="absolute rounded-full pointer-events-none"
                       style={{
@@ -96,12 +126,12 @@ export default function SermonsPage() {
                       }}
                     />
 
-                    {/* Date row — own line so mobile doesn't cramp */}
+                    {/* Date row: own line so mobile doesn't cramp */}
                     <div className="text-xs font-bold uppercase tracking-widest text-warm-gray mb-3 relative z-10">
                       {d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
                     </div>
 
-                    {/* Badges row — separate line */}
+                    {/* Badges row: separate line */}
                     {(isFeatured || s.mediaUrl) && (
                       <div className="flex flex-wrap gap-2 mb-4 relative z-10">
                         {isFeatured && (

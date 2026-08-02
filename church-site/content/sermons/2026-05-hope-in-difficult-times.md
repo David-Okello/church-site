@@ -9,9 +9,9 @@ keyPoints:
   - Our present sufferings are not worth comparing with the glory that will be revealed
   - All of creation is groaning together, longing for God's full redemption
   - The Holy Spirit intercedes for us even when we do not know how to pray
-  - God works all things together for good for those who love Him — even the painful things
+  - God works all things together for good for those who love Him, even the painful things
 discussionQuestions:
-  - What does it mean to you personally that God works "all things" for good — including the bad?
+  - What does it mean to you personally that God works "all things" for good, including the bad?
   - How do you hold onto hope when circumstances do not change? What helps you most?
   - Share a difficult season you have walked through. Where did you see God at work in it afterward?
   - How can we as a church better support those who are suffering in our community right now?

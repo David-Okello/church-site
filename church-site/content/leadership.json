@@ -1,26 +1,35 @@
-[
-  {
-    "name": "Rt. Rev. Joseph Mamer Manot",
-    "role": "Diocesan Bishop",
-    "bio": "The first Bishop of the Diocese, Bishop Joseph leads Wanyjok with a vision for mission, discipleship, and raising up faithful Christian leaders across Aweil East.",
-    "tag": "Bishop"
-  },
-  {
-    "name": "Rev. Canon William Manut Akot",
-    "role": "Provost of the Cathedral",
-    "bio": "As Provost, Rev. Canon William oversees worship and the spiritual life at the heart of the Diocese, shepherding the cathedral congregation.",
-    "tag": "Cathedral"
-  },
-  {
-    "name": "Mr. Luka Lual Lual Ngong",
-    "role": "Diocesan Administrative Secretary",
-    "bio": "Luka keeps the Diocese organised — coordinating meetings, records, resolutions, and the annual plans that keep ministry moving forward.",
-    "tag": "Administration"
-  },
-  {
-    "name": "Elisabeth Abuk Akot",
-    "role": "Mothers' Union Coordinator",
-    "bio": "Elisabeth leads the Mothers' Union — guiding its yearly plan, meetings, and prayer days, and the women who form a prayerful backbone of the Diocese.",
-    "tag": "Mothers' Union"
-  }
-]
+{
+  "leaders": [
+    {
+      "name": "Rt. Rev. Joseph Mamer Manot",
+      "role": "Diocesan Bishop",
+      "bio": "The first Bishop of the Diocese, Bishop Joseph leads Wanyjok with a vision for mission, discipleship, and raising up faithful Christian leaders across Aweil East.",
+      "tag": "Bishop",
+      "image": "/uploads/bishop-joseph.jpg"
+    },
+    {
+      "name": "Rev. Canon William Manut Akot",
+      "role": "Provost of the Cathedral",
+      "bio": "As Provost, Rev. Canon William oversees worship and the spiritual life at the heart of the Diocese, shepherding the cathedral congregation.",
+      "tag": "Cathedral"
+    },
+    {
+      "name": "Mr. Luka Lual Lual Ngong",
+      "role": "Diocesan Administrative Secretary",
+      "bio": "Luka keeps the Diocese organised, coordinating meetings, records, resolutions, and the annual plans that keep ministry moving forward.",
+      "tag": "Administration"
+    },
+    {
+      "name": "Rev'd Clarice Achieng Mamer",
+      "role": "Mother's Union President",
+      "bio": "Rev'd Clarice leads the Mother's Union across the Diocese, setting its direction and prayer life, and reports jointly to the Bishop and the Diocesan Administrative Secretary.",
+      "tag": "Mother's Union"
+    },
+    {
+      "name": "Elisabeth Abuk Akot",
+      "role": "Mothers' Union Coordinator",
+      "bio": "Elisabeth leads the Mothers' Union, guiding its yearly plan, meetings, and prayer days, and the women who form a prayerful backbone of the Diocese.",
+      "tag": "Mothers' Union"
+    }
+  ]
+}

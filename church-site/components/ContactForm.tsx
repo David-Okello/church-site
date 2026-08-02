@@ -31,7 +31,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-      {/* Honeypot — hidden from people, catches bots */}
+      {/* Honeypot: hidden from people, catches bots */}
       <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" style={{ display: "none" }} />
 
       <div className="flex flex-col gap-1.5">
@@ -50,8 +50,11 @@ export default function ContactForm() {
       </div>
 
       {status === "sent" && (
-        <div className="rounded-xl px-5 py-4 text-sm font-semibold text-white bg-forest">
-          ✓ Thank you — your message has been received. We will be in touch soon.
+        <div className="rounded-xl px-5 py-4 text-sm font-semibold text-white bg-forest flex items-center gap-2.5">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0">
+            <path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span>Thank you. Your message has been received. We will be in touch soon.</span>
         </div>
       )}
 

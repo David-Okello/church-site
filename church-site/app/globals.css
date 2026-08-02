@@ -1,18 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  /* Warm Earth color system */
+  /* Diocesan color system: Blue (primary), with White, Purple, Green, Gold, Red as traditional accents */
   --color-cream:        #F9F5EE;
   --color-cream-dark:   #EDE8DE;
   --color-cream-darker: #E0D9CE;
   --color-charcoal:     #1C1814;
   --color-warm-gray:    #8B7E74;
-  --color-terracotta:   #C05C35;
-  --color-terra-lt:     #D97045;
-  --color-terra-bg:     #FBF0EB;
+  --color-terracotta:   #1F5C99;
+  --color-terra-lt:     #3878B8;
+  --color-terra-bg:     #EAF2FA;
   --color-forest:       #2B5740;
   --color-forest-lt:    #3A7356;
   --color-gold:         #C8943A;
+  --color-red:          #A6332B;
+  --color-purple:       #5B3A73;
 
   --font-sans:   var(--font-inter);
   --font-serif:  var(--font-playfair);
@@ -47,7 +49,7 @@ h1, h2, h3, h4 {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #C05C35;
+  color: #1F5C99;
 }
 
 /* ─── Utility: Card ─── */
@@ -70,7 +72,7 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #C05C35;
+  background: #1F5C99;
   color: #ffffff;
   font-family: var(--font-inter), sans-serif;
   font-weight: 700;
@@ -84,7 +86,7 @@ h1, h2, h3, h4 {
 }
 
 .btn-terra:hover {
-  background: #D97045;
+  background: #3878B8;
   transform: translateY(-1px);
 }
 
@@ -138,7 +140,7 @@ h1, h2, h3, h4 {
   align-items: center;
   gap: 8px;
   background: #ffffff;
-  color: #C05C35;
+  color: #1F5C99;
   font-family: var(--font-inter), sans-serif;
   font-weight: 700;
   font-size: 0.94rem;
@@ -182,7 +184,7 @@ h1, h2, h3, h4 {
   display: flex;
   align-items: center;
   gap: 16px;
-  color: #C05C35;
+  color: #1F5C99;
   opacity: 0.35;
   margin: 0 auto;
   width: 100%;
@@ -193,7 +195,7 @@ h1, h2, h3, h4 {
   content: '';
   flex: 1;
   height: 1px;
-  background: #C05C35;
+  background: #1F5C99;
   opacity: 0.3;
 }
 
@@ -216,7 +218,7 @@ select {
 
 input:focus,
 textarea:focus {
-  border-color: #C05C35;
+  border-color: #1F5C99;
 }
 
 input::placeholder,
@@ -232,7 +234,7 @@ textarea::placeholder {
 
 /* ─── Section backgrounds ─── */
 .bg-cream-dark { background: #EDE8DE; }
-.bg-terracotta { background: #C05C35; }
+.bg-terracotta { background: #1F5C99; }
 .bg-forest     { background: #2B5740; }
 
 /* ─── Hero entrance animations ─── */

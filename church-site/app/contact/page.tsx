@@ -46,7 +46,7 @@ export default function ContactPage() {
             We would love to hear from you.
           </h1>
           <p className="text-white/70 text-lg max-w-lg leading-relaxed">
-            A question, a prayer request, or just wanting to know when to come — reach out any way that works for you.
+            A question, a prayer request, or just wanting to know when to come. Reach out any way that works for you.
           </p>
         </div>
       </section>
@@ -75,7 +75,7 @@ export default function ContactPage() {
           </Card>
 
           {/* Service times */}
-          <Card className="p-6" style={{ borderLeft: "4px solid #C05C35" }}>
+          <Card className="p-6" style={{ borderLeft: "4px solid #1F5C99" }}>
             <div className="kicker mb-4">Service times</div>
             <div className="flex flex-col gap-3">
               {settings.serviceTimes.map((s) => (
@@ -142,7 +142,7 @@ export default function ContactPage() {
             Send a message
           </h2>
           <p className="text-warm-gray text-sm mb-7 leading-relaxed">
-            Whether it is a prayer request, a question, or just a hello — we will respond as soon as we can.
+            Whether it is a prayer request, a question, or just a hello. We will respond as soon as we can.
           </p>
           <ContactForm />
         </Card>

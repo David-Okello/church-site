@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Card from "@/components/Card";
-import { getSettings, getSermons, getEvents, getAnnouncements, getMinistries, getHomeContent } from "@/lib/content";
+import { getSettings, getSermons, getEvents, getAnnouncements, getMinistries, getHomeContent, getYouTubeThumbnail } from "@/lib/content";
 
 export default function HomePage() {
   const settings = getSettings();
@@ -8,6 +8,7 @@ export default function HomePage() {
   const events = getEvents().slice(0, 4);
   const announcements = getAnnouncements().slice(0, 3);
   const featured = sermons[0];
+  const featuredThumb = getYouTubeThumbnail(featured?.mediaUrl);
   const recent = sermons.slice(1, 4);
   const home = getHomeContent();
   const ministriesList = getMinistries().map((m) => m.title);
@@ -16,7 +17,7 @@ export default function HomePage() {
     <>
       {/* ── 1. HERO ── */}
       <section className="relative overflow-hidden min-h-screen flex items-center" style={{ background: "#14100C" }}>
-        {/* Full-bleed photo — replace with a real photo of the cathedral / congregation */}
+        {/* Full-bleed photo, replace with a real photo of the cathedral / congregation */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="https://images.unsplash.com/photo-1444664361762-afba083a4d77?w=1800&q=85&auto=format&fit=crop"
@@ -25,7 +26,7 @@ export default function HomePage() {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "center 35%" }}
         />
-        {/* Dark overlay — slightly lighter top, darker bottom for depth */}
+        {/* Dark overlay: slightly lighter top, darker bottom for depth */}
         <div
           className="absolute inset-0"
           style={{
@@ -66,7 +67,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Right: gatherings — white on dark overlay, works at all sizes */}
+          {/* Right: gatherings, white on dark overlay, works at all sizes */}
           <div className="mt-10 lg:mt-0">
             <div
               className="text-xs font-bold uppercase tracking-widest mb-5"
@@ -124,7 +125,7 @@ export default function HomePage() {
       </section>
 
       {/* ── 3. MISSION STRIP ── */}
-      <section className="px-6 py-20" style={{ background: "#C05C35" }}>
+      <section className="px-6 py-20" style={{ background: "#1F5C99" }}>
         <div className="mx-auto max-w-4xl text-center">
           <p
             className="text-white font-bold leading-relaxed mb-8"
@@ -162,8 +163,35 @@ export default function HomePage() {
 
           <div className="grid lg:grid-cols-[1.4fr_1fr] gap-6">
             {/* Featured */}
-            <Card className="p-8 flex flex-col justify-between" style={{ borderLeft: "5px solid #C05C35" }}>
+            <Card className="p-8 flex flex-col justify-between" style={{ borderLeft: "5px solid #1F5C99" }}>
               <div>
+                {featuredThumb && (
+                  <a
+                    href={featured.mediaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative block rounded-xl overflow-hidden mb-6 group"
+                    style={{ aspectRatio: "16 / 9" }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={featuredThumb}
+                      alt={featured.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div
+                      className="absolute inset-0 flex items-center justify-center transition-opacity group-hover:opacity-90"
+                      style={{ background: "rgba(28,24,20,0.22)" }}
+                    >
+                      <span
+                        className="w-14 h-14 rounded-full grid place-items-center text-white text-xl transition-transform group-hover:scale-110"
+                        style={{ background: "rgba(28,24,20,0.55)" }}
+                      >
+                        ▶
+                      </span>
+                    </div>
+                  </a>
+                )}
                 <div className="flex flex-wrap gap-3 mb-5">
                   <span className="text-xs font-bold text-terracotta uppercase tracking-wider bg-terra-bg px-3 py-1 rounded-full">
                     {new Date(featured.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
@@ -196,7 +224,7 @@ export default function HomePage() {
                 <Card key={s.title} white className="p-5 flex items-start gap-4">
                   <div
                     className="shrink-0 w-12 h-12 rounded-xl grid place-items-center text-terracotta font-black text-xs text-center leading-tight"
-                    style={{ background: "#FBF0EB", fontFamily: "var(--font-playfair), Georgia, serif" }}
+                    style={{ background: "#EAF2FA", fontFamily: "var(--font-playfair), Georgia, serif" }}
                   >
                     {new Date(s.date).toLocaleDateString("en-US", { month: "short" }).toUpperCase()}
                     <br />
@@ -237,7 +265,7 @@ export default function HomePage() {
                 <div className="flex items-center gap-5 min-w-0">
                   <div
                     className="shrink-0 w-1.5 h-8 rounded-full"
-                    style={{ background: i % 3 === 0 ? "#C05C35" : i % 3 === 1 ? "#2B5740" : "#C8943A" }}
+                    style={{ background: i % 3 === 0 ? "#1F5C99" : i % 3 === 1 ? "#2B5740" : "#C8943A" }}
                   />
                   <div className="min-w-0">
                     <div className="font-bold text-charcoal">{s.label}</div>
@@ -250,7 +278,7 @@ export default function HomePage() {
                     fontFamily: "var(--font-playfair), Georgia, serif",
                     fontSize: "1.5rem",
                     lineHeight: 1,
-                    color: i % 3 === 0 ? "#C05C35" : i % 3 === 1 ? "#2B5740" : "#C8943A",
+                    color: i % 3 === 0 ? "#1F5C99" : i % 3 === 1 ? "#2B5740" : "#C8943A",
                   }}
                 >
                   {s.time}
@@ -274,7 +302,7 @@ export default function HomePage() {
               Find your place
             </h2>
             <p className="text-charcoal/75 leading-relaxed mb-6" style={{ fontSize: "1.05rem", lineHeight: 1.75 }}>
-              From the Mothers&apos; Union to youth ministry, cell groups to evangelism — there is a place
+              From the Mothers&apos; Union to youth ministry, cell groups to evangelism: there is a place
               for everyone to belong, grow in faith, and serve across the Diocese.
             </p>
             <Link href="/about" className="btn-terra">Explore ministries →</Link>
@@ -285,7 +313,7 @@ export default function HomePage() {
                 <li key={name} className="flex items-center gap-3 text-charcoal/80 font-medium">
                   <span
                     className="shrink-0 w-1.5 h-1.5 rounded-full"
-                    style={{ background: i % 3 === 0 ? "#C05C35" : i % 3 === 1 ? "#2B5740" : "#C8943A" }}
+                    style={{ background: i % 3 === 0 ? "#1F5C99" : i % 3 === 1 ? "#2B5740" : "#C8943A" }}
                   />
                   {name}
                 </li>
@@ -298,7 +326,7 @@ export default function HomePage() {
       {/* ── 7. A WORD FROM THE BISHOP ── */}
       <section className="px-6 py-20" style={{ background: "#EDE8DE" }}>
         <div className="mx-auto max-w-5xl grid md:grid-cols-[auto_1fr] gap-10 md:gap-14 items-center">
-          {/* Bishop portrait — save the photo to church-site/public/uploads/bishop-joseph.jpg */}
+          {/* Bishop portrait: save the photo to church-site/public/uploads/bishop-joseph.jpg */}
           <div className="mx-auto md:mx-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -310,7 +338,7 @@ export default function HomePage() {
           </div>
           <div>
             <div className="kicker mb-6">A word from the Bishop</div>
-            <div className="w-10 h-px mb-8" style={{ background: "#C05C35" }} />
+            <div className="w-10 h-px mb-8" style={{ background: "#1F5C99" }} />
             <blockquote
               className="text-charcoal font-medium leading-relaxed mb-8"
               style={{
@@ -322,7 +350,7 @@ export default function HomePage() {
               {settings.pastorQuote}
             </blockquote>
             <div className="text-terracotta font-bold text-sm uppercase tracking-widest">
-              — {settings.pastorName}, Diocesan Bishop
+              {settings.pastorName}, Diocesan Bishop
             </div>
           </div>
         </div>
@@ -423,13 +451,13 @@ export default function HomePage() {
             className="not-italic font-bold uppercase tracking-widest text-sm"
             style={{ color: "rgba(255,255,255,0.55)" }}
           >
-            — {settings.verseReference}
+            {settings.verseReference}
           </cite>
         </div>
       </section>
 
       {/* ── 11. CLOSING CTA ── */}
-      <section className="px-6 py-24" style={{ background: "#C05C35" }}>
+      <section className="px-6 py-24" style={{ background: "#1F5C99" }}>
         <div className="mx-auto max-w-2xl text-center">
           <h2
             className="text-white font-black mb-4"

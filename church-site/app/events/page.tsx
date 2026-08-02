@@ -34,7 +34,7 @@ export default function EventsPage() {
             Upcoming events
           </h1>
           <p className="text-white/70 text-lg max-w-xl leading-relaxed">
-            Life across the Diocese is about more than Sunday mornings. Here is what is coming up — and there is always room for one more.
+            Life across the Diocese is about more than Sunday mornings. Here is what is coming up, and there is always room for one more.
           </p>
         </div>
       </section>
@@ -48,7 +48,7 @@ export default function EventsPage() {
               style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
               No upcoming events
             </h2>
-            <p className="text-warm-gray">Check back soon — we always have something in the works.</p>
+            <p className="text-warm-gray">Check back soon. We always have something in the works.</p>
           </Card>
         ) : (
           <div className="flex flex-col gap-5">
@@ -61,7 +61,7 @@ export default function EventsPage() {
                     <div
                       className="flex flex-col items-center justify-center px-8 py-6 sm:w-28 shrink-0 text-center"
                       style={{
-                        background: i % 2 === 0 ? "#C05C35" : "#2B5740",
+                        background: i % 2 === 0 ? "#1F5C99" : "#2B5740",
                         minHeight: "100px",
                       }}
                     >
@@ -116,7 +116,7 @@ export default function EventsPage() {
           <div className="grid sm:grid-cols-3 gap-5">
             {settings.serviceTimes.map((s, i) => (
               <Card key={s.day} white className="p-7"
-                style={{ borderTop: `4px solid ${i === 0 ? "#C05C35" : i === 1 ? "#2B5740" : "#C8943A"}` }}>
+                style={{ borderTop: `4px solid ${i === 0 ? "#1F5C99" : i === 1 ? "#2B5740" : "#C8943A"}` }}>
                 <div className="kicker mb-2">{s.day}</div>
                 <div
                   className="font-black text-charcoal mb-2"

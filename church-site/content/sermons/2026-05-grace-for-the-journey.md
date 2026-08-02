@@ -3,13 +3,13 @@ title: Grace for the Journey
 speaker: Guest Speaker
 date: "2026-05-04"
 scripture: 2 Corinthians 12:9
-description: God's grace is not just for our salvation — it sustains us through every season of life. A powerful message on finding strength in God's sufficient grace.
+description: God's grace is not just for our salvation. It sustains us through every season of life. A powerful message on finding strength in God's sufficient grace.
 mediaUrl: ""
 keyPoints:
-  - Paul's thorn in the flesh was not removed — instead God gave him grace to carry it
+  - Paul's thorn in the flesh was not removed. Instead God gave him grace to carry it
   - God's power is perfected precisely in our weakness, not despite it
   - Grace is not the absence of difficulty but the presence of God within it
-  - Boasting in weakness is a radical act of trust — it declares that God is enough
+  - Boasting in weakness is a radical act of trust. It declares that God is enough
 discussionQuestions:
   - What is the "thorn" in your life right now that you have been asking God to remove?
   - How does it change your perspective to think of weakness as the place where God's power is most visible?

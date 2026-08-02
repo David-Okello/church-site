@@ -3,12 +3,12 @@ title: Walking by Faith
 speaker: Pastor James Dut
 date: "2026-05-25"
 scripture: Hebrews 11:1-6
-description: An encouraging message about trusting God even when we cannot see the way ahead. Faith is not the absence of doubt — it is choosing to step forward in obedience.
+description: An encouraging message about trusting God even when we cannot see the way ahead. Faith is not the absence of doubt. It is choosing to step forward in obedience.
 mediaUrl: ""
 keyPoints:
   - Faith is confidence in what we hope for and assurance about what we do not see
   - Every great figure in Scripture acted before they had full understanding
-  - Doubt and faith can coexist — what matters is the direction you walk
+  - Doubt and faith can coexist, and what matters is the direction you walk
   - Obedience is faith made visible in our daily decisions
 discussionQuestions:
   - Where in your life right now are you being asked to trust God without seeing the full picture?

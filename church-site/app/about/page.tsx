@@ -5,7 +5,7 @@ import { getSettings, getLeadership, getMinistries, getAboutContent } from "@/li
 
 export const metadata: Metadata = { title: "About" };
 
-const ACCENTS = ["#C05C35", "#2B5740", "#C8943A"];
+const ACCENTS = ["#1F5C99", "#2B5740", "#C8943A", "#A6332B", "#5B3A73"];
 
 // Diocesan administrative structure (from the official chart)
 const provostBranch = {
@@ -14,7 +14,7 @@ const provostBranch = {
 };
 const secretaryBranch = {
   head: "Diocesan Administrative Secretary",
-  reports: ["Mothers' Union", "Fathers' Union", "Youth Ministry"],
+  reports: ["Mothers' Union: Rev'd Clarice Achieng Mamer, President", "Fathers' Union", "Youth Ministry"],
 };
 const departments = [
   "Finance & Administration",
@@ -39,9 +39,9 @@ export default function AboutPage() {
 
   return (
     <>
-      {/* ── OPENING — full photo bg with statement overlay ── */}
+      {/* ── OPENING: full photo bg with statement overlay ── */}
       <section className="relative flex items-end overflow-hidden" style={{ minHeight: "75vh", background: "#14100C" }}>
-        {/* Background photo — replace with a real photo of the cathedral / congregation */}
+        {/* Background photo, replace with a real photo of the cathedral / congregation */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="https://images.unsplash.com/photo-1689844759889-f8d92bd8a03a?w=1600&q=85&auto=format&fit=crop"
@@ -100,11 +100,11 @@ export default function AboutPage() {
               { v: "Mission", desc: "Equipping the whole Church to carry the Gospel to all people." },
               { v: "Service", desc: "Serving our communities in health, education, peace, and relief." },
               { v: "Prayer", desc: "A Diocese that prays together stays together and grows together." },
-              { v: "Biblical Truth", desc: "Anchored in Scripture — our map for life, faith, and community." },
+              { v: "Biblical Truth", desc: "Anchored in Scripture: our map for life, faith, and community." },
               { v: "Unity", desc: "One body, many parts, united around Jesus Christ." },
             ].map((item, i) => (
               <Card key={item.v} white className="p-6"
-                style={{ borderLeft: `4px solid ${i % 3 === 0 ? "#C05C35" : i % 3 === 1 ? "#2B5740" : "#C8943A"}` }}>
+                style={{ borderLeft: `4px solid ${i % 3 === 0 ? "#1F5C99" : i % 3 === 1 ? "#2B5740" : "#C8943A"}` }}>
                 <h3
                   className="font-black text-charcoal text-xl mb-2"
                   style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
@@ -132,11 +132,11 @@ export default function AboutPage() {
           by a family of unions, archdeaconries, and departments.
         </p>
 
-        {/* Tier 1 — Bishop */}
+        {/* Tier 1: Bishop */}
         <div className="flex justify-center">
           <div
             className="rounded-2xl px-8 py-5 text-center text-white"
-            style={{ background: "#C05C35", boxShadow: "0 8px 24px rgba(192,92,53,0.25)" }}
+            style={{ background: "#1F5C99", boxShadow: "0 8px 24px rgba(31,92,153,0.25)" }}
           >
             <div className="text-xs font-bold uppercase tracking-widest opacity-80 mb-1">Diocesan Bishop</div>
             <div className="font-black text-lg" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
@@ -150,7 +150,7 @@ export default function AboutPage() {
           <div className="w-px h-8" style={{ background: "#D4CCBC" }} />
         </div>
 
-        {/* Tier 2 — Provost & Administrative Secretary, each with their reports */}
+        {/* Tier 2: Provost & Administrative Secretary, each with their reports */}
         <div className="grid md:grid-cols-2 gap-6">
           {[provostBranch, secretaryBranch].map((branch) => (
             <div key={branch.head} className="flex flex-col">
@@ -179,6 +179,9 @@ export default function AboutPage() {
             </div>
           ))}
         </div>
+        <p className="text-warm-gray text-sm mt-4 italic">
+          The Mother's Union President, Rev'd Clarice Achieng Mamer, reports to both the Bishop and the Diocesan Administrative Secretary.
+        </p>
 
         {/* Departments */}
         <div className="mt-14">
@@ -190,7 +193,7 @@ export default function AboutPage() {
                 className="rounded-lg px-4 py-3.5 text-charcoal text-sm font-semibold"
                 style={{
                   background: "#FDFCFB",
-                  borderTop: `3px solid ${i % 3 === 0 ? "#C05C35" : i % 3 === 1 ? "#2B5740" : "#C8943A"}`,
+                  borderTop: `3px solid ${i % 3 === 0 ? "#1F5C99" : i % 3 === 1 ? "#2B5740" : "#C8943A"}`,
                   boxShadow: "0 1px 8px rgba(60,40,20,0.05)",
                 }}
               >
@@ -240,7 +243,7 @@ export default function AboutPage() {
                     </h3>
                     <span
                       className="text-xs font-bold uppercase tracking-widest shrink-0"
-                      style={{ color: ACCENTS[i % 3] }}
+                      style={{ color: ACCENTS[i % ACCENTS.length] }}
                     >
                       {l.role}
                     </span>
