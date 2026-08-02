@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Card from "@/components/Card";
 import { getSettings, getSermons, getEvents, getAnnouncements, getMinistries, getHomeContent, getYouTubeThumbnail } from "@/lib/content";
+import { getYouTubeId } from "@/lib/youtube";
+import VideoThumbnail from "@/components/VideoThumbnail";
 
 export default function HomePage() {
   const settings = getSettings();
@@ -9,6 +11,7 @@ export default function HomePage() {
   const announcements = getAnnouncements().slice(0, 3);
   const featured = sermons[0];
   const featuredThumb = getYouTubeThumbnail(featured?.mediaUrl);
+  const featuredVideoId = getYouTubeId(featured?.mediaUrl);
   const recent = sermons.slice(1, 4);
   const home = getHomeContent();
   const ministriesList = getMinistries().map((m) => m.title);
@@ -165,32 +168,14 @@ export default function HomePage() {
             {/* Featured */}
             <Card className="p-8 flex flex-col justify-between" style={{ borderLeft: "5px solid #1F5C99" }}>
               <div>
-                {featuredThumb && (
-                  <a
-                    href={featured.mediaUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="relative block rounded-xl overflow-hidden mb-6 group"
-                    style={{ aspectRatio: "16 / 9" }}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={featuredThumb}
-                      alt={featured.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div
-                      className="absolute inset-0 flex items-center justify-center transition-opacity group-hover:opacity-90"
-                      style={{ background: "rgba(28,24,20,0.22)" }}
-                    >
-                      <span
-                        className="w-14 h-14 rounded-full grid place-items-center text-white text-xl transition-transform group-hover:scale-110"
-                        style={{ background: "rgba(28,24,20,0.55)" }}
-                      >
-                        ▶
-                      </span>
-                    </div>
-                  </a>
+                {featuredThumb && featuredVideoId && (
+                  <VideoThumbnail
+                    videoId={featuredVideoId}
+                    thumb={featuredThumb}
+                    title={featured.title}
+                    playSize={56}
+                    className="rounded-xl overflow-hidden mb-6"
+                  />
                 )}
                 <div className="flex flex-wrap gap-3 mb-5">
                   <span className="text-xs font-bold text-terracotta uppercase tracking-wider bg-terra-bg px-3 py-1 rounded-full">
@@ -220,8 +205,8 @@ export default function HomePage() {
 
             {/* Recent list */}
             <div className="flex flex-col gap-4">
-              {recent.map((s) => (
-                <Card key={s.title} white className="p-5 flex items-start gap-4">
+              {recent.map((s, i) => (
+                <Card key={s.title + s.date + i} white className="p-5 flex items-start gap-4">
                   <div
                     className="shrink-0 w-12 h-12 rounded-xl grid place-items-center text-terracotta font-black text-xs text-center leading-tight"
                     style={{ background: "#EAF2FA", fontFamily: "var(--font-playfair), Georgia, serif" }}

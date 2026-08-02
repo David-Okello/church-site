@@ -2,6 +2,8 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
+export { getYouTubeId, getYouTubeThumbnail } from "./youtube";
+
 const contentDir = path.join(process.cwd(), "content");
 
 export function getSettings() {
@@ -35,14 +37,6 @@ export function getSermons(): Sermon[] {
       return data as Sermon;
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-}
-
-export function getYouTubeThumbnail(url?: string): string | null {
-  if (!url) return null;
-  const match = url.match(
-    /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|shorts\/|embed\/))([a-zA-Z0-9_-]{11})/
-  );
-  return match ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : null;
 }
 
 export function getAnnouncements(): Announcement[] {

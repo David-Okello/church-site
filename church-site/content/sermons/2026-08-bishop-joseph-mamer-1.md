@@ -1,5 +1,5 @@
 ---
-title: "Sermon by Bishop Joseph Mamer (details pending)"
+title: "Sermon by Bishop Joseph Mamer (1, details pending)"
 speaker: Rt. Rev. Joseph Mamer Manot
 date: "2026-08-01"
 scripture: "TBC"
