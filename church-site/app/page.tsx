@@ -82,7 +82,7 @@ export default function HomePage() {
               className="text-xs font-bold uppercase tracking-widest mb-5"
               style={{ color: "rgba(255,255,255,0.50)" }}
             >
-              When we gather
+              {home.heroScheduleLabel}
             </div>
             <div style={{ borderTop: "1px solid rgba(255,255,255,0.18)" }}>
               {settings.serviceTimes.slice(0, 5).map((s) => (
@@ -170,12 +170,12 @@ export default function HomePage() {
         <section className="mx-auto max-w-6xl px-6 py-20">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <div>
-              <div className="kicker mb-2">From the pulpit</div>
+              <div className="kicker mb-2">{home.sermonsKicker}</div>
               <h2
                 className="text-charcoal font-black"
                 style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
               >
-                Latest Sermons
+                {home.sermonsHeading}
               </h2>
             </div>
             <Link href="/sermons" className="text-terracotta font-semibold text-sm hover:underline shrink-0">
@@ -256,12 +256,12 @@ export default function HomePage() {
       {/* ── 5. SCHEDULE ── */}
       <section className="px-6 py-20" style={{ background: "#EDE8DE" }}>
         <div className="mx-auto max-w-4xl">
-          <div className="kicker mb-3">Every week</div>
+          <div className="kicker mb-3">{home.scheduleKicker}</div>
           <h2
             className="text-charcoal font-black mb-8"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
           >
-            Gatherings through the week
+            {home.scheduleHeading}
           </h2>
           <div className="flex flex-col divide-y divide-[#D4CCBC] border-y border-[#D4CCBC]">
             {settings.serviceTimes.map((s, i) => (
@@ -298,16 +298,15 @@ export default function HomePage() {
       <section className="mx-auto max-w-6xl px-6 py-20">
         <div className="grid lg:grid-cols-[1fr_1.4fr] gap-14 items-start">
           <div>
-            <div className="kicker mb-3">Community life</div>
+            <div className="kicker mb-3">{home.ministriesKicker}</div>
             <h2
               className="text-charcoal font-black mb-5"
               style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
             >
-              Find your place
+              {home.ministriesHeading}
             </h2>
             <p className="text-charcoal/75 leading-relaxed mb-6" style={{ fontSize: "1.05rem", lineHeight: 1.75 }}>
-              From the Mothers&apos; Union to youth ministry, cell groups to evangelism: there is a place
-              for everyone to belong, grow in faith, and serve across the Diocese.
+              {home.ministriesText}
             </p>
             <Link href="/about" className="btn-terra">Explore ministries →</Link>
           </div>
@@ -330,18 +329,17 @@ export default function HomePage() {
       {/* ── 7. A WORD FROM THE BISHOP ── */}
       <section className="px-6 py-20" style={{ background: "#EDE8DE" }}>
         <div className="mx-auto max-w-5xl grid md:grid-cols-[auto_1fr] gap-10 md:gap-14 items-center">
-          {/* Bishop portrait: save the photo to church-site/public/uploads/bishop-joseph.jpg */}
           <div className="mx-auto md:mx-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/uploads/bishop-joseph.jpg"
+              src={home.bishopImage}
               alt={settings.pastorName}
               className="w-44 h-44 md:w-56 md:h-56 rounded-2xl object-cover"
               style={{ boxShadow: "0 12px 40px rgba(60,40,20,0.18)", background: "#D4CCBC", objectPosition: "center 20%" }}
             />
           </div>
           <div>
-            <div className="kicker mb-6">A word from the Bishop</div>
+            <div className="kicker mb-6">{home.bishopWordKicker}</div>
             <div className="w-10 h-px mb-8" style={{ background: "#1F5C99" }} />
             <blockquote
               className="text-charcoal font-medium leading-relaxed mb-8"
@@ -363,12 +361,12 @@ export default function HomePage() {
       {/* ── 8. ANNOUNCEMENTS ── */}
       {announcements.length > 0 && (
         <section className="mx-auto max-w-6xl px-6 py-16">
-          <div className="kicker mb-3">Notice board</div>
+          <div className="kicker mb-3">{home.announcementsKicker}</div>
           <h2
             className="text-charcoal font-black mb-8"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
           >
-            Announcements
+            {home.announcementsHeading}
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {announcements.map((a) => (
@@ -394,12 +392,12 @@ export default function HomePage() {
         <section className="mx-auto max-w-6xl px-6 py-20">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <div>
-              <div className="kicker mb-2">Diocesan calendar</div>
+              <div className="kicker mb-2">{home.eventsKicker}</div>
               <h2
                 className="text-charcoal font-black"
                 style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
               >
-                Upcoming events
+                {home.eventsHeading}
               </h2>
             </div>
             <Link href="/events" className="text-terracotta font-semibold text-sm hover:underline shrink-0">
@@ -440,7 +438,7 @@ export default function HomePage() {
       {/* ── 10. SCRIPTURE VERSE ── */}
       <section className="px-6 py-24" style={{ background: "#2B5740" }}>
         <div className="mx-auto max-w-3xl text-center">
-          <div className="kicker mb-6" style={{ color: "rgba(255,255,255,0.55)" }}>Our vision</div>
+          <div className="kicker mb-6" style={{ color: "rgba(255,255,255,0.55)" }}>{home.verseKicker}</div>
           <blockquote
             className="text-white italic font-bold leading-snug mb-6"
             style={{

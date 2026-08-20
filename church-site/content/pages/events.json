@@ -2,5 +2,7 @@
   "heroImage": "/uploads/hero-events.jpg",
   "heroKicker": "Church calendar",
   "heroTitle": "Upcoming events",
-  "heroSubtext": "Life across the Diocese is about more than Sunday mornings. Here is what is coming up, and there is always room for one more."
+  "heroSubtext": "Life across the Diocese is about more than Sunday mornings. Here is what is coming up, and there is always room for one more.",
+  "scheduleKicker": "Every week",
+  "scheduleHeading": "Regular gatherings"
 }

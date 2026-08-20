@@ -57,14 +57,18 @@ Only the photo itself is required — caption, category, and date can be left bl
 
 ### Pages
 
-Every page listed here has a **Hero photo** field at the top — that's the large background photo behind the headline at the top of that page. Click it, then **Choose an image** to upload a new one or pick from photos already uploaded. There's no special size to aim for; a normal landscape photo from a phone works fine.
+Every field a page needs lives here — not just the big hero photo and headline, but every section's small label ("kicker"), heading, and paragraph, all the way down each page. Fields are listed in the same order the sections appear on the actual page, and each is prefixed with which section it belongs to (e.g. "Announcements section: heading") so it's clear what you're changing before you change it.
 
-- **Homepage**: hero photo, hero headline (two lines, the second one is highlighted in the design), hero subtext, the story paragraph, the mission strip text, and the closing call-to-action heading/subtext.
-- **About page**: hero photo, the two opening lines, and a list of story paragraphs (add/remove/reorder paragraphs freely).
-- **Sermons page**, **Events page**, **Gallery page**, **Contact page**: each has a hero photo, a small "kicker" label above the title, the title itself, and the subtext below it. These are the simplest entries in this section — four fields each.
+- **Homepage**: the longest entry — hero photo and text, then a field or two for every section down the page (Sermons, Schedule, Ministries, the Bishop's photo and quote label, Announcements, Events, the Scripture kicker), then the closing heading/subtext.
+- **About page**: hero photo and opening statement, the Story paragraphs, the six "Our core values" cards (title + description each, add/remove/reorder freely), the diocesan department tiles (a simple list, add or remove departments as they're created), the Leadership section intro text, the Ministries section intro text, and the closing heading/text.
+- **Sermons page**, **Events page**, **Gallery page**, **Contact page**: hero photo, kicker, title, subtext, plus a couple of extra fields specific to that page (e.g. the Sermons page's "Recordings coming soon" notice box, the Contact page's card headings).
 - **Give page**: hero photo, hero text, the paragraph explaining why giving matters, the three "Ways to give" cards (each can optionally show a "Chat on WhatsApp" button instead of a "Contact us" link — that's the checkbox on each card), the four "What your support enables" tiles, and the closing heading/text.
 
-One thing to keep straight: the **Gallery page**'s hero photo (in this "Pages" section) is the one big photo at the very top of the Gallery page. The dozens of smaller photos in the grid below it come from the separate **Photo Gallery** section, not from here.
+Every **photo** field works the same way: click it, then **Choose an image** to upload a new one or pick from photos already uploaded. There's no special size to aim for; a normal landscape photo from a phone works fine.
+
+Two things worth knowing:
+- The **Gallery page**'s hero photo (in this "Pages" section) is the one big photo at the very top of the Gallery page. The dozens of smaller photos in the grid below it come from the separate **Photo Gallery** section, not from here.
+- The About page's diocesan org chart (Bishop → Provost / Administrative Secretary → their direct reports) is *not* editable here — that reporting structure essentially never changes, so it stays fixed in the site's code. The **department tiles** below it (Finance, Health, Education, etc.) *are* editable, since new departments do get created over time.
 
 ### Church Settings
 

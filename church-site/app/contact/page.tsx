@@ -61,7 +61,7 @@ export default function ContactPage() {
               className="font-black text-charcoal text-2xl mb-6"
               style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
             >
-              Church information
+              {page.infoHeading}
             </h2>
             <div className="flex flex-col divide-y divide-cream-darker">
               {infoItems.map((item) => (
@@ -77,7 +77,7 @@ export default function ContactPage() {
 
           {/* Service times */}
           <Card className="p-6" style={{ borderLeft: "4px solid #1F5C99" }}>
-            <div className="kicker mb-4">Service times</div>
+            <div className="kicker mb-4">{page.serviceTimesLabel}</div>
             <div className="flex flex-col gap-3">
               {settings.serviceTimes.map((s) => (
                 <div key={s.day} className="flex items-center justify-between gap-3">
@@ -109,7 +109,7 @@ export default function ContactPage() {
           {/* Social links */}
           {(settings.facebookUrl || settings.youtubeUrl || settings.twitterUrl) && (
             <Card className="p-6" style={{ borderLeft: "4px solid #2B5740" }}>
-              <div className="kicker mb-4">Follow the Diocese</div>
+              <div className="kicker mb-4">{page.followKicker}</div>
               <div className="flex flex-wrap gap-3">
                 {settings.facebookUrl && (
                   <a href={settings.facebookUrl} target="_blank" rel="noopener noreferrer"
@@ -140,10 +140,10 @@ export default function ContactPage() {
             className="font-black text-charcoal text-2xl mb-2"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
           >
-            Send a message
+            {page.formHeading}
           </h2>
           <p className="text-warm-gray text-sm mb-7 leading-relaxed">
-            Whether it is a prayer request, a question, or just a hello. We will respond as soon as we can.
+            {page.formSubtext}
           </p>
           <ContactForm />
         </Card>

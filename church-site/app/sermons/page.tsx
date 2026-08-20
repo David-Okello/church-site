@@ -81,10 +81,10 @@ export default function SermonsPage() {
               className="font-black text-charcoal text-lg mb-1"
               style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
             >
-              Recordings coming soon
+              {page.noticeHeading}
             </h3>
             <p className="text-warm-gray text-sm leading-relaxed">
-              Join us in person or send a WhatsApp message to receive sermon notes directly.
+              {page.noticeText}
             </p>
           </div>
         </div>

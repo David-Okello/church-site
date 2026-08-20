@@ -135,57 +135,107 @@ collections:
         name: "home"
         file: "church-site/content/pages/home.json"
         fields:
-          - { label: "Hero photo", name: "heroImage", widget: "image", hint: "The large background photo at the very top of the homepage." }
-          - { label: "Hero title — line 1", name: "heroTitleLine1", widget: "string" }
-          - { label: "Hero title — line 2 (highlighted)", name: "heroTitleLine2", widget: "string" }
-          - { label: "Hero subtext", name: "heroSubtext", widget: "text" }
-          - { label: "Story paragraph", name: "storyParagraph", widget: "text" }
-          - { label: "Mission strip text", name: "missionText", widget: "text" }
-          - { label: "Closing heading", name: "ctaTitle", widget: "string" }
-          - { label: "Closing subtext", name: "ctaSubtext", widget: "text" }
+          - { label: "Hero: photo", name: "heroImage", widget: "image", hint: "The large background photo at the very top of the homepage." }
+          - { label: "Hero: title, line 1", name: "heroTitleLine1", widget: "string" }
+          - { label: "Hero: title, line 2 (highlighted)", name: "heroTitleLine2", widget: "string" }
+          - { label: "Hero: subtext", name: "heroSubtext", widget: "text" }
+          - { label: "Hero: \"When we gather\" label", name: "heroScheduleLabel", widget: "string", hint: "Small label above the service-times list in the hero" }
+          - { label: "Story paragraph", name: "storyParagraph", widget: "text", hint: "The centered paragraph right below the hero" }
+          - { label: "Mission strip text", name: "missionText", widget: "text", hint: "The bold quote on the blue band" }
+          - { label: "Sermons section: kicker", name: "sermonsKicker", widget: "string" }
+          - { label: "Sermons section: heading", name: "sermonsHeading", widget: "string" }
+          - { label: "Schedule section: kicker", name: "scheduleKicker", widget: "string" }
+          - { label: "Schedule section: heading", name: "scheduleHeading", widget: "string" }
+          - { label: "Ministries section: kicker", name: "ministriesKicker", widget: "string" }
+          - { label: "Ministries section: heading", name: "ministriesHeading", widget: "string" }
+          - { label: "Ministries section: paragraph", name: "ministriesText", widget: "text" }
+          - { label: "Bishop's word: photo", name: "bishopImage", widget: "image", hint: "The Bishop's portrait next to his quote" }
+          - { label: "Bishop's word: kicker", name: "bishopWordKicker", widget: "string" }
+          - { label: "Announcements section: kicker", name: "announcementsKicker", widget: "string" }
+          - { label: "Announcements section: heading", name: "announcementsHeading", widget: "string" }
+          - { label: "Events section: kicker", name: "eventsKicker", widget: "string" }
+          - { label: "Events section: heading", name: "eventsHeading", widget: "string" }
+          - { label: "Scripture section: kicker", name: "verseKicker", widget: "string" }
+          - { label: "Closing: heading", name: "ctaTitle", widget: "string" }
+          - { label: "Closing: subtext", name: "ctaSubtext", widget: "text" }
       - label: "About page"
         name: "about"
         file: "church-site/content/pages/about.json"
         fields:
-          - { label: "Hero photo", name: "heroImage", widget: "image", hint: "The large background photo at the top of the About page." }
-          - { label: "Opening line 1", name: "openingLine1", widget: "string" }
-          - { label: "Opening line 2 (highlighted)", name: "openingLine2", widget: "string" }
-          - label: "Story paragraphs"
+          - { label: "Hero: photo", name: "heroImage", widget: "image", hint: "The large background photo at the top of the About page." }
+          - { label: "Hero: opening line 1", name: "openingLine1", widget: "string" }
+          - { label: "Hero: opening line 2 (highlighted)", name: "openingLine2", widget: "string" }
+          - { label: "Story section: kicker", name: "storyKicker", widget: "string" }
+          - label: "Story section: paragraphs"
             name: "storyParagraphs"
             widget: "list"
             field: { label: "Paragraph", name: "paragraph", widget: "text" }
+          - { label: "Values section: kicker", name: "valuesKicker", widget: "string" }
+          - { label: "Values section: heading", name: "valuesHeading", widget: "string" }
+          - label: "Values section: the value cards"
+            name: "values"
+            widget: "list"
+            hint: "The \"Faith / Mission / Service…\" cards"
+            fields:
+              - { label: "Value", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - { label: "Structure section: kicker", name: "structureKicker", widget: "string" }
+          - { label: "Structure section: heading", name: "structureHeading", widget: "string" }
+          - { label: "Structure section: intro paragraph", name: "structureText", widget: "text" }
+          - label: "Structure section: department list"
+            name: "departments"
+            widget: "list"
+            hint: "The small tiles under \"Diocesan departments\". Add, remove, or reorder freely — the Bishop / Provost / Administrative Secretary chart above it does not change when you edit this."
+            field: { label: "Department", name: "department", widget: "string" }
+          - { label: "Leadership section: kicker", name: "teamKicker", widget: "string" }
+          - { label: "Leadership section: heading", name: "teamHeading", widget: "string" }
+          - { label: "Leadership section: paragraph", name: "teamText", widget: "text" }
+          - { label: "Ministries section: kicker", name: "ministriesKicker", widget: "string" }
+          - { label: "Ministries section: heading", name: "ministriesHeading", widget: "string" }
+          - { label: "Ministries section: paragraph", name: "ministriesText", widget: "text" }
+          - { label: "Closing: heading", name: "ctaHeading", widget: "string" }
+          - { label: "Closing: text", name: "ctaText", widget: "text" }
       - label: "Sermons page"
         name: "sermons_page"
         file: "church-site/content/pages/sermons.json"
         fields:
-          - { label: "Hero photo", name: "heroImage", widget: "image", hint: "The large background photo at the top of the Sermons page." }
-          - { label: "Hero kicker", name: "heroKicker", widget: "string", hint: "The small label above the title" }
-          - { label: "Hero title", name: "heroTitle", widget: "string" }
-          - { label: "Hero subtext", name: "heroSubtext", widget: "text" }
+          - { label: "Hero: photo", name: "heroImage", widget: "image", hint: "The large background photo at the top of the Sermons page." }
+          - { label: "Hero: kicker", name: "heroKicker", widget: "string", hint: "The small label above the title" }
+          - { label: "Hero: title", name: "heroTitle", widget: "string" }
+          - { label: "Hero: subtext", name: "heroSubtext", widget: "text" }
+          - { label: "Notice box: heading", name: "noticeHeading", widget: "string", hint: "The \"Recordings coming soon\" box below the sermon list" }
+          - { label: "Notice box: text", name: "noticeText", widget: "text" }
       - label: "Events page"
         name: "events_page"
         file: "church-site/content/pages/events.json"
         fields:
-          - { label: "Hero photo", name: "heroImage", widget: "image", hint: "The large background photo at the top of the Events page." }
-          - { label: "Hero kicker", name: "heroKicker", widget: "string", hint: "The small label above the title" }
-          - { label: "Hero title", name: "heroTitle", widget: "string" }
-          - { label: "Hero subtext", name: "heroSubtext", widget: "text" }
+          - { label: "Hero: photo", name: "heroImage", widget: "image", hint: "The large background photo at the top of the Events page." }
+          - { label: "Hero: kicker", name: "heroKicker", widget: "string", hint: "The small label above the title" }
+          - { label: "Hero: title", name: "heroTitle", widget: "string" }
+          - { label: "Hero: subtext", name: "heroSubtext", widget: "text" }
+          - { label: "Regular gatherings section: kicker", name: "scheduleKicker", widget: "string", hint: "The weekly-schedule cards below the event list" }
+          - { label: "Regular gatherings section: heading", name: "scheduleHeading", widget: "string" }
       - label: "Gallery page"
         name: "gallery_page"
         file: "church-site/content/pages/gallery.json"
         fields:
-          - { label: "Hero photo", name: "heroImage", widget: "image", hint: "The large background photo at the top of the Gallery page (not one of the photos in the grid below it)." }
-          - { label: "Hero kicker", name: "heroKicker", widget: "string", hint: "The small label above the title" }
-          - { label: "Hero title", name: "heroTitle", widget: "string" }
-          - { label: "Hero subtext", name: "heroSubtext", widget: "text" }
+          - { label: "Hero: photo", name: "heroImage", widget: "image", hint: "The large background photo at the top of the Gallery page (not one of the photos in the grid below it)." }
+          - { label: "Hero: kicker", name: "heroKicker", widget: "string", hint: "The small label above the title" }
+          - { label: "Hero: title", name: "heroTitle", widget: "string" }
+          - { label: "Hero: subtext", name: "heroSubtext", widget: "text" }
       - label: "Contact page"
         name: "contact_page"
         file: "church-site/content/pages/contact.json"
         fields:
-          - { label: "Hero photo", name: "heroImage", widget: "image", hint: "The large background photo at the top of the Contact page." }
-          - { label: "Hero kicker", name: "heroKicker", widget: "string", hint: "The small label above the title" }
-          - { label: "Hero title", name: "heroTitle", widget: "string" }
-          - { label: "Hero subtext", name: "heroSubtext", widget: "text" }
+          - { label: "Hero: photo", name: "heroImage", widget: "image", hint: "The large background photo at the top of the Contact page." }
+          - { label: "Hero: kicker", name: "heroKicker", widget: "string", hint: "The small label above the title" }
+          - { label: "Hero: title", name: "heroTitle", widget: "string" }
+          - { label: "Hero: subtext", name: "heroSubtext", widget: "text" }
+          - { label: "Church information card: heading", name: "infoHeading", widget: "string" }
+          - { label: "Service times card: label", name: "serviceTimesLabel", widget: "string" }
+          - { label: "Social links card: kicker", name: "followKicker", widget: "string" }
+          - { label: "Contact form: heading", name: "formHeading", widget: "string" }
+          - { label: "Contact form: subtext", name: "formSubtext", widget: "text" }
       - label: "Give page"
         name: "give"
         file: "church-site/content/pages/give.json"

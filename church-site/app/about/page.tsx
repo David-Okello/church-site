@@ -7,7 +7,9 @@ export const metadata: Metadata = { title: "About" };
 
 const ACCENTS = ["#1F5C99", "#2B5740", "#C8943A", "#A6332B", "#5B3A73"];
 
-// Diocesan administrative structure (from the official chart)
+// Diocesan administrative structure (from the official chart) — the reporting
+// shape itself rarely changes, so it stays in code; the department list below
+// it is CMS-editable since departments do get added over time.
 const provostBranch = {
   head: "Provost of the Cathedral",
   reports: ["Pastors for spiritual matters", "Archdeacons"],
@@ -16,20 +18,6 @@ const secretaryBranch = {
   head: "Diocesan Administrative Secretary",
   reports: ["Mothers' Union: Rev'd Clarice Achieng Mamer, President", "Fathers' Union", "Youth Ministry"],
 };
-const departments = [
-  "Finance & Administration",
-  "Mission & Evangelism",
-  "Health Department",
-  "Education Department",
-  "Agriculture Department",
-  "Development Department",
-  "Communications Department",
-  "Chaplaincy & Prison",
-  "Bible School Department",
-  "Sunday School & Children Ministry",
-  "Prayers Group",
-  "Praise & Worship",
-];
 
 export default function AboutPage() {
   const settings = getSettings();
@@ -72,7 +60,7 @@ export default function AboutPage() {
 
       {/* ── STORY ── */}
       <section className="mx-auto max-w-3xl px-6 py-20">
-        <div className="kicker mb-8">Our story</div>
+        <div className="kicker mb-8">{about.storyKicker}</div>
         <div
           className="flex flex-col gap-7 text-charcoal/80 leading-relaxed"
           style={{ fontSize: "clamp(1rem, 1.6vw, 1.15rem)", lineHeight: 1.8 }}
@@ -86,31 +74,24 @@ export default function AboutPage() {
       {/* ── VALUES ── */}
       <section className="bg-cream-dark py-20 px-6">
         <div className="mx-auto max-w-6xl">
-          <div className="kicker mb-3">What we believe</div>
+          <div className="kicker mb-3">{about.valuesKicker}</div>
           <h2
             className="text-charcoal font-black mb-10"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
           >
-            Our core values
+            {about.valuesHeading}
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              { v: "Faith", desc: "Trusting God's word above our circumstances, always." },
-              { v: "Mission", desc: "Equipping the whole Church to carry the Gospel to all people." },
-              { v: "Service", desc: "Serving our communities in health, education, peace, and relief." },
-              { v: "Prayer", desc: "A Diocese that prays together stays together and grows together." },
-              { v: "Biblical Truth", desc: "Anchored in Scripture: our map for life, faith, and community." },
-              { v: "Unity", desc: "One body, many parts, united around Jesus Christ." },
-            ].map((item, i) => (
-              <Card key={item.v} white className="p-6"
+            {about.values.map((item, i) => (
+              <Card key={item.title} white className="p-6"
                 style={{ borderLeft: `4px solid ${i % 3 === 0 ? "#1F5C99" : i % 3 === 1 ? "#2B5740" : "#C8943A"}` }}>
                 <h3
                   className="font-black text-charcoal text-xl mb-2"
                   style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
                 >
-                  {item.v}
+                  {item.title}
                 </h3>
-                <p className="text-warm-gray text-sm leading-relaxed">{item.desc}</p>
+                <p className="text-warm-gray text-sm leading-relaxed">{item.description}</p>
               </Card>
             ))}
           </div>
@@ -119,16 +100,15 @@ export default function AboutPage() {
 
       {/* ── DIOCESAN STRUCTURE ── */}
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="kicker mb-3">How we are organised</div>
+        <div className="kicker mb-3">{about.structureKicker}</div>
         <h2
           className="text-charcoal font-black mb-3"
           style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
         >
-          Diocesan structure
+          {about.structureHeading}
         </h2>
         <p className="text-warm-gray mb-12 max-w-xl leading-relaxed">
-          The Diocese is led by the Bishop, supported by the cathedral and administrative offices, and served
-          by a family of unions, archdeaconries, and departments.
+          {about.structureText}
         </p>
 
         {/* Tier 1: Bishop */}
@@ -186,7 +166,7 @@ export default function AboutPage() {
         <div className="mt-14">
           <div className="kicker mb-5" style={{ color: "#C8943A" }}>Diocesan departments</div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {departments.map((d, i) => (
+            {about.departments.map((d, i) => (
               <div
                 key={d}
                 className="rounded-lg px-4 py-3.5 text-charcoal text-sm font-semibold"
@@ -206,15 +186,15 @@ export default function AboutPage() {
       {/* ── LEADERSHIP ── */}
       <section className="bg-cream-dark py-20 px-6">
         <div className="mx-auto max-w-6xl">
-          <div className="kicker mb-3">The team</div>
+          <div className="kicker mb-3">{about.teamKicker}</div>
           <h2
             className="text-charcoal font-black mb-3"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
           >
-            The people who lead
+            {about.teamHeading}
           </h2>
           <p className="text-warm-gray mb-14 max-w-xl leading-relaxed">
-            Servant leaders committed to guiding the Diocese with wisdom, humility, and a heart for God and people.
+            {about.teamText}
           </p>
 
           <div className="grid sm:grid-cols-2 gap-x-16 gap-y-10">
@@ -262,15 +242,15 @@ export default function AboutPage() {
 
       {/* ── MINISTRIES ── */}
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="kicker mb-3">Get involved</div>
+        <div className="kicker mb-3">{about.ministriesKicker}</div>
         <h2
           className="text-charcoal font-black mb-3"
           style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
         >
-          Ministries
+          {about.ministriesHeading}
         </h2>
         <p className="text-warm-gray mb-10 max-w-xl leading-relaxed">
-          There is a place for everyone to belong, grow, and serve in this Diocesan family.
+          {about.ministriesText}
         </p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {ministries.map((m, i) => (
@@ -293,10 +273,10 @@ export default function AboutPage() {
           className="text-charcoal font-black mb-4"
           style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
         >
-          Ready to be part of this family?
+          {about.ctaHeading}
         </h2>
         <p className="text-warm-gray mb-8 max-w-sm mx-auto">
-          Get in touch and let us know you are coming. We will be glad to welcome you.
+          {about.ctaText}
         </p>
         <Link href="/contact" className="btn-terra">Plan Your Visit</Link>
       </section>

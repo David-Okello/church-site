@@ -107,12 +107,12 @@ export default function EventsPage() {
       {/* ── REGULAR SERVICES ── */}
       <section className="bg-cream-dark py-20 px-6">
         <div className="mx-auto max-w-6xl">
-          <div className="kicker mb-3">Every week</div>
+          <div className="kicker mb-3">{page.scheduleKicker}</div>
           <h2
             className="text-charcoal font-black mb-10 text-4xl"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
           >
-            Regular gatherings
+            {page.scheduleHeading}
           </h2>
           <div className="grid sm:grid-cols-3 gap-5">
             {settings.serviceTimes.map((s, i) => (

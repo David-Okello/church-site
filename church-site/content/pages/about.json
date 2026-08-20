@@ -2,9 +2,45 @@
   "heroImage": "/uploads/hero-about.jpg",
   "openingLine1": "One of the youngest dioceses in South Sudan.",
   "openingLine2": "And one of the fastest growing.",
+  "storyKicker": "Our story",
   "storyParagraphs": [
     "The Episcopal Diocese of Wanyjok is one of the youngest and fastest-growing dioceses in the Episcopal Church of South Sudan. It was created as an area diocese in 2017 and became an autonomous diocese on 28 April 2019, with Rt. Rev. Joseph Mamer Manot as its first bishop.",
     "Today the Diocese is home to more than 47,000 Christian members across Aweil East, in the internal province of Northern Bahr el Ghazal. From a single cathedral congregation it has grown into a network of parishes, archdeaconries, unions, and departments serving communities near and far.",
     "Christian mission has been present in this land since the nineteenth century, and the Church has become one of its most trusted institutions, playing a vital role not only in worship and discipleship, but in humanitarian and social services, peace, education, and health."
-  ]
+  ],
+  "valuesKicker": "What we believe",
+  "valuesHeading": "Our core values",
+  "values": [
+    { "title": "Faith", "description": "Trusting God's word above our circumstances, always." },
+    { "title": "Mission", "description": "Equipping the whole Church to carry the Gospel to all people." },
+    { "title": "Service", "description": "Serving our communities in health, education, peace, and relief." },
+    { "title": "Prayer", "description": "A Diocese that prays together stays together and grows together." },
+    { "title": "Biblical Truth", "description": "Anchored in Scripture: our map for life, faith, and community." },
+    { "title": "Unity", "description": "One body, many parts, united around Jesus Christ." }
+  ],
+  "structureKicker": "How we are organised",
+  "structureHeading": "Diocesan structure",
+  "structureText": "The Diocese is led by the Bishop, supported by the cathedral and administrative offices, and served by a family of unions, archdeaconries, and departments.",
+  "departments": [
+    "Finance & Administration",
+    "Mission & Evangelism",
+    "Health Department",
+    "Education Department",
+    "Agriculture Department",
+    "Development Department",
+    "Communications Department",
+    "Chaplaincy & Prison",
+    "Bible School Department",
+    "Sunday School & Children Ministry",
+    "Prayers Group",
+    "Praise & Worship"
+  ],
+  "teamKicker": "The team",
+  "teamHeading": "The people who lead",
+  "teamText": "Servant leaders committed to guiding the Diocese with wisdom, humility, and a heart for God and people.",
+  "ministriesKicker": "Get involved",
+  "ministriesHeading": "Ministries",
+  "ministriesText": "There is a place for everyone to belong, grow, and serve in this Diocesan family.",
+  "ctaHeading": "Ready to be part of this family?",
+  "ctaText": "Get in touch and let us know you are coming. We will be glad to welcome you."
 }

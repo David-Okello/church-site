@@ -2,5 +2,10 @@
   "heroImage": "/uploads/hero-contact.jpg",
   "heroKicker": "Connect with us",
   "heroTitle": "We would love to hear from you.",
-  "heroSubtext": "A question, a prayer request, or just wanting to know when to come. Reach out any way that works for you."
+  "heroSubtext": "A question, a prayer request, or just wanting to know when to come. Reach out any way that works for you.",
+  "infoHeading": "Church information",
+  "serviceTimesLabel": "Service times",
+  "followKicker": "Follow the Diocese",
+  "formHeading": "Send a message",
+  "formSubtext": "Whether it is a prayer request, a question, or just a hello. We will respond as soon as we can."
 }
