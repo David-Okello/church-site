@@ -19,10 +19,10 @@ export default function SermonsPage() {
       <section className="relative flex items-end overflow-hidden" style={{ minHeight: "65vh" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1713909399240-2f5627fa1e41?w=1600&q=85&auto=format&fit=crop"
-          alt="Worship service"
+          src="/uploads/hero-sermons.jpg"
+          alt="Bishop Joseph Mamer preaching with arms raised"
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: "center 20%" }}
+          style={{ objectPosition: "center 15%" }}
         />
         <div
           className="absolute inset-0"

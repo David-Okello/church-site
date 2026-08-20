@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getGallery } from "@/lib/content";
+import GalleryGrid from "@/components/GalleryGrid";
 
 export const metadata: Metadata = { title: "Gallery" };
 
@@ -8,11 +9,21 @@ export default function GalleryPage() {
 
   return (
     <>
-      {/* ── HEADER (solid, so the transparent navbar stays readable) ── */}
-      <section
-        className="relative flex items-end overflow-hidden"
-        style={{ minHeight: "52vh", background: "linear-gradient(135deg, #2B5740 0%, #1C1814 70%)" }}
-      >
+      {/* ── HEADER ── */}
+      <section className="relative flex items-end overflow-hidden" style={{ minHeight: "52vh", background: "#14100C" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/uploads/hero-gallery.jpg"
+          alt="A gathering of the diocese under the trees"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: "center 40%" }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to bottom, rgba(28,24,20,0.15) 0%, rgba(28,24,20,0.50) 55%, rgba(28,24,20,0.90) 100%)",
+          }}
+        />
         <div className="relative z-10 mx-auto max-w-6xl w-full px-6 pb-14 pt-32">
           <div className="kicker mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>Diocese in pictures</div>
           <h1
@@ -44,35 +55,7 @@ export default function GalleryPage() {
             <p className="text-warm-gray">Check back soon. We are gathering pictures of life across the Diocese.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-            {photos.map((p, i) => (
-              <figure
-                key={(p.image || "") + i}
-                className="group relative overflow-hidden rounded-2xl"
-                style={{ background: "#D4CCBC", aspectRatio: "1 / 1", boxShadow: "0 1px 12px rgba(60,40,20,0.08)" }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={p.image}
-                  alt={p.caption || "Diocese photo"}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                {(p.caption || p.category) && (
-                  <figcaption
-                    className="absolute inset-x-0 bottom-0 p-4 text-white"
-                    style={{ background: "linear-gradient(to top, rgba(20,16,12,0.82) 0%, rgba(20,16,12,0) 100%)" }}
-                  >
-                    {p.category && (
-                      <div className="text-[10px] font-bold uppercase tracking-widest mb-0.5" style={{ color: "#E8A85A" }}>
-                        {p.category}
-                      </div>
-                    )}
-                    {p.caption && <div className="text-sm font-semibold leading-snug">{p.caption}</div>}
-                  </figcaption>
-                )}
-              </figure>
-            ))}
-          </div>
+          <GalleryGrid photos={photos} />
         )}
       </section>
     </>

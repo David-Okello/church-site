@@ -14,10 +14,10 @@ export default function EventsPage() {
       <section className="relative flex items-end overflow-hidden" style={{ minHeight: "65vh", background: "#14100C" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=85&auto=format&fit=crop"
-          alt="Community gathering"
+          src="/uploads/hero-events.jpg"
+          alt="Bishop Joseph Mamer blessing a gathered crowd"
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: "center 40%" }}
+          style={{ objectPosition: "center 25%" }}
         />
         <div
           className="absolute inset-0"

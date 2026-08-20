@@ -257,6 +257,17 @@ textarea::placeholder {
   animation: fadeUp 0.75s 0.36s ease forwards;
 }
 
+/* ─── Scroll-down hint ─── */
+@keyframes scrollHint {
+  0%, 100% { transform: translateY(0); opacity: 0.55; }
+  50%      { transform: translateY(8px); opacity: 1; }
+}
+
+.scroll-hint {
+  opacity: 0;
+  animation: fadeUp 0.75s 0.7s ease forwards, scrollHint 2s 1.5s ease-in-out infinite;
+}
+
 /* ─── Card hover lift ─── */
 .card,
 .card-white {

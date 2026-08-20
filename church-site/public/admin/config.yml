@@ -24,6 +24,7 @@ backend:
   auth_endpoint: /auth
 
 site_url: https://church-site-27m.pages.dev/
+logo_url: /logo.png
 
 media_folder: "church-site/public/uploads"
 public_folder: "/uploads"
@@ -34,6 +35,10 @@ collections:
     folder: "church-site/content/sermons"
     create: true
     slug: "{{year}}-{{month}}-{{fields.title}}"
+    view_groups:
+      - label: "Year"
+        field: date
+        pattern: "^\\d{4}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Speaker", name: "speaker", widget: "string" }
@@ -88,10 +93,37 @@ collections:
     folder: "church-site/content/gallery"
     create: true
     slug: "{{year}}-{{month}}-{{fields.caption}}"
-    summary: "{{caption}}"
+    summary: "{{date}} {{caption}}"
+    view_groups:
+      - label: "Year"
+        field: date
+        pattern: "^\\d{4}"
+    view_filters:
+      - label: "Worship"
+        field: category
+        pattern: "Worship"
+      - label: "Youth"
+        field: category
+        pattern: "Youth"
+      - label: "Outreach"
+        field: category
+        pattern: "Outreach"
+      - label: "Events"
+        field: category
+        pattern: "Events"
+      - label: "Cathedral"
+        field: category
+        pattern: "Cathedral"
+      - label: "Community"
+        field: category
+        pattern: "Community"
+      - label: "Videos only"
+        field: video
+        pattern: ".+"
     fields:
-      - { label: "Photo", name: "image", widget: "image" }
-      - { label: "Caption", name: "caption", widget: "string", required: false }
+      - { label: "Photo", name: "image", widget: "image", hint: "For a video entry, this is the cover image shown in the grid" }
+      - { label: "Video URL (YouTube)", name: "video", widget: "string", required: false, hint: "Optional: a YouTube link makes this a video entry, playable right on the page. Don't upload raw video files here, they're far too large for this site." }
+      - { label: "Caption", name: "caption", widget: "string", required: false, hint: "Shown over the photo on hover. Leave blank if you just want it in the gallery without a label." }
       - { label: "Category", name: "category", widget: "select", required: false, options: ["Worship", "Youth", "Outreach", "Events", "Cathedral", "Community"] }
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
 
@@ -119,6 +151,31 @@ collections:
             name: "storyParagraphs"
             widget: "list"
             field: { label: "Paragraph", name: "paragraph", widget: "text" }
+      - label: "Give page"
+        name: "give"
+        file: "church-site/content/pages/give.json"
+        fields:
+          - { label: "Hero kicker", name: "heroKicker", widget: "string" }
+          - { label: "Hero title", name: "heroTitle", widget: "string" }
+          - { label: "Hero subtext", name: "heroSubtext", widget: "text" }
+          - { label: "Intro paragraph", name: "introText", widget: "text", hint: "Below the hero, explains why giving matters" }
+          - label: "Ways to give"
+            name: "ways"
+            widget: "list"
+            hint: "The cards under \"Choose what works for you\""
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Show a WhatsApp button instead of \"Contact us\"", name: "whatsapp", widget: "boolean", default: false, required: false }
+          - label: "What your support enables"
+            name: "supportAreas"
+            widget: "list"
+            hint: "The four tiles on the blue \"Where it goes\" section"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - { label: "Closing heading", name: "closingTitle", widget: "string" }
+          - { label: "Closing text", name: "closingText", widget: "text" }
 
   - name: "settings"
     label: "Church Settings"
@@ -162,7 +219,7 @@ collections:
               - { label: "Name", name: "name", widget: "string" }
               - { label: "Role", name: "role", widget: "string" }
               - { label: "Bio", name: "bio", widget: "text" }
-              - { label: "Tag", name: "tag", widget: "string", required: false }
+              - { label: "Tag", name: "tag", widget: "string", required: false, hint: "A short label under their role, e.g. \"Bishop\" or \"Mothers' Union\"" }
               - { label: "Photo", name: "image", widget: "image", required: false, hint: "A clear headshot works best" }
 
       - label: "Ministries"

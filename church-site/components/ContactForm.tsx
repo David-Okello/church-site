@@ -3,7 +3,7 @@
 import { useState, FormEvent } from "react";
 
 // ⬇️ Paste your Google Apps Script Web App URL here (see form-backend/google-apps-script.gs)
-const FORM_ENDPOINT = "https://script.google.com/macros/s/REPLACE_WITH_YOUR_DEPLOYMENT_ID/exec";
+const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbytL5KKhfZveGc9CTKUASC_dSJ4g321oKJVZpTV8wx6g4cd6-OqDD9flTU9CIWyGYAlIw/exec";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");

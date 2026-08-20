@@ -39,7 +39,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="mx-auto max-w-6xl px-6 grid md:grid-cols-3 gap-10">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-[#C8943A] text-2xl font-bold" style={{ fontFamily: "Georgia, serif" }}>✝</span>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/logo.png" alt="" className="h-10 w-auto" />
                 <span className="font-bold text-lg text-white" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
                   {settings.churchName}
                 </span>

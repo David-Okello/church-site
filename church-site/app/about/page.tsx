@@ -41,13 +41,12 @@ export default function AboutPage() {
     <>
       {/* ── OPENING: full photo bg with statement overlay ── */}
       <section className="relative flex items-end overflow-hidden" style={{ minHeight: "75vh", background: "#14100C" }}>
-        {/* Background photo, replace with a real photo of the cathedral / congregation */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1689844759889-f8d92bd8a03a?w=1600&q=85&auto=format&fit=crop"
-          alt="Members of the congregation in worship"
+          src="/uploads/hero-about.jpg"
+          alt="Diocese elders and clergy gathered for a group portrait"
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: "center 25%" }}
+          style={{ objectPosition: "center 35%" }}
         />
         <div
           className="absolute inset-0"

@@ -20,11 +20,10 @@ export default function HomePage() {
     <>
       {/* ── 1. HERO ── */}
       <section className="relative overflow-hidden min-h-screen flex items-center" style={{ background: "#14100C" }}>
-        {/* Full-bleed photo, replace with a real photo of the cathedral / congregation */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1444664361762-afba083a4d77?w=1800&q=85&auto=format&fit=crop"
-          alt=""
+          src="/uploads/hero-home.jpg"
+          alt="Choir procession carrying a cross through the diocese"
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "center 35%" }}
@@ -34,6 +33,13 @@ export default function HomePage() {
           className="absolute inset-0"
           style={{
             background: "linear-gradient(to bottom, rgba(20,16,12,0.50) 0%, rgba(20,16,12,0.72) 100%)",
+          }}
+        />
+        {/* Extra darkening toward the right, so the schedule panel stays readable regardless of what's behind it in the photo */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to right, rgba(20,16,12,0) 40%, rgba(20,16,12,0.45) 75%, rgba(20,16,12,0.65) 100%)",
           }}
         />
 
@@ -112,6 +118,19 @@ export default function HomePage() {
               …and more through the week. {settings.address}
             </p>
           </div>
+        </div>
+
+        {/* Scroll-down hint */}
+        <div
+          className="scroll-hint absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+          aria-hidden="true"
+        >
+          <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.65)" }}>
+            Scroll
+          </span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 6L8 11L13 6" stroke="rgba(255,255,255,0.65)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </div>
       </section>
 

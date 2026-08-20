@@ -21,10 +21,10 @@ export default function ContactPage() {
       <section className="relative flex items-end overflow-hidden" style={{ minHeight: "52vh", background: "#14100C" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1524069290683-0457abfe42c3?w=1600&q=85&auto=format&fit=crop"
-          alt="Church community"
+          src="/uploads/hero-contact.jpg"
+          alt="A parish church building of the diocese"
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: "center 30%" }}
+          style={{ objectPosition: "center 40%" }}
         />
         <div
           className="absolute inset-0"

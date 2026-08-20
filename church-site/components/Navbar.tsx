@@ -10,6 +10,7 @@ const links = [
   { href: "/sermons", label: "Sermons" },
   { href: "/events", label: "Events" },
   { href: "/gallery", label: "Gallery" },
+  { href: "/give", label: "Give" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -47,12 +48,8 @@ export default function Navbar({ churchName }: { churchName: string }) {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           {/* Brand */}
           <Link href="/" className="flex items-center gap-2.5 no-underline">
-            <span
-              className="text-xl font-bold select-none transition-colors duration-300"
-              style={{ fontFamily: "Georgia, serif", color: solid ? "#C8943A" : "rgba(255,255,255,0.85)" }}
-            >
-              ✝
-            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.png" alt="" className="h-9 w-auto select-none" />
             <span
               className="font-bold text-base leading-tight transition-colors duration-300"
               style={{

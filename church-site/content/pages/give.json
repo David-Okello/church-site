@@ -1,0 +1,19 @@
+{
+  "heroKicker": "Support the Diocese",
+  "heroTitle": "Give toward the work of the Diocese.",
+  "heroSubtext": "Your generosity helps equip the Church for mission and raise up faithful Christian leaders across Aweil East.",
+  "introText": "Equipping the Church for mission and raising up faithful Christian leaders. What you give, in whatever amount, goes directly toward that work: it does not pass through this website. Every gift, large or small, is received with gratitude and put to use across the Diocese's parishes and ministries.",
+  "ways": [
+    { "title": "Bank Transfer", "description": "Contact us for the Diocese's bank account details." },
+    { "title": "Mobile Money", "description": "Contact us for mobile money details." },
+    { "title": "In Person or WhatsApp", "description": "Reach out directly and we'll arrange the best way for you to give.", "whatsapp": true }
+  ],
+  "supportAreas": [
+    { "title": "Discipleship & Leadership", "description": "Training pastors, catechists, and lay leaders serving parishes across the Diocese." },
+    { "title": "Education", "description": "Supporting church-run schools and the Bible School Department." },
+    { "title": "Health & Outreach", "description": "Humanitarian and social services carried out in partnership with local communities." },
+    { "title": "Church Buildings", "description": "Constructing and maintaining places of worship as the Diocese continues to grow." }
+  ],
+  "closingTitle": "Questions about giving?",
+  "closingText": "Reach out any time. We're glad to talk through how your support can be put to use."
+}
