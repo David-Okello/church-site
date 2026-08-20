@@ -251,7 +251,7 @@
     var tag = ordered ? "ol" : "ul";
     return h(
       "div",
-      { style: { flex: "1 1 140px", minWidth: 140 } },
+      { style: { flex: "1 1 140px", minWidth: 0 } },
       h("div", { style: { fontFamily: sans, fontSize: "10px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: color, marginBottom: "10px" } }, title),
       h(
         tag,
@@ -260,9 +260,9 @@
           var text = item && typeof item === "object" ? (item.point || item.question || item.prayerPoint || "") : String(item);
           return h(
             "li",
-            { key: i, style: { fontSize: "12.5px", lineHeight: 1.5, color: "rgba(28,24,20,0.75)", display: "flex", gap: "6px" } },
-            ordered ? h("span", { style: { fontWeight: 900, color: color, fontFamily: serif } }, (i + 1) + ".") : h("span", { style: { color: color } }, "▪"),
-            h("span", {}, text)
+            { key: i, style: { fontSize: "12.5px", lineHeight: 1.5, color: "rgba(28,24,20,0.75)", display: "flex", gap: "6px", minWidth: 0 } },
+            ordered ? h("span", { style: { flexShrink: 0, fontWeight: 900, color: color, fontFamily: serif } }, (i + 1) + ".") : h("span", { style: { flexShrink: 0, color: color } }, "▪"),
+            h("span", { style: { minWidth: 0, overflowWrap: "anywhere", wordBreak: "break-word" } }, text)
           );
         })
       )
@@ -353,7 +353,15 @@
   });
 
   CMS.registerPreviewStyle("/admin/preview.css");
-  CMS.registerPreviewTemplate("pages", PagePreview);
+  // "pages" is a files-type collection (a fixed list of named files, not a
+  // folder of many entries). Decap only honors registerPreviewTemplate for
+  // files collections when called with each file's own name, not the
+  // parent collection name — registering "pages" here is silently ignored
+  // and every file falls back to Decap's generic field-dump preview.
+  // https://github.com/decaporg/decap-cms/issues/1197
+  ["home", "about", "sermons_page", "events_page", "gallery_page", "contact_page", "give"].forEach(function (fileName) {
+    CMS.registerPreviewTemplate(fileName, PagePreview);
+  });
   CMS.registerPreviewTemplate("sermons", SermonPreview);
   CMS.registerPreviewTemplate("events", EventPreview);
   CMS.registerPreviewTemplate("announcements", AnnouncementPreview);

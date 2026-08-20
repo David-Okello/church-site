@@ -184,7 +184,7 @@ export default function SermonCard({
                         >
                           {idx + 1}.
                         </span>
-                        {point}
+                        <span className="min-w-0 wrap-break-word">{point}</span>
                       </li>
                     ))}
                   </ol>
@@ -198,7 +198,7 @@ export default function SermonCard({
                     {s.discussionQuestions.map((q, idx) => (
                       <li
                         key={idx}
-                        className="text-sm text-charcoal/75 leading-snug pl-3"
+                        className="text-sm text-charcoal/75 leading-snug pl-3 wrap-break-word"
                         style={{ borderLeft: "1.5px solid #2B5740" }}
                       >
                         {q}
@@ -215,7 +215,7 @@ export default function SermonCard({
                     {s.prayerPoints.map((p, idx) => (
                       <li key={idx} className="flex gap-2.5 text-sm text-charcoal/75 leading-snug">
                         <span className="shrink-0 mt-0.5 text-xs" style={{ color: "#C8943A" }}>✦</span>
-                        {p}
+                        <span className="min-w-0 wrap-break-word">{p}</span>
                       </li>
                     ))}
                   </ul>
