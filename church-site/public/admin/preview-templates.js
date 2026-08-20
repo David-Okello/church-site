@@ -246,9 +246,38 @@
 
   // ---- Sermons ----
 
+  function NoteList(title, color, items, ordered) {
+    if (!items || !items.length) return null;
+    var tag = ordered ? "ol" : "ul";
+    return h(
+      "div",
+      { style: { flex: "1 1 140px", minWidth: 140 } },
+      h("div", { style: { fontFamily: sans, fontSize: "10px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: color, marginBottom: "10px" } }, title),
+      h(
+        tag,
+        { style: { margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "8px" } },
+        items.map(function (item, i) {
+          var text = item && typeof item === "object" ? (item.point || item.question || item.prayerPoint || "") : String(item);
+          return h(
+            "li",
+            { key: i, style: { fontSize: "12.5px", lineHeight: 1.5, color: "rgba(28,24,20,0.75)", display: "flex", gap: "6px" } },
+            ordered ? h("span", { style: { fontWeight: 900, color: color, fontFamily: serif } }, (i + 1) + ".") : h("span", { style: { color: color } }, "▪"),
+            h("span", {}, text)
+          );
+        })
+      )
+    );
+  }
+
   var SermonPreview = createClass({
     render: function () {
       var data = this.props.entry.get("data").toJS();
+      var notes = [
+        NoteList("Key Points", COLORS.blue, data.keyPoints, true),
+        NoteList("Discussion", COLORS.forest, data.discussionQuestions, false),
+        NoteList("Prayer", COLORS.gold, data.prayerPoints, false),
+      ].filter(Boolean);
+
       return h(
         "div",
         { style: { maxWidth: 480, margin: "20px auto", background: "#FDFCFB", borderRadius: 14, borderTop: "4px solid " + COLORS.blue, padding: "20px 22px", boxShadow: "0 1px 12px rgba(60,40,20,0.08)", fontFamily: sans } },
@@ -256,7 +285,10 @@
         Heading(data.title || "Untitled sermon", "1.4rem"),
         h("div", { style: { fontSize: "12px", color: COLORS.warmGray, marginBottom: "12px" } }, [data.speaker, data.date].filter(Boolean).join(" · ")),
         Body(data.description),
-        data.mediaUrl ? h("div", { style: { marginTop: "12px", fontSize: "12px", fontWeight: 700, color: COLORS.blue } }, "▶ " + data.mediaUrl) : null
+        data.mediaUrl ? h("div", { style: { marginTop: "12px", fontSize: "12px", fontWeight: 700, color: COLORS.blue } }, "▶ " + data.mediaUrl) : null,
+        notes.length
+          ? h("div", { style: { display: "flex", flexWrap: "wrap", gap: "18px", marginTop: "18px", paddingTop: "18px", borderTop: "1px solid " + COLORS.creamDark } }, notes)
+          : h("div", { style: { marginTop: "16px", paddingTop: "16px", borderTop: "1px solid " + COLORS.creamDark, fontSize: "12px", fontStyle: "italic", color: COLORS.warmGray } }, "Notes and questions will be added after the service.")
       );
     },
   });

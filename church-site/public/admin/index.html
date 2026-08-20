@@ -5,10 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Episcopal Diocese of Wanyjok — Content Editor</title>
   <link rel="icon" href="/logo.png" />
-  <link rel="stylesheet" href="/admin/admin.css" />
+  <link rel="stylesheet" href="/admin/admin.css?v=2" />
 </head>
 <body>
+  <!-- admin.css and preview-templates.js are plain static files with no
+       build-time fingerprinting, and Cloudflare serves them with a long
+       browser cache lifetime. Bump the ?v= query string on both any time
+       either file changes, or editors' browsers may keep using a stale
+       cached copy for hours after a fix is deployed. -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <script src="/admin/preview-templates.js"></script>
+  <script src="/admin/preview-templates.js?v=2"></script>
 </body>
 </html>
