@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { getGallery } from "@/lib/content";
+import { getGallery, getGalleryPageContent } from "@/lib/content";
 import GalleryGrid from "@/components/GalleryGrid";
 
 export const metadata: Metadata = { title: "Gallery" };
 
 export default function GalleryPage() {
   const photos = getGallery();
+  const page = getGalleryPageContent();
 
   return (
     <>
@@ -13,7 +14,7 @@ export default function GalleryPage() {
       <section className="relative flex items-end overflow-hidden" style={{ minHeight: "52vh", background: "#14100C" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/uploads/hero-gallery.jpg"
+          src={page.heroImage}
           alt="A gathering of the diocese under the trees"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "center 40%" }}
@@ -25,15 +26,15 @@ export default function GalleryPage() {
           }}
         />
         <div className="relative z-10 mx-auto max-w-6xl w-full px-6 pb-14 pt-32">
-          <div className="kicker mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>Diocese in pictures</div>
+          <div className="kicker mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>{page.heroKicker}</div>
           <h1
             className="text-white font-black mb-4"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2.5rem, 5vw, 4rem)", lineHeight: 1.05 }}
           >
-            Gallery
+            {page.heroTitle}
           </h1>
           <p className="text-white/70 text-lg max-w-xl leading-relaxed">
-            Moments of worship, fellowship, and service from across the Diocese of Wanyjok.
+            {page.heroSubtext}
           </p>
         </div>
       </section>

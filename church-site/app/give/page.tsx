@@ -15,7 +15,7 @@ export default function GivePage() {
       <section className="relative flex items-end overflow-hidden" style={{ minHeight: "52vh", background: "#14100C" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/uploads/hero-give.jpg"
+          src={give.heroImage}
           alt="A procession of the diocese carrying a cross"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "center 30%" }}

@@ -22,7 +22,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden min-h-screen flex items-center" style={{ background: "#14100C" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/uploads/hero-home.jpg"
+          src={home.heroImage}
           alt="Choir procession carrying a cross through the diocese"
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"

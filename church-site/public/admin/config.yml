@@ -128,12 +128,14 @@ collections:
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
 
   - name: "pages"
-    label: "Page Text"
+    label: "Pages"
+    description: "The text and big background photo at the top of each page. To change the small photos in the Photo Gallery instead, use the \"Photo Gallery\" section on the left."
     files:
       - label: "Homepage"
         name: "home"
         file: "church-site/content/pages/home.json"
         fields:
+          - { label: "Hero photo", name: "heroImage", widget: "image", hint: "The large background photo at the very top of the homepage." }
           - { label: "Hero title — line 1", name: "heroTitleLine1", widget: "string" }
           - { label: "Hero title — line 2 (highlighted)", name: "heroTitleLine2", widget: "string" }
           - { label: "Hero subtext", name: "heroSubtext", widget: "text" }
@@ -145,16 +147,50 @@ collections:
         name: "about"
         file: "church-site/content/pages/about.json"
         fields:
+          - { label: "Hero photo", name: "heroImage", widget: "image", hint: "The large background photo at the top of the About page." }
           - { label: "Opening line 1", name: "openingLine1", widget: "string" }
           - { label: "Opening line 2 (highlighted)", name: "openingLine2", widget: "string" }
           - label: "Story paragraphs"
             name: "storyParagraphs"
             widget: "list"
             field: { label: "Paragraph", name: "paragraph", widget: "text" }
+      - label: "Sermons page"
+        name: "sermons_page"
+        file: "church-site/content/pages/sermons.json"
+        fields:
+          - { label: "Hero photo", name: "heroImage", widget: "image", hint: "The large background photo at the top of the Sermons page." }
+          - { label: "Hero kicker", name: "heroKicker", widget: "string", hint: "The small label above the title" }
+          - { label: "Hero title", name: "heroTitle", widget: "string" }
+          - { label: "Hero subtext", name: "heroSubtext", widget: "text" }
+      - label: "Events page"
+        name: "events_page"
+        file: "church-site/content/pages/events.json"
+        fields:
+          - { label: "Hero photo", name: "heroImage", widget: "image", hint: "The large background photo at the top of the Events page." }
+          - { label: "Hero kicker", name: "heroKicker", widget: "string", hint: "The small label above the title" }
+          - { label: "Hero title", name: "heroTitle", widget: "string" }
+          - { label: "Hero subtext", name: "heroSubtext", widget: "text" }
+      - label: "Gallery page"
+        name: "gallery_page"
+        file: "church-site/content/pages/gallery.json"
+        fields:
+          - { label: "Hero photo", name: "heroImage", widget: "image", hint: "The large background photo at the top of the Gallery page (not one of the photos in the grid below it)." }
+          - { label: "Hero kicker", name: "heroKicker", widget: "string", hint: "The small label above the title" }
+          - { label: "Hero title", name: "heroTitle", widget: "string" }
+          - { label: "Hero subtext", name: "heroSubtext", widget: "text" }
+      - label: "Contact page"
+        name: "contact_page"
+        file: "church-site/content/pages/contact.json"
+        fields:
+          - { label: "Hero photo", name: "heroImage", widget: "image", hint: "The large background photo at the top of the Contact page." }
+          - { label: "Hero kicker", name: "heroKicker", widget: "string", hint: "The small label above the title" }
+          - { label: "Hero title", name: "heroTitle", widget: "string" }
+          - { label: "Hero subtext", name: "heroSubtext", widget: "text" }
       - label: "Give page"
         name: "give"
         file: "church-site/content/pages/give.json"
         fields:
+          - { label: "Hero photo", name: "heroImage", widget: "image", hint: "The large background photo at the top of the Give page." }
           - { label: "Hero kicker", name: "heroKicker", widget: "string" }
           - { label: "Hero title", name: "heroTitle", widget: "string" }
           - { label: "Hero subtext", name: "heroSubtext", widget: "text" }

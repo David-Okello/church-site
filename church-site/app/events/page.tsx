@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Card from "@/components/Card";
-import { getEvents, getSettings } from "@/lib/content";
+import { getEvents, getSettings, getEventsPageContent } from "@/lib/content";
 
 export const metadata: Metadata = { title: "Events" };
 
 export default function EventsPage() {
   const events = getEvents();
   const settings = getSettings();
+  const page = getEventsPageContent();
 
   return (
     <>
@@ -14,7 +15,7 @@ export default function EventsPage() {
       <section className="relative flex items-end overflow-hidden" style={{ minHeight: "65vh", background: "#14100C" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/uploads/hero-events.jpg"
+          src={page.heroImage}
           alt="Bishop Joseph Mamer blessing a gathered crowd"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "center 25%" }}
@@ -26,15 +27,15 @@ export default function EventsPage() {
           }}
         />
         <div className="relative z-10 mx-auto max-w-4xl w-full px-6 pb-14 pt-24">
-          <div className="kicker mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>Church calendar</div>
+          <div className="kicker mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>{page.heroKicker}</div>
           <h1
             className="text-white font-black mb-4"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2.5rem, 5vw, 4rem)", lineHeight: 1.05 }}
           >
-            Upcoming events
+            {page.heroTitle}
           </h1>
           <p className="text-white/70 text-lg max-w-xl leading-relaxed">
-            Life across the Diocese is about more than Sunday mornings. Here is what is coming up, and there is always room for one more.
+            {page.heroSubtext}
           </p>
         </div>
       </section>

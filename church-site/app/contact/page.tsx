@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Card from "@/components/Card";
 import ContactForm from "@/components/ContactForm";
-import { getSettings } from "@/lib/content";
+import { getSettings, getContactPageContent } from "@/lib/content";
 
 export const metadata: Metadata = { title: "Contact" };
 
 export default function ContactPage() {
   const settings = getSettings();
+  const page = getContactPageContent();
 
   const infoItems = [
     { label: "Address", value: settings.address },
@@ -21,7 +22,7 @@ export default function ContactPage() {
       <section className="relative flex items-end overflow-hidden" style={{ minHeight: "52vh", background: "#14100C" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/uploads/hero-contact.jpg"
+          src={page.heroImage}
           alt="A parish church building of the diocese"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "center 40%" }}
@@ -33,7 +34,7 @@ export default function ContactPage() {
           }}
         />
         <div className="relative z-10 mx-auto max-w-6xl w-full px-6 pb-14 pt-24">
-          <div className="kicker mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>Connect with us</div>
+          <div className="kicker mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>{page.heroKicker}</div>
           <h1
             className="text-white font-black mb-4"
             style={{
@@ -43,10 +44,10 @@ export default function ContactPage() {
               letterSpacing: "-0.02em",
             }}
           >
-            We would love to hear from you.
+            {page.heroTitle}
           </h1>
           <p className="text-white/70 text-lg max-w-lg leading-relaxed">
-            A question, a prayer request, or just wanting to know when to come. Reach out any way that works for you.
+            {page.heroSubtext}
           </p>
         </div>
       </section>

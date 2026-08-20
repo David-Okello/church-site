@@ -98,6 +98,26 @@ export function getGiveContent(): GiveContent {
   return merged as GiveContent;
 }
 
+export function getSermonsPageContent(): HeroPageContent {
+  const merged = { ...SERMONS_PAGE_DEFAULTS, ...readJson("pages/sermons.json") };
+  return merged as HeroPageContent;
+}
+
+export function getEventsPageContent(): HeroPageContent {
+  const merged = { ...EVENTS_PAGE_DEFAULTS, ...readJson("pages/events.json") };
+  return merged as HeroPageContent;
+}
+
+export function getGalleryPageContent(): HeroPageContent {
+  const merged = { ...GALLERY_PAGE_DEFAULTS, ...readJson("pages/gallery.json") };
+  return merged as HeroPageContent;
+}
+
+export function getContactPageContent(): HeroPageContent {
+  const merged = { ...CONTACT_PAGE_DEFAULTS, ...readJson("pages/contact.json") };
+  return merged as HeroPageContent;
+}
+
 function readJson(rel: string): Record<string, unknown> {
   const filePath = path.join(contentDir, rel);
   if (!fs.existsSync(filePath)) return {};
@@ -109,6 +129,7 @@ function readJson(rel: string): Record<string, unknown> {
 }
 
 const HOME_DEFAULTS: HomeContent = {
+  heroImage: "/uploads/hero-home.jpg",
   heroTitleLine1: "The Episcopal Diocese",
   heroTitleLine2: "of Wanyjok.",
   heroSubtext:
@@ -123,6 +144,7 @@ const HOME_DEFAULTS: HomeContent = {
 };
 
 const ABOUT_DEFAULTS: AboutContent = {
+  heroImage: "/uploads/hero-about.jpg",
   openingLine1: "One of the youngest dioceses in South Sudan.",
   openingLine2: "And one of the fastest growing.",
   storyParagraphs: [
@@ -133,6 +155,7 @@ const ABOUT_DEFAULTS: AboutContent = {
 };
 
 const GIVE_DEFAULTS: GiveContent = {
+  heroImage: "/uploads/hero-give.jpg",
   heroKicker: "Support the Diocese",
   heroTitle: "Give toward the work of the Diocese.",
   heroSubtext: "Your generosity helps equip the Church for mission and raise up faithful Christian leaders across Aweil East.",
@@ -151,6 +174,34 @@ const GIVE_DEFAULTS: GiveContent = {
   ],
   closingTitle: "Questions about giving?",
   closingText: "Reach out any time. We're glad to talk through how your support can be put to use.",
+};
+
+const SERMONS_PAGE_DEFAULTS: HeroPageContent = {
+  heroImage: "/uploads/hero-sermons.jpg",
+  heroKicker: "Media ministry",
+  heroTitle: "Sermons",
+  heroSubtext: "Teachings from God's Word for your encouragement, growth, and edification.",
+};
+
+const EVENTS_PAGE_DEFAULTS: HeroPageContent = {
+  heroImage: "/uploads/hero-events.jpg",
+  heroKicker: "Church calendar",
+  heroTitle: "Upcoming events",
+  heroSubtext: "Life across the Diocese is about more than Sunday mornings. Here is what is coming up, and there is always room for one more.",
+};
+
+const GALLERY_PAGE_DEFAULTS: HeroPageContent = {
+  heroImage: "/uploads/hero-gallery.jpg",
+  heroKicker: "Diocese in pictures",
+  heroTitle: "Gallery",
+  heroSubtext: "Moments of worship, fellowship, and service from across the Diocese of Wanyjok.",
+};
+
+const CONTACT_PAGE_DEFAULTS: HeroPageContent = {
+  heroImage: "/uploads/hero-contact.jpg",
+  heroKicker: "Connect with us",
+  heroTitle: "We would love to hear from you.",
+  heroSubtext: "A question, a prayer request, or just wanting to know when to come. Reach out any way that works for you.",
 };
 
 export type Settings = {
@@ -202,6 +253,7 @@ export type GalleryItem = {
 };
 
 export type HomeContent = {
+  heroImage: string;
   heroTitleLine1: string;
   heroTitleLine2: string;
   heroSubtext: string;
@@ -212,12 +264,14 @@ export type HomeContent = {
 };
 
 export type AboutContent = {
+  heroImage: string;
   openingLine1: string;
   openingLine2: string;
   storyParagraphs: string[];
 };
 
 export type GiveContent = {
+  heroImage: string;
   heroKicker: string;
   heroTitle: string;
   heroSubtext: string;
@@ -226,6 +280,14 @@ export type GiveContent = {
   supportAreas: { title: string; description: string }[];
   closingTitle: string;
   closingText: string;
+};
+
+// Shared shape for pages that only need a hero image + kicker + title + subtext
+export type HeroPageContent = {
+  heroImage: string;
+  heroKicker: string;
+  heroTitle: string;
+  heroSubtext: string;
 };
 
 export type Sermon = {

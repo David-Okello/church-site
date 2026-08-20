@@ -25,10 +25,10 @@ The left-hand menu has these sections:
 - **Events**
 - **Announcements**
 - **Photo Gallery**
-- **Page Text** (Homepage, About page)
+- **Pages** (the big photo and headline at the top of every page — Homepage, About, Sermons, Events, Gallery, Give, Contact)
 - **Church Settings** (Site settings, Leadership team, Ministries)
 
-Sermons, Events, Announcements, and Photo Gallery are **collections** — click into one, then **New [item]** to add another entry, or click an existing entry to edit it. Page Text and Church Settings are **single documents** — there's only one "Homepage," one "Site settings," and so on, and you're editing that one document directly.
+Sermons, Events, Announcements, and Photo Gallery are **collections** — click into one, then **New [item]** to add another entry, or click an existing entry to edit it. Pages and Church Settings are **single documents** — there's only one "Homepage," one "Site settings," and so on, and you're editing that one document directly.
 
 ### Sermons
 
@@ -55,10 +55,16 @@ Only the photo itself is required — caption, category, and date can be left bl
 - **Video URL** turns an entry into a video: paste a YouTube link and the Photo becomes its cover image, playable right on the gallery page. Never upload a raw video file here — video files are far too large for this site (a single phone video can be hundreds of MB, way over what a website like this should carry). Upload the video to the diocese's YouTube channel first, then paste the link here.
 - With well over a hundred photos now in the gallery, use the **Year** grouping and the category filters near the top of the list (Worship, Youth, Outreach, etc., plus a "Videos only" filter) to find something instead of scrolling through everything.
 
-### Page Text
+### Pages
 
-- **Homepage**: the hero headline (two lines, the second one is highlighted in the design), hero subtext, the story paragraph, the mission strip text, and the closing call-to-action heading/subtext.
-- **About page**: the two opening lines and a list of story paragraphs (add/remove/reorder paragraphs freely).
+Every page listed here has a **Hero photo** field at the top — that's the large background photo behind the headline at the top of that page. Click it, then **Choose an image** to upload a new one or pick from photos already uploaded. There's no special size to aim for; a normal landscape photo from a phone works fine.
+
+- **Homepage**: hero photo, hero headline (two lines, the second one is highlighted in the design), hero subtext, the story paragraph, the mission strip text, and the closing call-to-action heading/subtext.
+- **About page**: hero photo, the two opening lines, and a list of story paragraphs (add/remove/reorder paragraphs freely).
+- **Sermons page**, **Events page**, **Gallery page**, **Contact page**: each has a hero photo, a small "kicker" label above the title, the title itself, and the subtext below it. These are the simplest entries in this section — four fields each.
+- **Give page**: hero photo, hero text, the paragraph explaining why giving matters, the three "Ways to give" cards (each can optionally show a "Chat on WhatsApp" button instead of a "Contact us" link — that's the checkbox on each card), the four "What your support enables" tiles, and the closing heading/text.
+
+One thing to keep straight: the **Gallery page**'s hero photo (in this "Pages" section) is the one big photo at the very top of the Gallery page. The dozens of smaller photos in the grid below it come from the separate **Photo Gallery** section, not from here.
 
 ### Church Settings
 

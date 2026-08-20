@@ -43,7 +43,7 @@ export default function AboutPage() {
       <section className="relative flex items-end overflow-hidden" style={{ minHeight: "75vh", background: "#14100C" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/uploads/hero-about.jpg"
+          src={about.heroImage}
           alt="Diocese elders and clergy gathered for a group portrait"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "center 35%" }}

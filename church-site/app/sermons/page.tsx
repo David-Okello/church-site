@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getSermons, getYouTubeThumbnail } from "@/lib/content";
+import { getSermons, getYouTubeThumbnail, getSermonsPageContent } from "@/lib/content";
 import SermonCard from "@/components/SermonCard";
 
 export const metadata: Metadata = { title: "Sermons" };
@@ -12,6 +12,7 @@ const PALETTES = [
 
 export default function SermonsPage() {
   const sermons = getSermons();
+  const page = getSermonsPageContent();
 
   return (
     <>
@@ -19,7 +20,7 @@ export default function SermonsPage() {
       <section className="relative flex items-end overflow-hidden" style={{ minHeight: "65vh" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/uploads/hero-sermons.jpg"
+          src={page.heroImage}
           alt="Bishop Joseph Mamer preaching with arms raised"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "center 15%" }}
@@ -31,15 +32,15 @@ export default function SermonsPage() {
           }}
         />
         <div className="relative z-10 mx-auto max-w-4xl w-full px-6 pb-14 pt-24">
-          <div className="kicker mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>Media ministry</div>
+          <div className="kicker mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>{page.heroKicker}</div>
           <h1
             className="text-white font-black mb-4"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(2.5rem, 5vw, 4rem)", lineHeight: 1.05 }}
           >
-            Sermons
+            {page.heroTitle}
           </h1>
           <p className="text-white/70 text-lg max-w-xl leading-relaxed">
-            Teachings from God&apos;s Word for your encouragement, growth, and edification.
+            {page.heroSubtext}
           </p>
         </div>
       </section>
