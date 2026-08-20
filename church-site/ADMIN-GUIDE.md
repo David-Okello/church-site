@@ -4,7 +4,7 @@ This guide walks through adding and editing content on the Episcopal Diocese of 
 
 ## 1. Log in
 
-1. Go to **https://church-site-27m.pages.dev/admin**
+1. Go to **https://dow-anglican.org/admin**
 2. Click **Login with GitHub**
 3. The first time, GitHub will ask you to authorize the app — approve it
 4. You'll land on the admin dashboard, with a list of content sections on the left
@@ -16,6 +16,8 @@ You need a GitHub account with access to the `David-Okello/church-site` reposito
 There's no separate "publish" button hiding behind a delay. When you click **Save** (or **Publish**, depending on the section), your change is written straight to the website's source code and the live site rebuilds automatically — it's usually live within a minute or two. There's no draft/review step, so double-check what you typed before saving.
 
 If two people edit the same entry at the same time, whoever saves second can overwrite the other's change. It's rare, but worth being aware of if more than one of you is adding content in the same sitting.
+
+As you type, the panel on the right shows a preview styled to roughly match the real site (fonts, colors, photo banners) — for Sermons, Events, Announcements, Photo Gallery, and every entry in "Pages." It won't be pixel-perfect (it's a simplified version, not the actual page), but it should make it obvious whether what you typed reads the way you intended before you save. Church Settings doesn't have a styled preview — it's plain form fields, since there's no single "page" for it to preview.
 
 ## 3. The sections
 

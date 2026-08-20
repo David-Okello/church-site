@@ -3,7 +3,7 @@
 # SETUP (one-time, ~15 minutes):
 # 1. Create a GitHub OAuth App:
 #    → GitHub → Settings → Developer Settings → OAuth Apps → New OAuth App
-#    Homepage URL:      https://church-site-27m.pages.dev
+#    Homepage URL:      https://dow-anglican.org
 #    Authorization callback URL: https://decap-oauth.YOUR_SUBDOMAIN.workers.dev/callback
 #
 # 2. Deploy the oauth-worker (see /oauth-worker/worker.js in this repo)
@@ -11,10 +11,17 @@
 #    Then add two Environment Variables:
 #      GITHUB_CLIENT_ID     = (from your OAuth App)
 #      GITHUB_CLIENT_SECRET = (from your OAuth App — add as a Secret, not plaintext)
-#      SITE_URL             = https://church-site-27m.pages.dev
+#      SITE_URL             = https://dow-anglican.org
 #
 # 3. Replace YOUR_SUBDOMAIN below with your actual Cloudflare Workers subdomain
 #    (visible in the Cloudflare dashboard after creating the worker)
+#
+# NOTE: dow-anglican.org is the custom domain (Cloudflare Pages still also
+# serves church-site-27m.pages.dev). If GitHub login from /admin ever breaks
+# after this change, the GitHub OAuth App's Homepage URL and the oauth-worker's
+# SITE_URL environment variable both need updating to match — those live in
+# the GitHub and Cloudflare dashboards, not in this file, so they don't update
+# themselves when this file changes.
 
 backend:
   name: github
@@ -23,7 +30,7 @@ backend:
   base_url: https://decap-oauth.okellodavid002.workers.dev
   auth_endpoint: /auth
 
-site_url: https://church-site-27m.pages.dev/
+site_url: https://dow-anglican.org/
 logo_url: /logo.png
 
 media_folder: "church-site/public/uploads"

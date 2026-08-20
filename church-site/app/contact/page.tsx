@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Card from "@/components/Card";
 import ContactForm from "@/components/ContactForm";
+import { SocialIconLink } from "@/components/SocialIcons";
 import { getSettings, getContactPageContent } from "@/lib/content";
 
 export const metadata: Metadata = { title: "Contact" };
@@ -111,24 +112,9 @@ export default function ContactPage() {
             <Card className="p-6" style={{ borderLeft: "4px solid #2B5740" }}>
               <div className="kicker mb-4">{page.followKicker}</div>
               <div className="flex flex-wrap gap-3">
-                {settings.facebookUrl && (
-                  <a href={settings.facebookUrl} target="_blank" rel="noopener noreferrer"
-                    className="text-sm font-semibold text-charcoal px-4 py-2 rounded-lg bg-cream-dark hover:bg-cream-darker transition-colors">
-                    Facebook
-                  </a>
-                )}
-                {settings.youtubeUrl && (
-                  <a href={settings.youtubeUrl} target="_blank" rel="noopener noreferrer"
-                    className="text-sm font-semibold text-charcoal px-4 py-2 rounded-lg bg-cream-dark hover:bg-cream-darker transition-colors">
-                    YouTube
-                  </a>
-                )}
-                {settings.twitterUrl && (
-                  <a href={settings.twitterUrl} target="_blank" rel="noopener noreferrer"
-                    className="text-sm font-semibold text-charcoal px-4 py-2 rounded-lg bg-cream-dark hover:bg-cream-darker transition-colors">
-                    X (Twitter)
-                  </a>
-                )}
+                {settings.facebookUrl && <SocialIconLink href={settings.facebookUrl} label="Facebook" variant="light" />}
+                {settings.youtubeUrl && <SocialIconLink href={settings.youtubeUrl} label="YouTube" variant="light" />}
+                {settings.twitterUrl && <SocialIconLink href={settings.twitterUrl} label="X (Twitter)" variant="light" />}
               </div>
             </Card>
           )}

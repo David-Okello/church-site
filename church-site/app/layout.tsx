@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { SocialIconLink } from "@/components/SocialIcons";
 import { getSettings } from "@/lib/content";
 
 const playfair = Playfair_Display({
@@ -69,27 +70,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
               {(settings.facebookUrl || settings.youtubeUrl || settings.twitterUrl) && (
                 <div className="flex gap-3 mt-4">
-                  {settings.facebookUrl && (
-                    <a href={settings.facebookUrl} target="_blank" rel="noopener noreferrer"
-                      className="text-xs font-semibold text-white px-3 py-1.5 rounded-lg"
-                      style={{ background: "rgba(255,255,255,0.08)" }}>
-                      Facebook
-                    </a>
-                  )}
-                  {settings.youtubeUrl && (
-                    <a href={settings.youtubeUrl} target="_blank" rel="noopener noreferrer"
-                      className="text-xs font-semibold text-white px-3 py-1.5 rounded-lg"
-                      style={{ background: "rgba(255,255,255,0.08)" }}>
-                      YouTube
-                    </a>
-                  )}
-                  {settings.twitterUrl && (
-                    <a href={settings.twitterUrl} target="_blank" rel="noopener noreferrer"
-                      className="text-xs font-semibold text-white px-3 py-1.5 rounded-lg"
-                      style={{ background: "rgba(255,255,255,0.08)" }}>
-                      X
-                    </a>
-                  )}
+                  {settings.facebookUrl && <SocialIconLink href={settings.facebookUrl} label="Facebook" variant="dark" />}
+                  {settings.youtubeUrl && <SocialIconLink href={settings.youtubeUrl} label="YouTube" variant="dark" />}
+                  {settings.twitterUrl && <SocialIconLink href={settings.twitterUrl} label="X (Twitter)" variant="dark" />}
                 </div>
               )}
             </div>

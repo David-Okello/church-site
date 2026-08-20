@@ -25,7 +25,7 @@ Only someone who's already a collaborator on the repository can add a new person
 4. Click **Add people**, and type the new person's GitHub username or the email they signed up with
 5. GitHub sends them an invitation — they need to accept it (by email link or from their GitHub notifications) before access becomes active
 
-Once accepted, they can go to **church-site-27m.pages.dev/admin**, click **Login with GitHub**, and authorize the app the first time. From then on, logging in is one click.
+Once accepted, they can go to **dow-anglican.org/admin**, click **Login with GitHub**, and authorize the app the first time. From then on, logging in is one click.
 
 ## 3. Removing someone's access
 
