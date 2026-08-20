@@ -1,0 +1,143 @@
+/**
+ * Chrome theming for the Decap CMS app shell (login screen, form fields,
+ * scrollbars, selection color) so the admin feels like part of the diocese
+ * site rather than a generic default install.
+ *
+ * Decap's interior layout (sidebar, list views, top bar) is styled via
+ * emotion with content-hashed class names that change across CDN builds,
+ * so there is no stable, safe way to re-skin those from outside the app.
+ * What CAN be targeted reliably:
+ *   - the label portion of emotion's debug class names (e.g.
+ *     "StyledAuthenticationPage"), which is tied to the component's source
+ *     name and far more stable than the hash prefix, via [class*="..."]
+ *     substring selectors
+ *   - real form controls (input/textarea/select/button), since widgets
+ *     always render actual native elements no matter how Decap wraps them
+ *   - browser-level chrome (scrollbar, selection) that isn't part of
+ *     Decap's own styling system at all
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --dow-blue: #1f5c99;
+  --dow-blue-dark: #163f6b;
+  --dow-blue-light: #3878b8;
+  --dow-cream: #f9f5ee;
+  --dow-cream-dark: #ede8de;
+  --dow-charcoal: #1c1814;
+}
+
+html, body {
+  font-family: 'Inter', Arial, Helvetica, sans-serif !important;
+}
+
+::selection {
+  background: var(--dow-blue);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--dow-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: #c9bfae;
+  border-radius: 8px;
+  border: 3px solid var(--dow-cream);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dow-blue-light);
+}
+
+/* ---- Login screen ---- */
+
+[class*="StyledAuthenticationPage"] {
+  background: linear-gradient(160deg, var(--dow-cream) 0%, var(--dow-cream-dark) 100%) !important;
+  position: relative;
+}
+
+[class*="StyledAuthenticationPage"]::before {
+  content: "Episcopal Diocese of Wanyjok";
+  display: block;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--dow-charcoal);
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+[class*="StyledAuthenticationPage"]::after {
+  content: "Content Editor";
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dow-blue);
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+[class*="CustomIconWrapper"] {
+  filter: drop-shadow(0 6px 16px rgba(31, 92, 153, 0.25));
+}
+
+[class*="LoginButton"] {
+  background: var(--dow-blue) !important;
+  border-radius: 10px !important;
+  font-family: 'Inter', sans-serif !important;
+  transition: background 0.15s ease, transform 0.15s ease !important;
+}
+[class*="LoginButton"]:hover {
+  background: var(--dow-blue-dark) !important;
+  transform: translateY(-1px);
+}
+
+[class*="GoBackButtonStyle"] {
+  font-family: 'Inter', sans-serif !important;
+}
+[class*="GoBackButtonStyle"]:hover [class*="ButtonText"] {
+  color: var(--dow-blue) !important;
+}
+
+/* ---- Form fields (editor sidebar, entry forms) ---- */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="url"],
+input[type="search"],
+input[type="date"],
+input[type="time"],
+textarea,
+select {
+  font-family: 'Inter', Arial, Helvetica, sans-serif !important;
+  border-radius: 8px !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--dow-blue) !important;
+  box-shadow: 0 0 0 3px rgba(31, 92, 153, 0.15) !important;
+  outline: none !important;
+}
+
+button {
+  font-family: 'Inter', sans-serif !important;
+}

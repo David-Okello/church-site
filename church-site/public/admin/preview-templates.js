@@ -5,8 +5,9 @@
  * "Label: value" list — readable, but nothing like the real site, which
  * makes it hard for a non-technical editor to tell whether a change looks
  * right before saving. This gives the preview pane on the right an actual
- * visual layout (fonts, colors, hero banners, cards) roughly matching the
- * live site, using only the field values already in the form on the left.
+ * visual layout (fonts, colors, hero banners, cards) matching the live
+ * site's sections, using only the field values already in the form on the
+ * left.
  *
  * This runs with no build step (loaded as a plain <script> after the Decap
  * CDN bundle), so it uses the `h` (React.createElement) and `createClass`
@@ -24,11 +25,7 @@
   };
 
   var serif = "'Playfair Display', Georgia, serif";
-
-  function toPlain(entry) {
-    var data = entry.get("data");
-    return data && data.toJS ? data.toJS() : {};
-  }
+  var sans = "'Inter', Arial, Helvetica, sans-serif";
 
   function assetUrl(getAsset, value) {
     if (!value) return null;
@@ -40,13 +37,6 @@
     }
   }
 
-  function labelize(key) {
-    return key
-      .replace(/([A-Z])/g, " $1")
-      .replace(/^./, function (s) { return s.toUpperCase(); })
-      .trim();
-  }
-
   // ---- shared pieces ----
 
   function Kicker(text, color) {
@@ -55,6 +45,7 @@
       "div",
       {
         style: {
+          fontFamily: sans,
           fontSize: "11px",
           fontWeight: 700,
           letterSpacing: "0.1em",
@@ -67,123 +58,189 @@
     );
   }
 
-  function CardWrap(children) {
+  function Heading(text, size) {
+    if (!text) return null;
     return h(
-      "div",
+      "h2",
       {
         style: {
-          maxWidth: 720,
-          margin: "24px auto",
-          background: "#FDFCFB",
-          borderRadius: 16,
-          padding: "24px 28px",
-          boxShadow: "0 1px 12px rgba(60,40,20,0.08)",
+          fontFamily: serif,
+          fontWeight: 900,
+          fontSize: size || "1.5rem",
+          lineHeight: 1.15,
+          color: COLORS.charcoal,
+          margin: "0 0 10px",
         },
       },
-      children
+      text
+    );
+  }
+
+  function Body(text) {
+    if (!text) return null;
+    return h(
+      "p",
+      { style: { fontFamily: sans, fontSize: "14px", lineHeight: 1.7, color: "rgba(28,24,20,0.75)", margin: 0 } },
+      text
+    );
+  }
+
+  function CardGrid(items) {
+    if (!items || !items.length) return null;
+    return h(
+      "div",
+      { style: { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: "10px", marginTop: "14px" } },
+      items.map(function (item, i) {
+        if (item && typeof item === "object") {
+          return h(
+            "div",
+            { key: i, style: { background: "#fff", borderLeft: "3px solid " + COLORS.blue, borderRadius: 8, padding: "12px 14px", boxShadow: "0 1px 6px rgba(60,40,20,0.06)" } },
+            h("div", { style: { fontFamily: serif, fontWeight: 900, fontSize: "14px", marginBottom: "4px" } }, item.title || ""),
+            h("div", { style: { fontSize: "12px", color: COLORS.warmGray, lineHeight: 1.5 } }, item.description || "")
+          );
+        }
+        return h(
+          "span",
+          { key: i, style: { display: "inline-block", background: "#fff", border: "1px solid " + COLORS.creamDark, borderRadius: 6, padding: "6px 10px", fontSize: "12px", fontWeight: 600, marginRight: "6px", marginBottom: "6px" } },
+          String(item)
+        );
+      })
+    );
+  }
+
+  function Paragraphs(items) {
+    if (!items || !items.length) return null;
+    return h(
+      "div",
+      { style: { display: "flex", flexDirection: "column", gap: "10px" } },
+      items.map(function (p, i) { return h("p", { key: i, style: { fontFamily: sans, fontSize: "13px", lineHeight: 1.7, color: "rgba(28,24,20,0.75)", margin: 0 } }, String(p)); })
+    );
+  }
+
+  function Section(opts, bg) {
+    var textChildren = [Kicker(opts.kicker), Heading(opts.heading), Body(opts.text)];
+    if (opts.paragraphs) textChildren.push(Paragraphs(opts.paragraphs));
+    if (opts.cards) textChildren.push(CardGrid(opts.cards));
+    var hasContent = opts.kicker || opts.heading || opts.text || opts.imageSrc || (opts.paragraphs && opts.paragraphs.length) || (opts.cards && opts.cards.length);
+    if (!hasContent) return null;
+
+    var content = opts.imageSrc
+      ? h(
+          "div",
+          { style: { display: "flex", gap: "14px", alignItems: "flex-start" } },
+          h("img", { src: opts.imageSrc, style: { width: 56, height: 56, borderRadius: 10, objectFit: "cover", flexShrink: 0, background: COLORS.creamDark } }),
+          h("div", {}, textChildren)
+        )
+      : textChildren;
+
+    return h(
+      "div",
+      { style: { padding: "22px 24px", background: bg || "transparent", borderBottom: "1px solid " + COLORS.creamDark } },
+      content
     );
   }
 
   // ---- Pages collection (Homepage, About, Sermons page, Events page, Gallery page, Contact page, Give page) ----
 
+  function renderPagePreview(props) {
+    var data = props.entry.get("data").toJS();
+    var getAsset = props.getAsset;
+    var heroSrc = assetUrl(getAsset, data.heroImage);
+
+    var title =
+      data.heroTitle ||
+      [data.heroTitleLine1, data.heroTitleLine2].filter(Boolean).join(" ") ||
+      [data.openingLine1, data.openingLine2].filter(Boolean).join(" ");
+
+    var heroBlock = heroSrc
+      ? h(
+          "div",
+          { style: { position: "relative", height: 260, overflow: "hidden", background: COLORS.charcoal } },
+          h("img", { src: heroSrc, style: { position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" } }),
+          h("div", {
+            style: {
+              position: "absolute", inset: 0,
+              background: "linear-gradient(to bottom, rgba(20,16,12,0.15) 0%, rgba(20,16,12,0.88) 100%)",
+            },
+          }),
+          h(
+            "div",
+            { style: { position: "absolute", left: 0, right: 0, bottom: 0, padding: "24px", color: "#fff" } },
+            Kicker(data.heroKicker, "rgba(255,255,255,0.65)"),
+            title ? h("div", { style: { fontFamily: serif, fontSize: "1.7rem", fontWeight: 900, marginBottom: "8px", lineHeight: 1.1 } }, title) : null,
+            data.heroSubtext ? h("div", { style: { fontSize: "13px", color: "rgba(255,255,255,0.8)", maxWidth: 380 } }, data.heroSubtext) : null
+          )
+        )
+      : null;
+
+    // Known section groupings, in page-flow order. Anything not listed here
+    // still renders via the generic fallback below, so new fields never
+    // silently disappear from the preview.
+    var sectionDefs = [
+      { kicker: "storyKicker", paragraphs: "storyParagraphs", text: "storyParagraph" },
+      { kicker: "valuesKicker", heading: "valuesHeading", cards: "values" },
+      { kicker: "structureKicker", heading: "structureHeading", text: "structureText", cards: "departments" },
+      { text: "missionText" },
+      { kicker: "sermonsKicker", heading: "sermonsHeading" },
+      { kicker: "scheduleKicker", heading: "scheduleHeading" },
+      { kicker: "ministriesKicker", heading: "ministriesHeading", text: "ministriesText" },
+      { kicker: "bishopWordKicker", image: "bishopImage" },
+      { kicker: "teamKicker", heading: "teamHeading", text: "teamText" },
+      { kicker: "announcementsKicker", heading: "announcementsHeading" },
+      { kicker: "eventsKicker", heading: "eventsHeading" },
+      { kicker: "verseKicker" },
+      { heading: "noticeHeading", text: "noticeText" },
+      { heading: "infoHeading" },
+      { heading: "formHeading", text: "formSubtext" },
+      { text: "introText" },
+      { cards: "ways" },
+      { cards: "supportAreas" },
+      { heading: "ctaTitle", text: "ctaSubtext" },
+      { heading: "ctaHeading", text: "ctaText" },
+    ];
+
+    var used = { heroImage: 1, heroKicker: 1, heroTitle: 1, heroTitleLine1: 1, heroTitleLine2: 1, heroSubtext: 1, openingLine1: 1, openingLine2: 1, heroScheduleLabel: 1 };
+    var sections = sectionDefs.map(function (def, i) {
+      var opts = {};
+      ["kicker", "heading", "text", "paragraphs", "cards"].forEach(function (kind) {
+        var key = def[kind];
+        if (key && data[key] !== undefined) {
+          opts[kind] = data[key];
+          used[key] = 1;
+        }
+      });
+      if (def.image && data[def.image]) {
+        opts.imageSrc = assetUrl(getAsset, data[def.image]);
+        used[def.image] = 1;
+      }
+      return Section(opts, i % 2 === 0 ? COLORS.cream : COLORS.creamDark);
+    });
+
+    // Anything present in the data but not covered by a known section above.
+    var leftoverKeys = Object.keys(data).filter(function (k) { return !used[k] && data[k]; });
+    var leftover = leftoverKeys.length
+      ? h(
+          "div",
+          { style: { padding: "22px 24px" } },
+          leftoverKeys.map(function (key) {
+            var value = data[key];
+            if (Array.isArray(value)) return null; // already covered by known cards/paragraphs above in practice
+            return h(
+              "div",
+              { key: key, style: { marginBottom: "10px" } },
+              h("div", { style: { fontSize: "10px", fontWeight: 700, color: COLORS.warmGray, textTransform: "uppercase" } }, key),
+              h("div", { style: { fontSize: "13px" } }, String(value))
+            );
+          })
+        )
+      : null;
+
+    return h("div", { style: { fontFamily: sans } }, heroBlock, sections, leftover);
+  }
+
   var PagePreview = createClass({
     render: function () {
-      var data = toPlain(this.props.entry);
-      var getAsset = this.props.getAsset;
-      var heroSrc = assetUrl(getAsset, data.heroImage);
-
-      var title =
-        data.heroTitle ||
-        [data.heroTitleLine1, data.heroTitleLine2].filter(Boolean).join(" ") ||
-        [data.openingLine1, data.openingLine2].filter(Boolean).join(" ");
-
-      var heroBlock = heroSrc
-        ? h(
-            "div",
-            {
-              style: {
-                position: "relative",
-                minHeight: 280,
-                display: "flex",
-                alignItems: "flex-end",
-                overflow: "hidden",
-                background: COLORS.charcoal,
-              },
-            },
-            h("img", {
-              src: heroSrc,
-              style: { position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" },
-            }),
-            h("div", {
-              style: {
-                position: "absolute",
-                inset: 0,
-                background: "linear-gradient(to bottom, rgba(20,16,12,0.15) 0%, rgba(20,16,12,0.85) 100%)",
-              },
-            }),
-            h(
-              "div",
-              { style: { position: "relative", padding: "40px 32px", color: "#fff", maxWidth: 640 } },
-              Kicker(data.heroKicker, "rgba(255,255,255,0.65)"),
-              title
-                ? h(
-                    "h1",
-                    { style: { fontFamily: serif, fontSize: "2.2rem", fontWeight: 900, margin: "0 0 12px", lineHeight: 1.1 } },
-                    title
-                  )
-                : null,
-              data.heroSubtext
-                ? h("p", { style: { fontSize: "15px", color: "rgba(255,255,255,0.8)", margin: 0, maxWidth: 480 } }, data.heroSubtext)
-                : null
-            )
-          )
-        : null;
-
-      var skip = [
-        "heroImage", "heroKicker", "heroTitle", "heroTitleLine1", "heroTitleLine2", "heroSubtext",
-        "openingLine1", "openingLine2",
-      ];
-      var rest = Object.keys(data).filter(function (k) { return skip.indexOf(k) === -1; });
-
-      var fields = rest.map(function (key) {
-        var value = data[key];
-        if (value === null || value === undefined || value === "") return null;
-
-        if (Array.isArray(value)) {
-          return h(
-            "div",
-            { key: key, style: { marginBottom: "20px" } },
-            h("div", { style: { fontSize: "11px", fontWeight: 700, color: COLORS.warmGray, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "6px" } }, labelize(key)),
-            h(
-              "ul",
-              { style: { margin: 0, paddingLeft: 18 } },
-              value.map(function (item, i) {
-                var text;
-                if (item && typeof item === "object") {
-                  text = (item.title ? item.title + ": " : "") + (item.description || item.paragraph || item.department || "");
-                } else {
-                  text = String(item);
-                }
-                return h("li", { key: i, style: { fontSize: "14px", marginBottom: "4px" } }, text);
-              })
-            )
-          );
-        }
-
-        return h(
-          "div",
-          { key: key, style: { marginBottom: "16px" } },
-          h("div", { style: { fontSize: "11px", fontWeight: 700, color: COLORS.warmGray, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "4px" } }, labelize(key)),
-          h("div", { style: { fontSize: "14px", lineHeight: 1.6 } }, String(value))
-        );
-      });
-
-      return h(
-        "div",
-        {},
-        heroBlock,
-        h("div", { style: { maxWidth: 640, margin: "0 auto", padding: "28px 24px" } }, fields)
-      );
+      return renderPagePreview(this.props);
     },
   });
 
@@ -191,14 +248,16 @@
 
   var SermonPreview = createClass({
     render: function () {
-      var data = toPlain(this.props.entry);
-      return CardWrap([
+      var data = this.props.entry.get("data").toJS();
+      return h(
+        "div",
+        { style: { maxWidth: 480, margin: "20px auto", background: "#FDFCFB", borderRadius: 14, borderTop: "4px solid " + COLORS.blue, padding: "20px 22px", boxShadow: "0 1px 12px rgba(60,40,20,0.08)", fontFamily: sans } },
         Kicker(data.scripture),
-        h("h2", { key: "t", style: { fontFamily: serif, fontSize: "1.6rem", fontWeight: 900, margin: "0 0 4px" } }, data.title || "Untitled sermon"),
-        h("div", { key: "m", style: { fontSize: "13px", color: COLORS.warmGray, marginBottom: "14px" } }, [data.speaker, data.date].filter(Boolean).join(" · ")),
-        data.description ? h("p", { key: "d", style: { fontSize: "14px", lineHeight: 1.7 } }, data.description) : null,
-        data.mediaUrl ? h("div", { key: "v", style: { marginTop: "14px", fontSize: "13px", fontWeight: 700, color: COLORS.blue } }, "▶ " + data.mediaUrl) : null,
-      ]);
+        Heading(data.title || "Untitled sermon", "1.4rem"),
+        h("div", { style: { fontSize: "12px", color: COLORS.warmGray, marginBottom: "12px" } }, [data.speaker, data.date].filter(Boolean).join(" · ")),
+        Body(data.description),
+        data.mediaUrl ? h("div", { style: { marginTop: "12px", fontSize: "12px", fontWeight: 700, color: COLORS.blue } }, "▶ " + data.mediaUrl) : null
+      );
     },
   });
 
@@ -206,12 +265,14 @@
 
   var EventPreview = createClass({
     render: function () {
-      var data = toPlain(this.props.entry);
-      return CardWrap([
-        h("h2", { key: "t", style: { fontFamily: serif, fontSize: "1.6rem", fontWeight: 900, margin: "0 0 4px" } }, data.title || "Untitled event"),
-        h("div", { key: "m", style: { fontSize: "13px", color: COLORS.warmGray, marginBottom: "14px" } }, [data.date, data.time, data.location].filter(Boolean).join(" · ")),
-        data.description ? h("p", { key: "d", style: { fontSize: "14px", lineHeight: 1.7 } }, data.description) : null,
-      ]);
+      var data = this.props.entry.get("data").toJS();
+      return h(
+        "div",
+        { style: { maxWidth: 480, margin: "20px auto", background: "#FDFCFB", borderRadius: 14, padding: "20px 22px", boxShadow: "0 1px 12px rgba(60,40,20,0.08)", fontFamily: sans } },
+        Heading(data.title || "Untitled event", "1.4rem"),
+        h("div", { style: { fontSize: "12px", color: COLORS.warmGray, marginBottom: "12px" } }, [data.date, data.time, data.location].filter(Boolean).join(" · ")),
+        Body(data.description)
+      );
     },
   });
 
@@ -219,17 +280,19 @@
 
   var AnnouncementPreview = createClass({
     render: function () {
-      var data = toPlain(this.props.entry);
-      return CardWrap([
+      var data = this.props.entry.get("data").toJS();
+      return h(
+        "div",
+        { style: { maxWidth: 420, margin: "20px auto", background: "#FDFCFB", borderRadius: 14, borderTop: "4px solid " + COLORS.gold, padding: "18px 20px", boxShadow: "0 1px 12px rgba(60,40,20,0.08)", fontFamily: sans } },
         Kicker(data.date, COLORS.gold),
-        h("h2", { key: "t", style: { fontFamily: serif, fontSize: "1.4rem", fontWeight: 900, margin: "0 0 10px" } }, data.title || "Untitled announcement"),
-        data.body ? h("p", { key: "b", style: { fontSize: "14px", lineHeight: 1.7 } }, data.body) : null,
+        Heading(data.title || "Untitled announcement", "1.2rem"),
+        Body(data.body),
         h(
           "div",
-          { key: "a", style: { marginTop: "14px", fontSize: "12px", fontWeight: 700, color: data.active === false ? "#A6332B" : COLORS.forest } },
+          { style: { marginTop: "12px", fontSize: "11px", fontWeight: 700, color: data.active === false ? "#A6332B" : COLORS.forest } },
           data.active === false ? "Hidden — not shown on homepage" : "Shown on homepage"
-        ),
-      ]);
+        )
+      );
     },
   });
 
@@ -237,22 +300,21 @@
 
   var GalleryPreview = createClass({
     render: function () {
-      var data = toPlain(this.props.entry);
+      var data = this.props.entry.get("data").toJS();
       var getAsset = this.props.getAsset;
       var src = assetUrl(getAsset, data.image);
       return h(
         "div",
-        { style: { maxWidth: 420, margin: "24px auto", borderRadius: 16, overflow: "hidden", background: "#FDFCFB", boxShadow: "0 1px 12px rgba(60,40,20,0.08)" } },
+        { style: { maxWidth: 320, margin: "20px auto", borderRadius: 14, overflow: "hidden", background: "#FDFCFB", boxShadow: "0 1px 12px rgba(60,40,20,0.08)", fontFamily: sans } },
         src
-          ? h("div", { style: { position: "relative", aspectRatio: "1 / 1", background: COLORS.creamDark } },
-              h("img", { src: src, style: { width: "100%", height: "100%", objectFit: "cover" } }))
-          : h("div", { style: { aspectRatio: "1 / 1", background: COLORS.creamDark, display: "flex", alignItems: "center", justifyContent: "center", color: COLORS.warmGray, fontSize: 13 } }, "No photo yet"),
+          ? h("div", { style: { position: "relative", height: 320, background: COLORS.creamDark } }, h("img", { src: src, style: { width: "100%", height: "100%", objectFit: "cover" } }))
+          : h("div", { style: { height: 320, background: COLORS.creamDark, display: "flex", alignItems: "center", justifyContent: "center", color: COLORS.warmGray, fontSize: 13 } }, "No photo yet"),
         h(
           "div",
-          { style: { padding: "16px" } },
+          { style: { padding: "14px 16px" } },
           Kicker(data.category, COLORS.gold),
-          data.caption ? h("div", { style: { fontFamily: serif, fontWeight: 900, fontSize: "1.05rem" } }, data.caption) : null,
-          data.video ? h("div", { style: { marginTop: 8, fontSize: 13, fontWeight: 700, color: COLORS.blue } }, "▶ Video entry") : null
+          data.caption ? h("div", { style: { fontFamily: serif, fontWeight: 900, fontSize: "15px" } }, data.caption) : null,
+          data.video ? h("div", { style: { marginTop: 6, fontSize: 12, fontWeight: 700, color: COLORS.blue } }, "▶ Video entry") : null
         )
       );
     },
