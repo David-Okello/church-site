@@ -18,24 +18,6 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ── ANNOUNCEMENT BANNER ── */}
-      {announcements[0] && (
-        <a
-          href="#announcements"
-          className="block px-6 py-3 text-center text-sm text-white transition-colors hover:opacity-90"
-          style={{ background: "#2B5740" }}
-        >
-          <span className="uppercase tracking-wider text-xs font-bold mr-2" style={{ color: "#E8A85A" }}>
-            Announcement
-          </span>
-          <span className="font-semibold">{announcements[0].title}</span>
-          <span className="opacity-70">
-            {" "}
-            · {new Date(announcements[0].date).toLocaleDateString("en-US", { month: "long", day: "numeric" })}
-          </span>
-        </a>
-      )}
-
       {/* ── 1. HERO ── */}
       <section className="relative overflow-hidden min-h-screen flex items-center" style={{ background: "#14100C" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -378,7 +360,7 @@ export default function HomePage() {
 
       {/* ── 8. ANNOUNCEMENTS ── */}
       {announcements.length > 0 && (
-        <section id="announcements" className="mx-auto max-w-6xl px-6 py-16 scroll-mt-6">
+        <section id="announcements" className="mx-auto max-w-6xl px-6 py-16 scroll-mt-32">
           <div className="kicker mb-3">{home.announcementsKicker}</div>
           <h2
             className="text-charcoal font-black mb-8"

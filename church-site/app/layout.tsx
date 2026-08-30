@@ -3,7 +3,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { SocialIconLink } from "@/components/SocialIcons";
-import { getSettings } from "@/lib/content";
+import { getSettings, getAnnouncements } from "@/lib/content";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -29,10 +29,24 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const settings = getSettings();
 
+  // Formatted here rather than in the Navbar so the server and the client
+  // render the same string regardless of the visitor's timezone.
+  const [latest] = getAnnouncements();
+  const announcement = latest
+    ? {
+        title: latest.title,
+        dateLabel: new Date(latest.date).toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          timeZone: "UTC",
+        }),
+      }
+    : null;
+
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="min-h-screen">
-        <Navbar churchName={settings.churchName} />
+        <Navbar churchName={settings.churchName} announcement={announcement} />
         <main>{children}</main>
 
         {/* Footer */}

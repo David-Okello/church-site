@@ -14,7 +14,17 @@ const links = [
   { href: "/contact", label: "Contact" },
 ];
 
-export default function Navbar({ churchName }: { churchName: string }) {
+// Fixed height so the navbar can offset itself by exactly this much. The
+// banner is kept to a single line (title truncates) so it never grows.
+const BANNER_HEIGHT = 40;
+
+export default function Navbar({
+  churchName,
+  announcement,
+}: {
+  churchName: string;
+  announcement?: { title: string; dateLabel: string } | null;
+}) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -33,12 +43,36 @@ export default function Navbar({ churchName }: { churchName: string }) {
   }, [open]);
 
   const solid = scrolled || open;
+  const showBanner = Boolean(announcement) && pathname === "/";
 
   return (
     <>
+      {announcement && showBanner && (
+        <a
+          href="#announcements"
+          className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center gap-2 px-6 no-underline"
+          style={{ height: BANNER_HEIGHT, background: "#2B5740" }}
+        >
+          <span
+            className="uppercase tracking-wider text-[11px] font-bold shrink-0"
+            style={{ color: "#E8A85A" }}
+          >
+            Announcement
+          </span>
+          <span className="text-sm font-semibold text-white truncate">{announcement.title}</span>
+          <span
+            className="text-sm shrink-0 hidden sm:inline"
+            style={{ color: "rgba(255,255,255,0.7)" }}
+          >
+            · {announcement.dateLabel}
+          </span>
+        </a>
+      )}
+
       <nav
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+        className="fixed left-0 right-0 z-50 transition-all duration-300"
         style={{
+          top: showBanner ? BANNER_HEIGHT : 0,
           background: solid ? "rgba(249,245,238,0.96)" : "transparent",
           backdropFilter: solid ? "blur(12px)" : "none",
           borderBottom: solid ? "1px solid rgba(224,217,206,0.8)" : "1px solid transparent",
