@@ -313,6 +313,13 @@
   var AnnouncementPreview = createClass({
     render: function () {
       var data = this.props.entry.get("data").toJS();
+      var expired = data.endDate && new Date(data.endDate).getTime() < Date.now();
+      var hidden = data.active === false || expired;
+      var status = data.active === false
+        ? "Hidden: not shown on homepage"
+        : expired
+        ? "Expired: end date has passed"
+        : "Shown on homepage";
       return h(
         "div",
         { style: { maxWidth: 420, margin: "20px auto", background: "#FDFCFB", borderRadius: 14, borderTop: "4px solid " + COLORS.gold, padding: "18px 20px", boxShadow: "0 1px 12px rgba(60,40,20,0.08)", fontFamily: sans } },
@@ -321,8 +328,8 @@
         Body(data.body),
         h(
           "div",
-          { style: { marginTop: "12px", fontSize: "11px", fontWeight: 700, color: data.active === false ? "#A6332B" : COLORS.forest } },
-          data.active === false ? "Hidden — not shown on homepage" : "Shown on homepage"
+          { style: { marginTop: "12px", fontSize: "11px", fontWeight: 700, color: hidden ? "#A6332B" : COLORS.forest } },
+          status
         )
       );
     },

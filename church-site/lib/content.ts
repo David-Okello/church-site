@@ -39,6 +39,12 @@ export function getSermons(): Sermon[] {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
+function isAnnouncementExpired(a: Announcement): boolean {
+  if (!a.endDate) return false;
+  const end = new Date(a.endDate);
+  return !isNaN(end.getTime()) && end.getTime() < Date.now();
+}
+
 export function getAnnouncements(): Announcement[] {
   const dir = path.join(contentDir, "announcements");
   if (!fs.existsSync(dir)) return [];
@@ -49,7 +55,7 @@ export function getAnnouncements(): Announcement[] {
       const { data } = matter(raw);
       return data as Announcement;
     })
-    .filter((a) => a.active !== false)
+    .filter((a) => a.active !== false && !isAnnouncementExpired(a))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
@@ -295,6 +301,7 @@ export type Settings = {
 export type Announcement = {
   title: string;
   date: string;
+  endDate?: string;
   body: string;
   active: boolean;
 };

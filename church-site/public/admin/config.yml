@@ -91,9 +91,10 @@ collections:
     slug: "{{year}}-{{month}}-{{fields.title}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, hint: "Shown on the announcement card. It appears on the homepage as soon as you save." }
+      - { label: "End date", name: "endDate", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ", picker_utc: true, required: false, hint: "The announcement disappears from the homepage automatically once this date/time passes. Leave blank to show indefinitely." }
       - { label: "Body", name: "body", widget: "text" }
-      - { label: "Show on homepage", name: "active", widget: "boolean", default: true }
+      - { label: "Show on homepage", name: "active", widget: "boolean", default: true, hint: "Manual override: turn off to hide immediately, even before the end date." }
 
   - name: "gallery"
     label: "Photo Gallery"
