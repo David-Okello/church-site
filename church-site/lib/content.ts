@@ -215,10 +215,16 @@ const GIVE_DEFAULTS: GiveContent = {
   introText:
     "Equipping the Church for mission and raising up faithful Christian leaders. What you give, in whatever amount, goes directly toward that work: it does not pass through this website. Every gift, large or small, is received with gratitude and put to use across the Diocese's parishes and ministries.",
   ways: [
-    { title: "Bank Transfer", description: "Contact us for the Diocese's bank account details." },
+    { title: "Bank Transfer", description: "Transfer directly using the account details below." },
     { title: "Mobile Money", description: "Contact us for mobile money details." },
     { title: "In Person or WhatsApp", description: "Reach out directly and we'll arrange the best way for you to give.", whatsapp: true },
   ],
+  bankDetails: {
+    bankName: "Kenya Commercial Bank",
+    accountName: "The Episcopal Diocese of Wanyjok- ECSS",
+    accountNumber: "5590367271",
+    branch: "Aweil Branch",
+  },
   supportAreas: [
     { title: "Discipleship & Leadership", description: "Training pastors, catechists, and lay leaders serving parishes across the Diocese." },
     { title: "Education", description: "Supporting church-run schools and the Bible School Department." },
@@ -370,6 +376,7 @@ export type GiveContent = {
   heroSubtext: string;
   introText: string;
   ways: { title: string; description: string; whatsapp?: boolean }[];
+  bankDetails: { bankName: string; accountName: string; accountNumber: string; branch: string };
   supportAreas: { title: string; description: string }[];
   closingTitle: string;
   closingText: string;

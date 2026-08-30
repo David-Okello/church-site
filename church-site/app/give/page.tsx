@@ -93,6 +93,33 @@ export default function GivePage() {
             </Card>
           ))}
         </div>
+
+        <Card white className="p-7 mt-6 sm:max-w-md">
+          <h3
+            className="font-black text-charcoal text-lg mb-4"
+            style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+          >
+            Bank details
+          </h3>
+          <dl className="space-y-3 text-sm">
+            <div className="flex justify-between gap-4">
+              <dt className="text-warm-gray">Bank Name</dt>
+              <dd className="text-charcoal font-semibold text-right">{give.bankDetails.bankName}</dd>
+            </div>
+            <div className="flex justify-between gap-4">
+              <dt className="text-warm-gray">Account Name</dt>
+              <dd className="text-charcoal font-semibold text-right">{give.bankDetails.accountName}</dd>
+            </div>
+            <div className="flex justify-between gap-4">
+              <dt className="text-warm-gray">Account Number</dt>
+              <dd className="text-charcoal font-semibold text-right">{give.bankDetails.accountNumber}</dd>
+            </div>
+            <div className="flex justify-between gap-4">
+              <dt className="text-warm-gray">Branch</dt>
+              <dd className="text-charcoal font-semibold text-right">{give.bankDetails.branch}</dd>
+            </div>
+          </dl>
+        </Card>
       </section>
 
       {/* ── WHAT YOUR SUPPORT ENABLES ── */}
