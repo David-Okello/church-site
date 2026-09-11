@@ -1,6 +1,0 @@
----
-title: Community Dinner
-date: 2026-06-15
-active: false
----
-Join us after the Sunday morning service for a community fellowship meal. All members and visitors are welcome. Please bring a dish to share if you are able.
