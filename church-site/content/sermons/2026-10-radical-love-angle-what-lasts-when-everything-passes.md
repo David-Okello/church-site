@@ -7,6 +7,7 @@ scripture: Psalms 90:1-6, 13-17 Deutronomy 34:1-12:1, Thessalonians 2:1-8,
 description: In the world where leadership changes, generations pass away, and
   institutions crumble, the only structural reality that remains unshakable is
   the love of God poured out through human relationships.
+mediaUrl: https://youtu.be/vgV-lE6pO-c?si=8NMIaQxKvZBTBfTs
 keyPoints:
   - "> Love for God and love for neighbour remain unchanging  > In our short
     lives, the most important legacy we can leave is a ministry built on
