@@ -8,12 +8,12 @@ scripture: Genesis 1:26-28; 2:1-3, 8,15; Colossians 3:23-24; Ephesians 4:28;
 description: God created work. Work honors God. We worship God when we work.
 mediaUrl: https://youtu.be/yN89Cu-Cxy0?si=YMG8PJHPpwCosIGK
 keyPoints:
-  - "1. God gave us work before sin. "
-  - 2. Work honours God.
-  - "3. Examples of people from the Bible that worked: Ruth, Joseph, Nehemiah,
+  - "God gave us work before sin. "
+  - Work honours God.
+  - "Examples of people from the Bible that worked: Ruth, Joseph, Nehemiah,
     Paul, Jesus."
-  - 4. The parable of the talents. Matthew 25
-  - 5. Work out your salvation by believing in Jesus. God is working in you.
+  - The parable of the talents. Matthew 25
+  - Work out your salvation by believing in Jesus. God is working in you.
     Philippians 2:12-13.
 discussionQuestions:
   - Can you worship God with a farm tool?
