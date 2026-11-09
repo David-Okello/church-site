@@ -6,14 +6,18 @@ date: 2026-11-08
 scripture: (1) Psalm 70 (2) Amos 5:18-24 (3) Matthew 25:1-13
 description: Prepare to meet the Lord through prayer, justice and faithfulness
 keyPoints:
-  - "The Importance of seeking God in times of trouble , communities and nation:
-    1) Promote peace and reconciliation 2) practice justice and integrity 3)
-    Strengthen families 4) promote education and development 5) Strengthen
-    Discipleship 6) Care for the vulnerable 7) prepare spiritually"
+  - The Importance of seeking God in times of trouble , communities and nation
   - Be ready at all times
   - We must be a praying church
   - "We must be a righteous and just church "
   - We must be a prepared church Practical application to our church
+  - Promote peace and reconciliation
+  - Practice justice and integrity
+  - Strengthen families
+  - Promote education and development
+  - Strengthen Discipleship
+  - Care for the vulnerable
+  - Prepare spiritually
 discussionQuestions:
   - "How prepare are you? "
   - How do you put these in practice in your own personal daily lives?
