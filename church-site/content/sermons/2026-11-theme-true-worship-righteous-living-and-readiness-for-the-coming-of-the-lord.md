@@ -1,7 +1,6 @@
 ---
-title: "Theme: True worship, righteous living, and readiness for the Coming of
-  the Lord."
-speaker: Bishop Joseph Mamer Manot
+title: True worship, righteous living, and readiness for the Coming of the Lord.
+speaker: Rt. Rev. Joseph Mamer Manot
 date: 2026-11-08
 scripture: (1) Psalm 70 (2) Amos 5:18-24 (3) Matthew 25:1-13
 description: Prepare to meet the Lord through prayer, justice and faithfulness
