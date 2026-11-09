@@ -25,7 +25,7 @@ discussionQuestions:
   - Are these text applicatable in our contexts?
   - How? Please Explain by giving us your spiritual perspective
 prayerPoints:
-  - "Pray for our nation of South Sudan, , "
+  - Pray for our nation of South Sudan
   - Pray for our known diocesan projects and needs for example bigger Cathedral,
     ongoing school construction, Ministry Car, construction of ECSS Guest House,
     pray for our priests and entire leadership of the Diocese, Upcoming Diocesan
